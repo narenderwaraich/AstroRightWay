@@ -1,0 +1,654 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Student Grade</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      <script>
+         $(function() {
+            
+
+            initAutoComplete();
+
+            
+         });
+
+         function initAutoComplete() {
+                $( ".automplete" ).autocomplete({
+                    source: [
+               "Intermediate Language Arts",
+               "Intermediate",
+               "Advanced",
+               "Algebra",
+               "Pre-Algebra",
+               "Advanced English",
+            ]
+                });
+        }
+      </script>
+  <style>
+  section {
+    display: block;
+}
+#grade-calculator {
+    font-weight: 400;
+    color: #111;
+    clear: both;
+    width: 1024px;
+    max-width: 100%;
+    padding-top: 2rem;
+    float: none;
+    margin: 0 auto;
+}
+#grade-calculator #mobile-results {
+    transition: all .75s;
+    bottom: 0;
+}
+#grade-calculator .mobile-results {
+    border-top: 2px solid #dbdbdb;
+    font-weight: 500;
+    background: #f5f5f5;
+    position: fixed;
+    left: 0;
+    z-index: 999999999;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(120, 120, 120, 0.2);
+    padding-bottom: 0;
+}
+#grade-calculator .mobile {
+    display: none;
+    padding: 10px 0;
+}
+#grade-calculator .mobile-results .col-md-12 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 10px;
+}
+#grade-calculator .mobile-results .gpa-bar {
+    text-transform: uppercase;
+    border-bottom: 1px solid #dbdbdb;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+#grade-calculator * {
+    box-sizing: border-box;
+}
+#grade-calculator .row.wrapper {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+#grade-calculator .row {
+    margin: 0;
+    padding: 0;
+}
+#grade-calculator .topbar {
+    padding-right: 0;
+}
+#grade-calculator .add-semester, #grade-calculator .current-gpa {
+    max-width: 100%;
+    padding-left: 25px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    border: 1px solid #dbdbdb;
+}
+#grade-calculator .current-gpa {
+    clear: both;
+    border: 2px solid #dbdbdb;
+    border-radius: 3px;
+    margin-top: 0 !important;
+}
+#grade-calculator .card, #grade-calculator .grade-format {
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    padding-left: 25px;
+}
+#grade-calculator .current-gpa a {
+    font-size: 15px;
+    color: #999999;
+    text-transform: uppercase;
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 500;
+}
+#grade-calculator a, #grade-calculator a:hover, #grade-calculator a:active {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+#grade-calculator .current-gpa a img {
+    float: right;
+    margin-right: 25px;
+    position: relative;
+    top: 7px;
+}
+#grade-calculator .current-gpa .col-sm-3 {
+    padding-right: 12px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#grade-calculator .current-gpa .col-sm-3 label {
+    font-weight: 600;
+}
+#grade-calculator .grade-entry input, #grade-calculator .grade-entry select, #grade-calculator ul.classes input, #grade-calculator ul.classes select, #grade-calculator .current-gpa input, #grade-calculator .current-gpa select {
+    border: 1px solid #ededed;
+    border-radius: 2px;
+    background: #fff;
+    font-size: 14px;
+    character: 0px;
+    display: block;
+    width: 100%;
+    height: 38px;
+    line-height: 20px;
+    font-family: "Poppins", sans-serif;
+    padding: 6px 12px !important;
+    outline: none;
+    box-shadow: none !important;
+}
+#grade-calculator .gc-clearfix::after, #grade-calculator #grade-calculator::after, #grade-calculator .grade-format .input-wrapper::after, #grade-calculator .results .card::after, #grade-calculator .results .grade-format::after, #grade-calculator .results ul.gpa::after, #grade-calculator .results ul.gpa li::after, #grade-calculator .results .gpa-types::after, #grade-calculator .gc-text::after {
+    content: '';
+    display: table;
+    width: 100%;
+    clear: both;
+}
+#grade-calculator .row:before, #grade-calculator .row:after {
+    display: table;
+    content: " ";
+}
+.clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical>.btn-group:before, .btn-group-vertical>.btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-footer:before, .modal-footer:after {
+    display: table;
+    content: " ";
+}
+#grade-calculator .grade-format-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+}
+#grade-calculator .grade-format {
+    text-align: center;
+    margin-bottom: 10px;
+    min-height: initial !important;
+    padding: .5rem;
+    padding-bottom: 12px;
+    width: 264px;
+    max-width: 96%;
+    float: right;
+}
+
+#grade-calculator .grade-format h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #999;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+    font-weight: 700;
+    padding-bottom: 5px;
+}
+#grade-calculator, #grade-calculator h1, #grade-calculator h2, #grade-calculator h3, #grade-calculator h4, #grade-calculator h5 {
+    font-family: "Poppins", sans-serif;
+}
+#grade-calculator .grade-format .input-wrapper, #grade-calculator .grade-format label {
+    border-radius: 25px;
+}
+#grade-calculator .grade-format .input-wrapper {
+    background: #fff;
+    height: 30px;
+    border: 2px solid #dbdbdb;
+}
+#grade-calculator .grade-format .input-wrapper {
+    white-space: nowrap;
+    max-width: 160px;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+#grade-calculator .grade-format input[type=radio] {
+    display: none;
+}
+
+
+#grade-calculator .grade-format input:checked + label {
+    color: #fff;
+    background: #13afdf;
+}
+
+#grade-calculator .grade-format label {
+    font-weight: 500;
+    character: 0.5px;
+    font-size: 10px;
+    text-transform: uppercase;
+    width: 93px;
+    height: 26px;
+    line-height: 26px;
+    padding: 0;
+    float: left;
+    margin: 0;
+    cursor: pointer;
+    width: 78px;
+}
+#grade-calculator .gc-main {
+    max-width: 100%;
+    margin-bottom: 1rem;
+    padding-right: 0;
+}
+#grade-calculator .gc-error {
+    background: #F1453D;
+    color: #fff;
+    width: 100%;
+    font-size: 11px;
+    border-radius: 2px;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+}
+#grade-calculator .gc-error img {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+#grade-calculator .gc-main > .card, #grade-calculator .gc-main > .grade-format {
+    margin-top: 0;
+}
+#grade-calculator .remove-semester {
+    float: left;
+    margin: 1rem 0 0 1rem;
+}
+
+
+
+.visible-xs, .visible-sm, .visible-md, .visible-lg {
+    display: none!important;
+}
+#grade-calculator .grade-entry {
+    border-bottom: none;
+    z-index: 1;
+}
+#grade-calculator .grade-entry label.heading, #grade-calculator ul.classes label.heading {
+    display: block;
+    float: left;
+}
+#grade-calculator .grade-entry .input-wrapper.class-name, #grade-calculator .grade-entry label.class-name, #grade-calculator ul.classes .input-wrapper.class-name, #grade-calculator ul.classes label.class-name {
+    width: 195px;
+}
+#grade-calculator .desktop {
+    display: initial;
+}
+#grade-calculator .grade-entry .input-wrapper.grade, #grade-calculator .grade-entry .input-wrapper.credits, #grade-calculator .grade-entry label.grade, #grade-calculator .grade-entry label.credits, #grade-calculator ul.classes .input-wrapper.grade, #grade-calculator ul.classes .input-wrapper.credits, #grade-calculator ul.classes label.grade, #grade-calculator ul.classes label.credits {
+    width: 100px;
+}
+#grade-calculator ul.classes {
+    border-top: none;
+}
+#grade-calculator ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+#grade-calculator ul, #grade-calculator ul li, #grade-calculator ul > li {
+    list-style-type: none !important;
+}
+#grade-calculator ul.classes li {
+    margin-bottom: 10px;
+    position: relative;
+    clear: both;
+}
+
+#grade-calculator label.mobile {
+    font-weight: 400;
+}
+
+
+#grade-calculator .grade-entry .input-wrapper, #grade-calculator ul.classes .input-wrapper {
+    float: left;
+    padding-right: 10px;
+}
+#grade-calculator .grade-entry .select-wrapper, #grade-calculator ul.classes .select-wrapper, #grade-calculator .current-gpa .select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+#grade-calculator .grade-entry select, #grade-calculator ul.classes select, #grade-calculator .current-gpa select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    position: relative;
+    z-index: 9999;
+    background: transparent;
+    cursor: pointer;
+    padding: 0 12px !important;
+}
+
+#grade-calculator .grade-entry .input-wrapper.class-type, #grade-calculator .grade-entry label.class-type, #grade-calculator ul.classes .input-wrapper.class-type, #grade-calculator ul.classes label.class-type {
+    width: 145px;
+}
+#grade-calculator .grade-entry .select-wrapper::after, #grade-calculator ul.classes .select-wrapper::after, #grade-calculator .current-gpa .select-wrapper::after {
+    content: '';
+    display: block;
+    background: url(https://gpacalculator.net/wp-content/plugins/grade-calculators/public/css/../img/select-box-dropdown.svg);
+    width: 11px;
+    height: 6px;
+    position: absolute;
+    right: 10px;
+    top: 45%;
+}
+#grade-calculator .remove-class {
+    margin-top: 7px;
+    display: inline-block;
+    cursor: pointer;
+}
+#grade-calculator .add-class {
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+#grade-calculator .add-element {
+    background: transparent;
+    color: #0091ff;
+    border: none;
+    padding: 0;
+}
+#grade-calculator button {
+    cursor: pointer;
+    background: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 2px;
+    border: none;
+    font-weight: 400;
+    text-transform: none;
+    font-size: initial;
+}
+#grade-calculator button {
+    font-weight: 400;
+}
+#grade-calculator .add-element img {
+    position: relative;
+    top: -1px;
+}
+#grade-calculator .semester-title {
+    width: auto;
+    border: none !important;
+    background: #F4F4F4;
+    padding: 3px;
+    padding-left: 12px;
+    margin-left: -11px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    float: left;
+    max-width: 160px;
+}
+
+
+
+#grade-calculator .add-semester {
+    margin-top: 12px !important;
+}
+
+#grade-calculator .results {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#grade-calculator .results .card, #grade-calculator .results .grade-format {
+    min-height: 406px;
+    width: 300px;
+    max-width: 100%;
+    float: right;
+    padding: 0;
+    padding-bottom: 2rem;
+    margin-top: 0;
+}
+
+#grade-calculator .results h2 {
+    font-weight: 600;
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    height: 75px;
+    line-height: 75px;
+    text-transform: uppercase;
+}
+#grade-calculator .results .gpa-types {
+    padding: 0 1rem;
+    display: flex;
+}
+#grade-calculator .results .gpa-types a.active {
+    border-bottom: 3px solid #404040;
+    color: #111;
+}
+.text-center {
+    text-align: center;
+}
+#grade-calculator .mobile-results .gpa-wrapper {
+    transform: scaleY(0);
+    display: none;
+    transition: all 1s;
+}
+
+#grade-calculator .mobile-results li .col-md-4 {
+    padding-bottom: 10px;
+}
+
+.dynamic-added-padding {
+     padding-left: 0px; 
+}
+
+#grade-calculator .results .gpa-types a.active {
+    border-bottom: 3px solid #404040 !important;
+    color: #111;
+}
+#grade-calculator .results .gpa-types a {
+    white-space: nowrap;
+    width: 100%;
+    display: inline-block;
+    height: 52px;
+    line-height: 52px;
+    color: #999999;
+    text-transform: uppercase;
+}
+
+#grade-calculator .results ul.gpa {
+    margin-top: 15px;
+    padding: 1rem;
+}
+#grade-calculator .results ul.gpa li:first-child {
+    color: #673FB4;
+}
+#grade-calculator .results ul.gpa li {
+    border-bottom: 2px solid #dbdbdb;
+    white-space: nowrap;
+    display: flex;
+}
+
+#grade-calculator .results ul.gpa li div:first-child {
+    text-align: left;
+    font-size: 15px;
+    line-height: 52px;
+}
+#grade-calculator .results ul.gpa li div:last-child {
+    text-align: right;
+    font-size: 25px;
+    padding-top: 5px;
+}
+#grade-calculator .results ul.gpa li:last-child {
+    border-bottom: none;
+}
+#grade-calculator .results .gpa-types {
+    padding: 0;
+    font-size: 13px;
+}
+.remove-semester-icon:hover{
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<section class="grade-calculator">
+    <div id="grade-calculator" class="col-md-12 row">
+        <!-- data box  -->
+        <div class="row wrapper">
+          <div id="gc-main" class="gc-main col-md-8 calculator">
+            <span class="gc-error" style="display: none;">
+              <img src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/icon-error.png">
+              Please enter a grade
+            </span> 
+    <!-- dynmic form -->
+            <div class="card gc-clearfix">
+              <div class="col-md-12 row">
+                <input type="text" placeholder="SEMESTER TITLE" class="semester-title"> 
+                <a class="remove-semester" id="sem0">
+                  <img src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/trash.svg" class="visible-xs">
+                </a>
+              </div>
+
+              <div class="col-md-12 row grade-entry dynamic-added" id="frm0">
+                <label class="desktop heading class-name">Course Name</label> 
+                <label class="desktop heading grade">Grade </label>
+                <label class="desktop heading credits">Credits</label>
+                <label class="desktop heading class-type">Course Type</label>
+
+                <!-- <?php
+                    for ($x = 0; $x <= 4; $x++) {
+                        echo " --><ul class='classes col-md-12 row'><li class='row col-md-12'><div class='input-wrapper class-name'><input type='text' class='automplete' placeholder='e.g. Math'></div><div class='input-wrapper grade'><span class='select-wrapper'><select><option value='95'>A+</option><option value='93'>A</option><option value='90'>A-</option><option value='87'>B+</option><option value='83'>B</option><option value='80'>B-</option><option value='77'>C+</option><option value='73'>C</option><option value='70'>C-</option><option value='67'>D+</option><option value='63'>D</option><option value='60'>D-</option><option value='0'>F</option></select></span></div><div class='input-wrapper credits'><span class='select-wrapper'> <select><option value='1'>1</option><option value='1.5'>1.5</option><option value='2'>2</option><option value='2.5'>2.5</option><option value='3'>3</option><option value='3.5'>3.5</option><option value='4'>4</option><option value='4.5'>4.5</option><option value='5'>5</option><option value='5.5'>5.5</option></select></span></div> <div class='input-wrapper class-type'><span class='select-wrapper'><select><option value='regular'>Regular</option><option value='honors'>Honors</option><option value='ap'>AP</option><option value='ib'>IB</option><option value='college'>College</option></select></span></div><a class='remove-class btn_remove hidden-xs' id='0'><img src='https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/delete.png' data-hover-src='https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/delete-hover.svg' class='gc-hover'></a></li></ul><!-- ";
+                    }
+                ?> -->
+            </div>
+
+        <div class="dynamic-added-padding" id="dynamic_field">
+                  
+        </div>
+        <div class="col-md-12 add-class">
+            <button class="add-element addFeild" id="addFeild" type="button">
+                <img src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/add.svg" data-hover-src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/add-hover.svg" class="gc-hover">
+                    Add Course
+            </button>
+        </div>
+    </div>
+
+    <!-- end dynmic form -->
+              <div id="dynamic_form">
+                  
+              </div>
+  
+              <div class="col-md-12 add-semester card">
+                <button class="add-element" id="addForm"><img src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/add.svg" data-hover-src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/add-hover.svg" class="gc-hover">
+                  Add Semester
+                </button>
+              </div>
+            </div> 
+
+    <!-- end data box  -->
+
+            <div id="results" class="desktop col-md-4 results text-center">
+              <div class="card">
+                <h2>Your GPA</h2> 
+                <div class="col-md-12 gpa-types">
+                  <div class="col-md-6">
+                    <a href="#" class="active">Weighted</a>
+                  </div> 
+                  <div class="col-md-6">
+                    <a href="#" class="">Unweighted</a>
+                  </div>
+                </div> 
+                <div>
+                  <ul class="gpa">
+                    <li>
+                      <div class="col-md-6">
+                        Cumulative
+                      </div> 
+                      <div class="col-md-6">
+                        0.00
+                      </div>
+                    </li> 
+                    <li>
+                      <div class="col-md-6">
+                        Semester 1
+                      </div>
+                      <div class="col-md-6">
+                        0.00
+                      </div>
+                    </li>
+                    <li>
+                      <div class="col-md-6">
+                        Semester 2
+                      </div> 
+                      <div class="col-md-6">
+                        0.00
+                      </div>
+                    </li>
+                  </ul>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript">
+                        //// add multi items
+                        $(document).ready(function(){      
+                          //var postURL = "<?php echo url('Invoice'); ?>";
+                          var i=4;
+                          var j=0;  
+
+                          $(document).on('click', '.addFeild', function(){
+                          var oneRow = getOneRow();    
+                          $(this).parents('.card').find('#dynamic_field').append(oneRow);
+                               i++;
+                          });
+
+                          function getOneRow(){
+                            return '<div id="frm'+i+'" class="col-md-12 row grade-entry dynamic-added"><ul class="classes col-md-12 row"><li class="row col-md-12"><div class="input-wrapper class-name"><a class="remove-class visible-xs"><img src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/trash.svg" class="gc-hover"></a> <input type="text" class="automplete" placeholder="e.g. Math"></div> <div class="input-wrapper grade"><span class="select-wrapper"><select><option value="95">A+</option><option value="93">A</option><option value="90">A-</option><option value="87">B+</option><option value="83">B</option><option value="80">B-</option><option value="77">C+</option><option value="73">C</option><option value="70">C-</option><option value="67">D+</option><option value="63">D</option><option value="60">D-</option><option value="0">F</option></select></span></div><div class="input-wrapper credits"><span class="select-wrapper"><select><option value="1">1</option><option value="1.5">1.5</option><option value="2">2</option><option value="2.5">2.5</option><option value="3">3</option><option value="3.5">3.5</option><option value="4">4</option><option value="4.5">4.5</option><option value="5">5</option><option value="5.5">5.5</option></select></span></div><div class="input-wrapper class-type"><span class="select-wrapper"><select><option value="regular">Regular</option><option value="honors">Honors</option><option value="ap">AP</option><option value="ib">IB</option><option value="college">College</option></select></span></div> <a class="remove-class btn_remove hidden-xs" id="'+i+'"><img src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/delete.png" data-hover-src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/delete-hover.svg" class="gc-hover"></a></li></ul></div>';
+                          }
+
+
+                          $('#addForm').click(function(){
+
+                            var semBody = '<div class="card gc-clearfix" id="semRemove'+j+'"><div class="col-md-12 row"><input type="text" placeholder="SEMESTER TITLE" class="semester-title"><a class="remove-semester"><img src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/trash.svg" class="remove-semester-icon" id="'+j+'"></a></div><div class="col-md-12 row grade-entry dynamic-added" id="frm'+i+'"><label class="desktop heading class-name">Course Name</label><label class="desktop heading grade">Grade </label><label class="desktop heading credits">Credits</label><label class="desktop heading class-type">Course Type</label>';
+
+                            for(var i = 1;i<=4;i++){
+                                semBody += getOneRow();
+                            }
+
+                            semBody += '</div><div class="dynamic-added-padding" id="dynamic_field"></div><div class="col-md-12 add-class"><button class="add-element addFeild" id="addFeild" type="button"><img src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/add.svg" data-hover-src="https://gpacalculator.net/wp-content/plugins/grade-calculators/public/partials/../img/add-hover.svg" class="gc-hover">Add Course</button></div></div>';
+
+                          $('#dynamic_form').append(semBody);
+                               i++;
+                               j++;
+
+                               initAutoComplete();
+                          });    
+
+                          $(document).on('click', '.btn_remove', function(){  
+                               // var button_id = $(this).attr("id");   
+                               // $('#frm'+button_id+'').remove();
+                               $(this).parent().remove();
+                          }); 
+
+
+                           $(document).on('click', '.remove-semester-icon', function(){  
+                               var button_id = $(this).attr("id"); 
+                               //console.log(button_id);  
+                               $('#semRemove'+button_id+'').remove();
+                          });
+
+
+
+
+
+                        }); 
+
+                         
+       
+    
+ </script>
+</html>
