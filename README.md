@@ -1,2 +1,0 @@
-# astrorightway
-Astrology Products Shoping
