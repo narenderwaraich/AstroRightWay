@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="box-body">
-                            @foreach ($allMessage as $message)
+                            @foreach ($allMessage->take(5) as $message)
                                     @if($message->user_message)
                                         <div class="user-message-chat-box">
                                         <p class="user-message-drop">{!! nl2br($message->user_message) !!}</p>

@@ -32,7 +32,7 @@
 
 
 
-	@foreach ($messages as $message)
+	@foreach ($messages->take(5) as $message)
 		@if($message->user_message)
 	    	<div class="user-message-chat-box">
 	    	<div class="user-name-show">{{ Auth::user()->name }}</div>
