@@ -1,0 +1,195 @@
+@extends('layouts.app')
+@section('content')
+<div class="banner">
+  <img src="/images/banner/user-profile.jpg" alt=""/>
+  <div class="slider-imge-overlay"></div>
+  <div class="caption text-center">
+    <div class="container">
+      <div class="caption-in">
+        <div class="caption-ins">
+          <h1>Profile<span></span></h1>
+          <div class="links"> 
+            <a href="#" class="btns slider-btn"><span>Button</span></a> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>
+  <div class="container m-t-70 m-b-70">
+
+    <div class="bootstrap snippet">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>{{ Auth::user()->name }}
+          </h1>
+        </div>
+      </div>
+      <div class="row m-t-30">
+        <div class="col-sm-3"><!--left col-->
+
+
+          <div class="text-center">
+            @if(empty($user->avatar))
+            <img src="{{asset('/images/user/'.Auth::user()->avatar)}}" alt="{{ Auth::user()->name }}" class="dp-show" id="profile-img-tag">
+            @else
+            <img src="" class="dp-show newdp" id="profile-img-tag" alt="avatar" style="display: none;">
+            <div id="userImage"></div>
+            @endif
+            <button type="button" class="btn img-upload btn-style" onclick="document.getElementById('getFile').click()">Upload</button>
+          </div>
+        </hr>
+        <br>
+
+
+        <ul class="list-group">
+          <li class="list-group-item text-muted">Orders <i class="fa fa-dashboard fa-1x"></i></li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
+        </ul> 
+
+      </div><!--/col-3-->
+      <div class="col-sm-9">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#address">Address</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#password-tab">Password</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="profile" class="container tab-pane active"><br>
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h4>Your Profile</h4>
+                    <hr>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <form method="POST" action="/user-profile-update/{{ auth()->user()->id }}"  enctype="multipart/form-data" class="profile-form">
+                      @csrf
+                      <div class="form-group row">
+                        <label for="username" class="col-4 col-form-label">Name</label> 
+                        <div class="col-8">
+                          <input id="username" name="name" placeholder="Name" class="form-control here {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ Auth::user()->name }}" required="required" type="text">
+                          @if ($errors->has('name'))
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('name') }}</strong>
+                          </span>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="email" class="col-4 col-form-label">Email</label> 
+                        <div class="col-8">
+                          <input id="email" name="email" placeholder="Email" class="form-control here {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ Auth::user()->email }}" required="required" type="text">
+                          @if ($errors->has('email'))
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                          </span>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="mobile" class="col-4 col-form-label">Mobile</label>
+                        <div class="col-8">
+                          <input type="number" class="form-control here {{ $errors->has('phone_no') ? ' is-invalid' : '' }}" name="phone_no" value="{{ Auth::user()->phone_no }}" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                          @if ($errors->has('phone_no'))
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('phone_no') }}</strong>
+                          </span>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="select" class="col-4 col-form-label">Gender</label> 
+                        <div class="col-8">
+                          <select name="gender" id="select" required class="custom-select form-control ">
+                            <option value="{{ Auth::user()->gender }}">-- Select Gender--</option>    
+                            <option value="male" @if (Auth::user()->gender == "male") {{ 'selected' }} @endif>Male</option>
+                            <option value="female" @if (Auth::user()->gender == "female") {{ 'selected' }} @endif>Female</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="db" class="col-4 col-form-label">Date of Birth</label>
+                        <div class="col-8">
+                          <input type="date" class="form-control here" name="date" value="{{ Auth::user()->date }}" id="db" placeholder="Date of birth">
+                        </div>
+                      </div>
+
+                      <input type="file" name="avatar" value="{{Auth::user()->avatar}}" style="visibility: hidden;" id="getFile">
+                      <div class="form-group row">
+                        <div class="offset-4 col-8">
+                          <button name="submit" type="submit" class="btn btn-style btn-top">Update My Profile</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div id="address" class="container tab-pane fade"><br>
+            <h3>Addtress</h3>
+          </div>
+          <div id="password-tab" class="container tab-pane fade"><br>
+            <h3>Password</h3>
+          </div>
+        </div>
+
+
+      </div><!--/col-9-->
+    </div><!--/row-->
+
+
+  </div>
+</div>
+
+
+<span id="userName" style="display: none;">{{Auth::user()->name}}</span>
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#profile-img-tag').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#getFile").change(function(){
+    readURL(this);
+    $('#userImage').hide();
+    $('.newdp').show();
+  });
+
+  $(document).ready(function(){
+    var userName = $('#userName').text();
+    var intials = userName.charAt(0);
+    var profileImage = $('#userImage').text(intials);
+  });
+</script>
+
+@endsection
+
+
+
+
+
+
+
+{"head":{"clientId":"C11","responseTimestamp":"1582552237815","signature":"AYxANdFS2HSR+FdYvMJ+T0PsNffTdIBeP7GnZWTLv69Xdb/iryAv3bcA0yRJlCa63dl2LqMwSpnLItCqN9aidGLC+0NfuB78JOP7zWBPOB0=","version":"v1"},"body":{"orderId":"5e4bb22350d7f","mid":"zymWRd84873341858873","resultInfo":{"resultStatus":"TXN_FAILURE","resultCode":"600","resultMsg":"Invalid refund request"},"txnId":"20200218111212800110168934214373684","refundAmount":"1.00"}}
