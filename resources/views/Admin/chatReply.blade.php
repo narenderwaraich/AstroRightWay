@@ -21,6 +21,18 @@
                         </div>
 
                         <div class="box-body">
+                            @foreach ($allMessage as $message)
+                                    @if($message->user_message)
+                                        <div class="user-message-chat-box">
+                                        <p class="user-message-drop">{!! nl2br($message->user_message) !!}</p>
+                                        </div>
+                                    @endif
+                                    @if($message->reply_message)
+                                        <div class="admin-message-chat-box">
+                                        <p class="admin-message-drop">{!! nl2br($message->reply_message) !!}</p>
+                                        </div>
+                                    @endif
+                                @endforeach
                             <p>{{$chat->user_message}}</p>
                             <div class="form-group">
                                 <label for="title">Reply Message</label>

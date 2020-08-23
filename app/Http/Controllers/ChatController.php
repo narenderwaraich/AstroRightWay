@@ -268,8 +268,9 @@ class ChatController extends Controller
     if(Auth::user()->role == "administrator" || Auth::user()->role == "admin"){
         $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
         $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
-        $chat = Chat::find($id);
-        return view('Admin.chatReply',compact('getOrders','contacts'),['chat' =>$chat]);
+        $chat = Chat::find($id); //dd($chat);
+        $allMessage = Chat::where('user_id',$chat->user_id)->get(); //dd($allMessage);
+        return view('Admin.chatReply',compact('getOrders','contacts'),['chat' =>$chat, 'allMessage' =>$allMessage]);
         }
     }else{
         return redirect()->to('/login');
