@@ -23,14 +23,10 @@
                         <div class="box-body">
                             @foreach ($allMessage->take(5) as $message)
                                     @if($message->user_message)
-                                        <div class="user-message-chat-box">
-                                        <p class="user-message-drop">{!! nl2br($message->user_message) !!}</p>
-                                        </div>
+                                        <p style="text-align: left;border-bottom: 2px solid #007bff;">{!! nl2br($message->user_message) !!}</p>
                                     @endif
                                     @if($message->reply_message)
-                                        <div class="admin-message-chat-box">
-                                        <p class="admin-message-drop">{!! nl2br($message->reply_message) !!}</p>
-                                        </div>
+                                        <p style="text-align: right;border-bottom: 2px solid #28a745;">{!! nl2br($message->reply_message) !!}</p>
                                     @endif
                                 @endforeach
                             <p>{{$chat->user_message}}</p>

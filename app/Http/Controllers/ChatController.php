@@ -132,6 +132,22 @@ class ChatController extends Controller
         }
     }
 
+    public function transferMessage(Request $request){
+        $id = $request->id;
+        $astrologer = $request->astrologer;
+        $chat = Chat::find($id);
+        $data['message_assign'] = $astrologer;
+        $chat->update($data); 
+        $chatData = $chat; //dd($chatData);
+
+        $user = User::where('id',$chat->user_id)->first();
+        $astrologerData = Astrologer::find($astrologer);
+        $astrologerMail = $astrologerData->email;
+        Mail::to($astrologerMail)->send(new MessageNotification($user,$chatData));
+        Toastr::success('Message Transferd', 'Success', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->to('/admin/chat');
+    }
+
     public function astroReply(Request $request, $id)
     {
         if(Auth::check()){
@@ -229,6 +245,7 @@ class ChatController extends Controller
                     $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
                     $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
                     $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
+                    $astrologers = Astrologer::where('verified','=',2)->get(); //dd($astrologers);
                     $getChats = Chat::where('message_status','=','Sent')->orderBy('created_at','desc')->paginate(10);
                     foreach ($getChats as $chat) {
                         $astrologer = Astrologer::where('id',$chat->message_assign)->first();
@@ -236,7 +253,7 @@ class ChatController extends Controller
                         $chat->email = User::where('id',$chat->user_id)->first()->email;
                         $chat->astrologer = $astrologer ? $astrologer->name : 'Guru';
                     }
-                return view('Admin.chat',compact('getOrders','contacts','chats'),['getChats' =>$getChats]);
+                return view('Admin.chat',compact('getOrders','contacts','chats'),['getChats' =>$getChats, 'astrologers' => $astrologers]);
                 }
             }else{
                 return redirect()->to('/login');
@@ -249,6 +266,7 @@ class ChatController extends Controller
                 $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
                 $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
                 $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
+                $astrologers = Astrologer::where('verified','=',2)->get(); //dd($astrologers);
                 $getChats = Chat::where('message_status',$status)->orderBy('created_at','desc')->paginate(10);
                 foreach ($getChats as $chat) {
                     $astrologer = Astrologer::where('id',$chat->message_assign)->first();
@@ -256,7 +274,7 @@ class ChatController extends Controller
                     $chat->email = User::where('id',$chat->user_id)->first()->email;
                     $chat->astrologer = $astrologer ? $astrologer->name : 'Guru';
                 }
-                return view('Admin.chat',compact('getOrders','contacts','chats'),['getChats' =>$getChats]);
+                return view('Admin.chat',compact('getOrders','contacts','chats'),['getChats' =>$getChats, 'astrologers' => $astrologers]);
                 }
             }else{
                 return redirect()->to('/login');
@@ -312,5 +330,23 @@ class ChatController extends Controller
                 $chat = Chat::find($id);
         return view('Astrologer.chatReply',['chat' =>$chat, 'chats' =>$chats]);
         }
+    }
+
+    public function markSentChat($id){
+        $chat = Chat::find($id);
+        $data['message_status'] = "Sent";
+        $chat->update($data); 
+
+        Toastr::success('Message mark sent', 'Success', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->to('/admin/chat');
+    }
+
+    public function markReplyChat($id){
+    $chat = Chat::find($id);
+    $data['message_status'] = "Reply";
+    $chat->update($data); 
+
+    Toastr::success('Message mark sent', 'Success', ["positionClass" => "toast-bottom-right"]);
+    return redirect()->to('/admin/chat');
     }
 }

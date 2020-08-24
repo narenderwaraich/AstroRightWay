@@ -285,7 +285,10 @@ Route::get('/admin/chat','ChatController@showList');
 Route::get('/admin/{status}/chat','ChatController@listWithStatus');
 Route::get('/chat/reply/{id}','ChatController@userMessage');
 Route::post('/chat-reply/{id}','ChatController@astroReply');
+Route::post('message-transfer','ChatController@transferMessage');
 Route::get('/chat/view/{id}','ChatController@viewChat');
+Route::get('/chat/status/mark-sent/{id}','ChatController@markSentChat');
+Route::get('/chat/status/mark-reply/{id}','ChatController@markReplyChat');
 
 Route::get('/buy/plan','UserPlanController@create');
 Route::get('/buy-plan/{id}','UserPlanController@buyPlan');

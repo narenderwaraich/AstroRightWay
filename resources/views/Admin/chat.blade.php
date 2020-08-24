@@ -60,8 +60,15 @@
                                         <td>
                                         @if($chat->message_status == "Sent")
                                         <a href="/chat/reply/{{ $chat->id }}"><button class="btn btn-success">Reply</button></a>
+                                        <a href="/chat/status/mark-reply/{{ $chat->id }}"><button class="btn btn-dark">Mark Reply</button></a>
+                                        @endif
+                                        @if($chat->message_status == "Pending")
+                                        <a href="/chat/status/mark-sent/{{ $chat->id }}"><button class="btn btn-dark">Mark Sent</button></a>
                                         @endif
                                         <a href="/chat/view/{{ $chat->id }}"><button class="btn btn-info on-mob-table-btn">View</button></a>
+                                        <a href="#" class="btn btn-warning trnsfer-msg" data-toggle="modal" data-target="#myModal" id="sendButton" data-id="{{ $chat->id }}">
+                                            <i class="fa fa-exchange"></i> Transfer
+                                        </a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -74,4 +81,104 @@
             </div>
         </section>
     </section>
+
+
+
+
+    <!--Send Mail Modal -->
+                                    <div class="modal fade" id="myModal" role="dialog">
+                                      <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <div class="modal-title-text">
+                                              Transfer Message
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="modal" style="float: right;">&times;</button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <!-- <img src="/images/loader.gif" id="loading" style="height: 65px;"> -->
+                                            <form action="/message-transfer"  id="MailData" method="POST">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id" id="store_id">
+                                            <div class="form-group">
+                                                <label for="title">Astrologer</label>
+                                                <select name="astrologer" id="astrologer"  class="input-style form-control {{ $errors->has('astrologer') ? ' is-invalid' : '' }}" required style="width: 70%;color: #ce2350;height: auto;border: 2px solid #ce2350 !important;">
+                                                    <option value="">--Select Astrologer--</option>   
+                                                      @foreach($astrologers as $astrologer)
+                                                          <option value="{{$astrologer->id}}">{{$astrologer->name}}</option>
+                                                      @endforeach
+                                                </select>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            
+                                            <center><button type="submit" class="btn modal-btn">
+                                              <span id="send-btn">Send</span>
+                                              <span id="mail-button-sending" style="display:none;">Sending…</span>
+                                              </button></center>
+                                          </div>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+ <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
+<script>
+    /// mail send model
+                    $('.trnsfer-msg').on('click', function() {
+                        var messageId = $(this).attr('data-id'); console.log(messageId);
+                        document.getElementById('store_id').value = messageId;
+                        // $("#MailData").submit();
+                    });
+
+        //     $("form#MailData").submit(function(e) {
+            //       var allVals = [];  
+            //       $(".sub_chk:checked").each(function() {  
+            //           allVals.push($(this).attr('data-id'));
+            //       });  
+            //       if(allVals.length <=0)  
+            //       {  
+            //           alert("Please select row.");  
+            //       }else{
+
+            //         var join_selected_values = allVals.join(",");  //console.log(join_selected_values);
+            //         document.getElementById('store_id').value = join_selected_values;
+            //       e.preventDefault();    
+            //       var formData = new FormData(this);
+            //       $.ajax({
+            //           url: '/send-notificaton-mail',
+            //           type: 'POST',
+            //           data: formData,
+            //           beforeSend: function() {
+            //               $('#send-btn').hide();
+            //               $('#mail-button-sending').show();
+            //               $("#send-mail-btn").attr("disabled", "disabled");
+            //               //ShowProgressAnimation();
+            //           },
+            //           success: function (data) {
+            //              if (data['success']) {
+            //               $('#loading').hide();
+            //               toastr.success("Mail Sent successfully","Mail");
+            //               $('#myModal').hide();
+            //               $(".modal .close").click();
+            //                   location.reload();
+            //                   //$('.msgMail').append(data .msg);
+            //                   // $('#hidediv').show();
+            //     } else if (data['error']) {
+            //         toastr.error("Sorry","Mail");
+            //         $('#myModal').hide();
+            //         $(".modal .close").click();
+            //     } else {
+            //         alert('Whoops Something went wrong!!');
+            //     }
+            // },
+            // error: function (data) {
+            //     alert(data.responseText);
+            // },
+            //           cache: false,
+            //           contentType: false,
+            //           processData: false
+            //       });
+            //     } //end else
+            //   });
+</script>
 @endsection
