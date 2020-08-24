@@ -13,7 +13,7 @@
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">Reply <span style="float: right;">
-                                <a href="{{ URL::previous() }}"><button type="button" class="btn btn-danger btn-sm" >
+                                <a href="{{ URL::previous() }}"><button type="button" class="btn btn-danger" >
                                     <span class="fa fa-chevron-left"></span> Back
                                 </button>
                                 </a></span>
@@ -23,13 +23,16 @@
                         <div class="box-body">
                             @foreach ($allMessage->take(5) as $message)
                                     @if($message->user_message)
+                                        @if($message->file)
+                                            <img src="/public/images/user/messages/{{$message->file}}" style="width: 320px;">
+                                        @endif
                                         <p style="text-align: left;border-bottom: 2px solid #007bff;">{!! nl2br($message->user_message) !!}</p>
                                     @endif
                                     @if($message->reply_message)
                                         <p style="text-align: right;border-bottom: 2px solid #28a745;">{!! nl2br($message->reply_message) !!}</p>
                                     @endif
                                 @endforeach
-                            <p>{{$chat->user_message}}</p>
+                            <!-- <p>{{$chat->user_message}}</p> -->
                             <div class="form-group">
                                 <label for="title">Reply Message</label>
                                 <textarea name="reply_message" rows="5" placeholder="Reply Message" class="form-control"></textarea>

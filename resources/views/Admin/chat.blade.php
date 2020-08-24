@@ -64,11 +64,11 @@
                                         @endif
                                         @if($chat->message_status == "Pending")
                                         <a href="/chat/status/mark-sent/{{ $chat->id }}"><button class="btn btn-dark">Mark Sent</button></a>
-                                        @endif
-                                        <a href="/chat/view/{{ $chat->id }}"><button class="btn btn-info on-mob-table-btn">View</button></a>
                                         <a href="#" class="btn btn-warning trnsfer-msg" data-toggle="modal" data-target="#myModal" id="sendButton" data-id="{{ $chat->id }}">
                                             <i class="fa fa-exchange"></i> Transfer
                                         </a>
+                                        @endif
+                                        <a href="/chat/view/{{ $chat->id }}"><button class="btn btn-info on-mob-table-btn">View</button></a>
                                         </td>
                                     </tr>
                                     @endforeach

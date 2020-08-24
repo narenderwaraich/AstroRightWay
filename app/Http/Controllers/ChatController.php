@@ -76,10 +76,17 @@ class ChatController extends Controller
             $validate = $this->validate($request, [
                 'user_message' => 'required',
                 'astrologer' => 'required',
+                'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             if(!$validate){
                     Redirect::back()->withInput();
             }
+            if($request->file){
+                  $imageName = time().'.'.request()->file->getClientOriginalExtension();
+
+                  request()->file->move(public_path('images/user/messages'), $imageName);
+                  $data["file"] = $imageName;
+              }
 
             $data['message_assign'] = $request->astrologer; 
             $data['user_message'] = $request->user_message;
@@ -118,6 +125,7 @@ class ChatController extends Controller
             }else{
                $data['message_status'] = "Pending"; 
             }
+            //dd($data);
             $chatData = Chat::create($data);
             $user = User::where('id',$userID)->first();
             $astrologer = Astrologer::where('id',$request->astrologer)->first();
