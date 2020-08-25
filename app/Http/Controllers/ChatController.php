@@ -57,25 +57,6 @@ class ChatController extends Controller
             return view('chat',compact('title','description','banner','messages','astrologers','member'));
     }
 
-
-    public function createReferMesg($refer)
-    {
-            $banner = BanerSlide::where('page_name','=','chat')->first(); //dd($banner);
-            if (isset($banner)) {
-                $title = $banner->title;
-                $description = $banner->description;
-            }
-            $astrologer = Astrologer::where('chat_refer',$refer)->first(); //dd($astrologer);
-            $astrologerId = $astrologer->id;
-            $messages = Chat::where('user_id',Auth::id())->get(); //dd($messages);
-            $deactiveMember = MemberJoin::where('user_id',Auth::id())->where('status','=',0)->first();
-            if($deactiveMember){
-                Toastr::error('Your Member Fee Pending Please Pay Now', 'Error', ["positionClass" => "toast-top-right"]);
-                return redirect()->to('/join-member/pay/payment');
-            }
-            return view('astrologer-refer-chat',compact('title','description','banner','messages','astrologerId'));
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -152,6 +133,110 @@ class ChatController extends Controller
             Mail::to($astrologerMail)->send(new MessageNotification($user,$chatData));
             Toastr::success('Message Sent your reply with in 24hrs', 'Success', ["positionClass" => "toast-bottom-right"]);
             return redirect()->to('/talk-astro');
+           }
+        }else{
+            Toastr::error('Please login first', 'Error', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->to('/login');
+        }
+    }
+
+
+
+    public function createReferMesg($refer)
+    {
+            $banner = BanerSlide::where('page_name','=','chat')->first(); //dd($banner);
+            if (isset($banner)) {
+                $title = $banner->title;
+                $description = $banner->description;
+            }
+            $astrologer = Astrologer::where('chat_refer',$refer)->first(); //dd($astrologer);
+            $astrologerId = $astrologer->id;
+            $messages = Chat::where('user_id',Auth::id())->get(); //dd($messages);
+            $deactiveMember = MemberJoin::where('user_id',Auth::id())->where('status','=',0)->first();
+            if($deactiveMember){
+                Toastr::error('Your Member Fee Pending Please Pay Now', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->to('/join-member/pay/payment');
+            }
+            return view('astrologer-refer-chat',compact('title','description','banner','messages','astrologerId'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeReferMesg(Request $request)
+    {
+        if (Auth::check()) {
+            $userID = Auth::id();
+            $chatMsg = Chat::where('user_id',$userID)->where('message_status','=','Pending')->first();
+            if($chatMsg){
+                Toastr::error('Please Buy Any Plan', 'Error', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->to('/buy/plan');
+            }else{
+
+            $validate = $this->validate($request, [
+                'user_message' => 'required',
+                'astrologer' => 'required',
+                'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            if(!$validate){
+                    Redirect::back()->withInput();
+            }
+            if($request->file){
+                  $imageName = time().'.'.request()->file->getClientOriginalExtension();
+
+                  request()->file->move(public_path('images/user/messages'), $imageName);
+                  $data["file"] = $imageName;
+              }
+
+            $data['message_assign'] = $request->astrologer; 
+            $data['user_message'] = $request->user_message;
+            $data['user_id'] = $userID;
+            $checkUserPlan = UserPlan::where('user_id',$userID)->first();
+            if($checkUserPlan){
+
+            $current = Carbon::now();
+            $nowDate = $current->toDateTimeString(); //dd($nowDate);
+            $nowD = strtotime(str_replace('/', '-', $nowDate)); //dd($nowD);
+            $planExp = $checkUserPlan->expire_date;  //dd($planExp); 
+            $planE = strtotime(str_replace('/', '-', $planExp)); //dd($planE);     
+            $planExpires = $planE - $nowD; /// show total seconds
+            //dd($planExpires);
+
+            ///user active or not
+            if($checkUserPlan->is_activated=1){ ///check plan active or deactive
+                if($planExpires <= 0){ /// check plan exp date 
+                    $data['message_status'] = "Pending";
+                }else{
+                    if($checkUserPlan->get_message == 0){ /// check message 
+                        $data['message_status'] = "Pending";
+                    }else{
+                        $data['message_status'] = "Sent";
+                        $message['get_message'] = $checkUserPlan->get_message - 1;
+                        if($checkUserPlan->get_message == 0 || $checkUserPlan->get_message == 1){
+                            $message['is_activated'] = 0;
+                        } 
+                        $checkUserPlan->update($message);
+                    } 
+                }
+            }else{
+                $data['message_status'] = "Pending";
+            }
+
+            }else{
+               $data['message_status'] = "Pending"; 
+            }
+            //dd($data);
+            $chatData = Chat::create($data);
+            $user = User::where('id',$userID)->first();
+            $astrologer = Astrologer::where('id',$request->astrologer)->first();
+            $referCode = $astrologer->chat_refer;
+            $astrologerMail = $astrologer->email;
+            Mail::to($astrologerMail)->send(new MessageNotification($user,$chatData));
+            Toastr::success('Message Sent your reply with in 24hrs', 'Success', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->to('/talk-astro/'.$referCode);
            }
         }else{
             Toastr::error('Please login first', 'Error', ["positionClass" => "toast-bottom-right"]);

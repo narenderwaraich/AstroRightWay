@@ -280,8 +280,9 @@ Route::get('/privacy-policy', 'HomeController@privacyPolicy');
 Route::get('/term-of-services', 'HomeController@termService');
 
 Route::get('/talk-astro','ChatController@create');
-Route::get('/talk-astro/{refer}','ChatController@createReferMesg');
 Route::post('send-message','ChatController@store');
+Route::get('/talk-astro/{refer}','ChatController@createReferMesg');
+Route::post('refer-send-message','ChatController@storeReferMesg');
 Route::get('/admin/chat','ChatController@showList');
 Route::get('/admin/{status}/chat','ChatController@listWithStatus');
 Route::get('/chat/reply/{id}','ChatController@userMessage');

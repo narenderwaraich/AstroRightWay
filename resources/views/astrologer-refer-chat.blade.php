@@ -72,7 +72,7 @@
     	
 	    	
 	    	<div class="chat-box">
-	    		<form method="POST" action="/send-message" enctype="multipart/form-data" class="chat-form">
+	    		<form method="POST" action="/refer-send-message" enctype="multipart/form-data" class="chat-form">
                 	@csrf
                 	<input type="hidden" name="astrologer" value="{{$astrologerId}}">
 			        <p style="color: #fff;width: 70%;margin: auto;">if send any file or image choose size (max 2mb)</p>
