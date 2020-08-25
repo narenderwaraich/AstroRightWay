@@ -291,6 +291,36 @@ class AstrologerController extends Controller
     }
 
 
+    public function genrateChatRefer(){
+      if(Auth::check()){
+          if(Auth::user()->role == "astrologer"){
+                $userId = Auth::id();
+                $astrologer = Astrologer::where('auth_id',$userId)->first(); //dd($astrologer);
+                //$code = $astrologer->phone_no.$astrologer->name.$astrologer->email; //dd($code);
+                $referCode = $this->refer_code_make();
+                $data['chat_refer'] = $referCode;
+                $astrologer->update($data);
+              Toastr::success('Refer code genrated', 'Success', ["positionClass" => "toast-bottom-right"]);
+                  return back();
+          }
+        }else{
+        return redirect()->to('/login');
+      }
+    }
+
+    function refer_code_make(){ 
+                                    
+        // String of all alphanumeric character
+         
+        $code = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
+      
+        // Shufle the $code and returns substring 
+        // of specified length 
+        return substr(str_shuffle($code),  
+                           0, 10); 
+    } 
+
+
     public function collectPayment()
     {
       if(Auth::check()){

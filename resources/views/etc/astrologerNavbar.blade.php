@@ -44,6 +44,21 @@
                             <!-- <li><i class="fa fa-table"></i><a href="/astrologer/view">View</a></li> -->
                         </ul>
                     </li>
+                    @if(isset($astrologer))
+                     @if($astrologer->chat_refer == "")
+                    <li>
+                        <a href="/genrate-chat-refer-code"> <i class="menu-icon fa fa-share-alt"></i>Genrate Refer</a>
+                    </li>
+                     @else
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon  fa fa-share-alt"></i>Refer Code</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="fa fa-share-alt"></i><a href="#" onclick="copyLink()">Copy Link</a></li>
+                                <li><i class="fa fa-whatsapp"></i><a href="whatsapp://send?text=Click on link and chat with me {{env('APP_URL')}}/talk-astro/{{$astrologer->chat_refer}}" data-action="share/whatsapp/share">Share Whatapp</a></li>
+                            </ul>
+                        </li>
+                     @endif
+                    @endif
                     <li>
                         <a href="/astrologer/change-password"> <i class="menu-icon fa fa-key"></i>Change Password</a>
                     </li>

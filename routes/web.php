@@ -280,6 +280,7 @@ Route::get('/privacy-policy', 'HomeController@privacyPolicy');
 Route::get('/term-of-services', 'HomeController@termService');
 
 Route::get('/talk-astro','ChatController@create');
+Route::get('/talk-astro/{refer}','ChatController@createReferMesg');
 Route::post('send-message','ChatController@store');
 Route::get('/admin/chat','ChatController@showList');
 Route::get('/admin/{status}/chat','ChatController@listWithStatus');
@@ -348,6 +349,7 @@ Route::get('/astrologer/verified/{id}','AstrologerController@verifyAstrologer');
 Route::get('/astrologer/delete/{id}','AstrologerController@destroy');
 Route::get('/payment/collect','AstrologerController@collectPayment');
 Route::get('/astrologer/change-password/','AstrologerController@changeAstrologerPassword');
+Route::get('/genrate-chat-refer-code','AstrologerController@genrateChatRefer');
 
 ///Member 
 Route::get('/join-member','MemberJoinController@create');

@@ -57,6 +57,25 @@ class ChatController extends Controller
             return view('chat',compact('title','description','banner','messages','astrologers','member'));
     }
 
+
+    public function createReferMesg($refer)
+    {
+            $banner = BanerSlide::where('page_name','=','chat')->first(); //dd($banner);
+            if (isset($banner)) {
+                $title = $banner->title;
+                $description = $banner->description;
+            }
+            $astrologer = Astrologer::where('chat_refer',$refer)->first(); //dd($astrologer);
+            $astrologerId = $astrologer->id;
+            $messages = Chat::where('user_id',Auth::id())->get(); //dd($messages);
+            $deactiveMember = MemberJoin::where('user_id',Auth::id())->where('status','=',0)->first();
+            if($deactiveMember){
+                Toastr::error('Your Member Fee Pending Please Pay Now', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->to('/join-member/pay/payment');
+            }
+            return view('astrologer-refer-chat',compact('title','description','banner','messages','astrologerId'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
