@@ -560,6 +560,10 @@ class AdminController extends Controller
                 $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
                 $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
                 $tableData = AstrologerPayment::orderBy('created_at','desc')->paginate(10);
+                foreach ($tableData as $table) {
+                  $user = User::where('id',$table->user_id)->first(); //dd($user);
+                  $table->user = $user ? $user->name : "";
+                }
                 return view('Admin.Table.astrologer-payments',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
               }
             }else{
@@ -575,6 +579,10 @@ class AdminController extends Controller
                 $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
                 $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
                 $tableData = MemberPayment::orderBy('created_at','desc')->paginate(10);
+                foreach ($tableData as $table) {
+                  $user = User::where('id',$table->user_id)->first(); //dd($user);
+                  $table->user = $user ? $user->name : "";
+                }
                 return view('Admin.Table.member-payments',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
               }
             }else{
@@ -590,6 +598,10 @@ class AdminController extends Controller
                 $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
                 $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
                 $tableData = Payment::orderBy('created_at','desc')->paginate(10);
+                foreach ($tableData as $table) {
+                  $user = User::where('id',$table->user_id)->first(); //dd($user);
+                  $table->user = $user ? $user->name : "";
+                }
                 return view('Admin.Table.payments',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
               }
             }else{
@@ -605,6 +617,10 @@ class AdminController extends Controller
                 $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
                 $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
                 $tableData = UserAddress::orderBy('created_at','desc')->paginate(10);
+                foreach ($tableData as $table) {
+                  $user = User::where('id',$table->user_id)->first(); //dd($user);
+                  $table->user = $user ? $user->name : "";
+                }
                 return view('Admin.Table.user_addresses',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
               }
             }else{
@@ -620,11 +636,70 @@ class AdminController extends Controller
                 $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
                 $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
                 $tableData = UserPlan::orderBy('created_at','desc')->paginate(10);
+                foreach ($tableData as $table) {
+                  $user = User::where('id',$table->user_id)->first(); //dd($user);
+                  $table->user = $user ? $user->name : "";
+                }
                 return view('Admin.Table.user_plans',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
               }
             }else{
                   return redirect()->to('/login');
             }
-        }                        
+        }
+
+        // public function userPlanEdit($id){
+        //   $plan = UserPlan::find($id);
+        //   return view('Admin.Table.user_plan_edit',compact('plan'));
+        // } 
+
+        public function userPlanActive($id){
+          $plan = UserPlan::find($id);
+          $data['is_activated'] = 1;
+          $plan->update($data);
+          Toastr::success('User plan active successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
+            return back();
+        } 
+
+        public function userPlanInActive($id){
+          $plan = UserPlan::find($id);
+          $data['is_activated'] = 0;
+          $plan->update($data);
+          Toastr::success('User plan Inactive successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
+            return back();
+        }
+
+        public function userPaymentMarkSuccess($id){
+          $payment = Payment::where('id',$id)->first();
+          $data['transaction_status'] = 'Success';
+          $payment->update($data);
+          Toastr::success('Payment mark successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
+            return back();
+        }
+
+        public function userPaymentManual($id){
+          $payment = Payment::where('id',$id)->first();
+          $data['transaction_status'] = 'Success';
+          $data['payment_method'] = 'Cash';
+          $payment->update($data);
+          Toastr::success('Payment manual received successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
+            return back();
+        }
+
+        public function memberPaymentMarkSuccess($id){
+          $payment = MemberPayment::where('id',$id)->first();
+          $data['transaction_status'] = 'Success';
+          $payment->update($data);
+          Toastr::success('Payment mark successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
+            return back();
+        }
+
+        public function memberPaymentManual($id){
+          $payment = MemberPayment::where('id',$id)->first();
+          $data['transaction_status'] = 'Success';
+          $data['payment_method'] = 'Cash';
+          $payment->update($data);
+          Toastr::success('Payment manual received successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
+            return back();
+        }                                   
 
 }

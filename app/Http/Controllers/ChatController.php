@@ -67,6 +67,7 @@ class ChatController extends Controller
     {
         if (Auth::check()) {
             $userID = Auth::id();
+            $messageReturn = "";
             $chatMsg = Chat::where('user_id',$userID)->where('message_status','=','Pending')->first();
             if($chatMsg){
                 Toastr::error('Please Buy Any Plan', 'Error', ["positionClass" => "toast-bottom-right"]);
@@ -106,9 +107,11 @@ class ChatController extends Controller
             if($checkUserPlan->is_activated=1){ ///check plan active or deactive
                 if($planExpires <= 0){ /// check plan exp date 
                     $data['message_status'] = "Pending";
+                    $messageReturn = "Your chat plan expired";
                 }else{
                     if($checkUserPlan->get_message == 0){ /// check message 
                         $data['message_status'] = "Pending";
+                        $messageReturn = "Your chat message limit expired";
                     }else{
                         $data['message_status'] = "Sent";
                         $message['get_message'] = $checkUserPlan->get_message - 1;
@@ -120,22 +123,29 @@ class ChatController extends Controller
                 }
             }else{
                 $data['message_status'] = "Pending";
+                $messageReturn = "Your chat plan deactive";
             }
 
             }else{
                $data['message_status'] = "Pending"; 
+               $messageReturn = "Please by any chat plan";
             }
             //dd($data);
             $chatData = Chat::create($data);
-            $user = User::where('id',$userID)->first();
-            $astrologer = Astrologer::where('id',$request->astrologer)->first();
-            $astrologerMail = $astrologer->email;
-            Mail::to($astrologerMail)->send(new MessageNotification($user,$chatData));
-            Toastr::success('Message Sent your reply with in 24hrs', 'Success', ["positionClass" => "toast-bottom-right"]);
-            return redirect()->to('/talk-astro');
+            if($chatData->message_status == "Sent"){///if message sent
+                $user = User::where('id',$userID)->first();
+                $astrologer = Astrologer::where('id',$request->astrologer)->first();
+                $astrologerMail = $astrologer->email;
+                Mail::to($astrologerMail)->send(new MessageNotification($user,$chatData));
+                Toastr::success('Message Sent your reply with in 24hrs', 'Success', ["positionClass" => "toast-top-right"]);
+                return redirect()->to('/talk-astro');
+            }else{
+                Toastr::error($messageReturn, 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->to('/talk-astro');
+            }
            }
         }else{
-            Toastr::error('Please login first', 'Error', ["positionClass" => "toast-bottom-right"]);
+            Toastr::error('Please login first', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect()->to('/login');
         }
     }

@@ -16,9 +16,9 @@
 
                         <div class="box-body">
                             <div class="btn-group">
-                                <a href="#" class="btn btn-success btn-sm">
+                                <!-- <a href="#" class="btn btn-success btn-sm">
                                     <i class="fa fa-plus"></i> Add new
-                                </a>
+                                </a> -->
                                 <button type="button" class="btn btn-default btn-sm" onClick="refreshPage()">
                                     <i class="fa fa-refresh"></i> Refresh
                                 </button>
@@ -39,7 +39,6 @@
                                     <th>Bank Name</th>
                                     <th>User</th>
                                     <th>Astrologer</th>
-                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -53,11 +52,8 @@
                                         <td>{{ $table->bank_transaction_id }}</td>
                                         <td>{{ $table->transaction_date }}</td>
                                         <td>{{ $table->bank_name }}</td>
-                                        <td>{{ $table->user_id }}</td>
+                                        <td>{{ $table->user }}</td>
                                         <td>{{ $table->astrologer_id }}</td>
-                                        <td><a href="#/edit/{{ $table->id }}" class="btn btn-secondary">Edit</a>
-                                        <a onclick="return removeAlert();" href="#/delete/{{ $table->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
-                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

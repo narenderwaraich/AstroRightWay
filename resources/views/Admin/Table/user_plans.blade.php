@@ -16,9 +16,9 @@
 
                         <div class="box-body">
                             <div class="btn-group">
-                                <a href="#" class="btn btn-success btn-sm">
+                                <!-- <a href="#" class="btn btn-success btn-sm">
                                     <i class="fa fa-plus"></i> Add new
-                                </a>
+                                </a> -->
                                 <button type="button" class="btn btn-default btn-sm" onClick="refreshPage()">
                                     <i class="fa fa-refresh"></i> Refresh
                                 </button>
@@ -45,14 +45,22 @@
                                     <tr>
                                         <td>{{ $table->id }}</td>
                                         <td>{{ $table->amount }}</td>
-                                        <td>{{ $table->user_id }}</td>
+                                        <td>{{ $table->user }}</td>
                                         <td>{{ $table->plan_id }}</td>
                                         <td>{{ $table->access_date }}</td>
                                         <td>{{ $table->expire_date }}</td>
-                                        <td>{{ $table->is_activated }}</td>
+                                        <td>@if($table->is_activated == 1)
+                                            <span class="user-active">Verified</span>
+                                            @else
+                                            <span class="user-deactive">Unverified</span>
+                                            @endif</td>
                                         <td>{{ $table->get_message }}</td>
-                                        <td><a href="#/edit/{{ $table->id }}" class="btn btn-secondary">Edit</a>
-                                        <a onclick="return removeAlert();" href="#/delete/{{ $table->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
+                                        <td><!-- <a href="/user/plan/edit/{{ $table->id }}" class="btn btn-secondary">Edit</a> -->
+                                        @if($table->is_activated == 0)
+                                            <a href="/user/plan-active/{{$table->id}}" class="btn btn-success on-mob-table-btn">Active</a>
+                                        @else
+                                            <a href="/user/plan-inactive/{{$table->id}}" class="btn btn-warning on-mob-table-btn">Inactive</a>
+                                        @endif
                                         </td>
                                     </tr>
                                     @endforeach

@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="box-body">
-                            <a href="https://auth-db251.hostinger.com/index.php?db=u543792968_astro_db" class="btn btn-success btn-sm">
+                            <a href="https://auth-db251.hostinger.com/index.php?db=u543792968_astro_db" target="_blank" class="btn btn-success btn-sm">
                                     <i class="fa fa-database"></i> Database
                                 </a>
                             <div class="form-group">

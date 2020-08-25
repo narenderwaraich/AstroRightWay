@@ -62,9 +62,12 @@
                                         <td>{{ $payment->amount }}</td>
                                         <td class="status-{{ $payment->transaction_status }}">{{ $payment->transaction_status }}</td>
                                         <td>
-                                       <!--  @if($payment->transaction_status == 'Pending')   
-                                        <a href="/payment/refund/{{ $payment->id }}"><button class="btn btn-danger">Refund</button></a>
-                                        @endif -->
+                                        @if($payment->transaction_status == "Fields")
+                                            <a href="/user/payment/mark-success/{{$payment->id}}" class="btn btn-success on-mob-table-btn">Mark Success</a>
+                                        @endif
+                                        @if($payment->transaction_status == "Pending")
+                                            <a href="/user/payment/manual/{{$payment->id}}" class="btn btn-success on-mob-table-btn">Manual</a>
+                                        @endif
                                         <a href="/payment/refund/{{ $payment->id }}"><button class="btn btn-danger">Refund</button></a>
                                         </td>
                                     </tr>

@@ -122,6 +122,17 @@ Route::get('/page-setup/edit/{id}', 'AdminController@pageEdit');
 Route::post('/page-setup/update/{id}', 'AdminController@pageUpdate');
 Route::get('/page-setup/delete/{id}', 'AdminController@pageDestroy');
 
+// user plan
+//Route::get('/user/plan/edit/{id}','AdminController@userPlanEdit');
+Route::get('/user/plan-active/{id}','AdminController@userPlanActive');
+Route::get('/user/plan-inactive/{id}','AdminController@userPlanInActive');
+
+Route::get('/user/payment/mark-success/{id}','AdminController@userPaymentMarkSuccess');
+Route::get('/user/payment/manual/{id}','AdminController@userPaymentManual');
+
+Route::get('/member/payment/mark-success/{id}','AdminController@memberPaymentMarkSuccess');
+Route::get('/member/payment/manual/{id}','AdminController@memberPaymentManual');
+
 Route::get('/files', 'FileEntriesController@index');
 Route::get('/files/create', 'FileEntriesController@create');
 Route::post('/files/upload-file', 'FileEntriesController@uploadFile');
