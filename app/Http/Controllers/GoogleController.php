@@ -31,9 +31,19 @@ class GoogleController extends Controller
     {
         try {
     
-            $user = Socialite::driver('google')->user();
-     
+            $user = Socialite::driver('google')->user(); //dd($user);
+            
             $finduser = User::where('google_id', $user->id)->first();
+
+            $exitUser = User::where('email', $user->email)->first();
+
+            if($exitUser){
+                $data[''] = $user->id;
+                $exitUser->update($data);
+                Auth::login($exitUser);
+    
+                return redirect('/');
+            }
      
             if($finduser){
      
@@ -46,7 +56,8 @@ class GoogleController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,
-                    'password' => encrypt('password')
+                    'password' => encrypt('password'),
+                    'verified' => 1
                 ]);
     
                 Auth::login($newUser);
