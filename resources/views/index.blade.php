@@ -50,8 +50,8 @@
   आप सभी का दिव्य दृष्टि ज्योतिष भवन में स्वागत है
 आप सभी को जानकर ख़ुशी होगी कि "दिव्य दृष्टि ज्योतिष भवन" लेकर आया है एक हेल्पिंग प्लान
 जिसमें "दिव्य दृष्टि ज्योतिष भवन" में जुड़ने वाले सभी भक्तों की ज्योतिषीय सहायता के साथ साथ कुछ आर्थिक सहायता भी होगी... <a href="/help-plan" style="color: #ce2350;font-size: 18px;font-weight: 700;">Read More</a> 
-    <a href="/join-member"><button type="button" class="btn btn-style" style="margin-top: 20px;">Join</button></a></p>
-  <table id="members" class="on-mob-top-30">
+    <a href="/join-member"><button type="button" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;">Join</button></a></p>
+  <table id="members">
   <tr>
     <th>Level</th>
     <th>Members</th>

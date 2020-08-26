@@ -74,7 +74,7 @@
 	    	<div class="chat-box">
 	    		<form method="POST" action="/send-message" enctype="multipart/form-data" class="chat-form">
                 	@csrf
-                	<select name="astrologer" id="astrologer"  class="input-style form-control {{ $errors->has('astrologer') ? ' is-invalid' : '' }}" required style="margin-bottom: 35px;width: 70%;color: #fff;background: transparent;border: 2px solid #ce2350 !important;">
+                	<select name="astrologer" id="astrologer"  class="input-style form-control {{ $errors->has('astrologer') ? ' is-invalid' : '' }}" required style="margin-bottom: 25px;width: 70%;color: #fff;background: transparent;border: 2px solid #ce2350 !important;">
                         @if(isset($member))
                              <option value="1">Guru Ji</option>
                         @else 
@@ -85,20 +85,20 @@
                         @endif
                     </select>
                     @if ($errors->has('astrologer'))
-			               <span class="invalid-feedback" role="alert" style="width: 70%;margin-right: auto;margin-left: auto;">
+			               <span class="invalid-feedback full-w" role="alert" style="width: 70%;margin-right: auto;margin-left: auto;">
 			                   <strong>{{ $errors->first('astrologer') }}</strong>
 			               </span>
 			        @endif
-			        <p style="color: #fff;width: 70%;margin: auto;">if send any file or image choose size (max 2mb)</p>
-			        <input type="file" name="file" class="input-style form-control {{ $errors->has('file') ? ' is-invalid' : '' }}" style="margin-bottom: 35px;width: 70%;color: #fff;background: transparent;border: 2px solid #ce2350 !important;">
+			        <p class="full-w" style="color: #fff;width: 70%;margin: auto;font-size: 13px;">if send any file or image choose size (max 2mb)</p>
+			        <input type="file" name="file" class="input-style full-w form-control {{ $errors->has('file') ? ' is-invalid' : '' }}" style="margin-bottom: 30px;width: 70%;color: #fff;background: transparent;border: 2px solid #ce2350 !important;">
 			        @if ($errors->has('file'))
-			               <span class="invalid-feedback" role="alert" style="width: 70%;margin-right: auto;margin-left: auto;">
+			               <span class="invalid-feedback full-w" role="alert" style="width: 70%;margin-right: auto;margin-left: auto;">
 			                   <strong>{{ $errors->first('file') }}</strong>
 			               </span>
 			        @endif  
 	    			<textarea class="form-control form-chat-box {{ $errors->has('user_message') ? ' is-invalid' : '' }}" id="msg" name="user_message" rows="8" placeholder="Type Message Here"></textarea>
 			            @if ($errors->has('user_message'))
-			               <span class="invalid-feedback" role="alert" style="width: 70%;margin-right: auto;margin-left: auto;">
+			               <span class="invalid-feedback full-w" role="alert" style="width: 70%;margin-right: auto;margin-left: auto;">
 			                   <strong>{{ $errors->first('user_message') }}</strong>
 			               </span>
 			           @endif
