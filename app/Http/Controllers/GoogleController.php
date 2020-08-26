@@ -38,7 +38,7 @@ class GoogleController extends Controller
             $exitUser = User::where('email', $user->email)->first();
 
             if($exitUser){
-                $data[''] = $user->id;
+                $data['google_id'] = $user->id;
                 $exitUser->update($data);
                 Auth::login($exitUser);
     
