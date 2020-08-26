@@ -34,4 +34,10 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_APP_ID'),
+        'client_secret' => env('GOOGLE_APP_KEY'),
+        'redirect' => env('GOOGLE_APP_CALL_BACK_URL'),
+    ],
+
 ];

@@ -63,8 +63,14 @@ class AdminController extends Controller
                 $directPayment = DirectPayment::where('transaction_status','=','Success')->sum('amount');
                 $memberPayment = MemberPayment::where('transaction_status','=','Success')->sum('amount');
                 $totalCollectPayment = $totalProfit + $memberPayment;
+
+                //// all members
+                $members = MemberJoin::where('status', '=', 1)->get();
+                foreach ($members as $memberData) {
+                  $memberData->down_member_join = MemberJoin::where('refer_code','=', $memberData->member_code)->get();
+                }
                 $totalMessage = Chat::All()->count();
-                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','totalProfit','directPayment','memberPayment','member','deActiveMember','totalMember', 'totalCollectPayment','totalMessage'));
+                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','totalProfit','directPayment','memberPayment','member','members','deActiveMember','totalMember', 'totalCollectPayment','totalMessage'));
             }else{
                 // message
                 return redirect('/login');

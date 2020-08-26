@@ -198,6 +198,19 @@
                 </div>
             </div>
 
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center">ALL MEMBERS</h1>
+                        <!-- HTML -->
+                        <div id="memberChart"></div>
+                    </div>
+                    <div class="card-footer">
+       
+                    </div>
+                </div>
+            </div>
+
     </div> <!-- .content -->
 </div><!-- /#right-panel -->
 
@@ -206,7 +219,8 @@
 <!-- Styles -->
 <style>
 #userChart,
-#recentUserChart {
+#recentUserChart,
+#memberChart {
   width: 100%;
   height: 500px;
 }
@@ -338,6 +352,25 @@ dateAxis.keepSelection = true;
 
 
 }); // end am4core.ready()
+
+
+
+
+var chart = am4core.create("memberChart", am4charts.TreeMap);
+chart.data = [@foreach($members as $memberData)
+{
+  "name": "{{$memberData->name}}",
+  "children": [@foreach($memberData->down_member_join as $member)
+    { "name": "{{$member->name}}", "value": "{{$member->member_code}}" },
+    @endforeach
+  ]
+},
+@endforeach];
+
+/* Define data fields */
+chart.dataFields.value = "value";
+chart.dataFields.name = "name";
+chart.dataFields.children = "children";
 
 </script>
 @endsection

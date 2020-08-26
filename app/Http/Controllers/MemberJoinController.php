@@ -43,7 +43,12 @@ class MemberJoinController extends Controller
                         $description = $banner->description;
                     }
                 $myMembers = MemberJoin::where('refer_code',$member->member_code)->get();
-            
+                $activeMembers = MemberJoin::where('refer_code',$member->member_code)->where('status','=',1)->get();
+                //if user have down complete 20 member update level
+                if(count($activeMembers)==20 && $member->level == ""){
+                    $data['level'] = "Pearl";
+                    $member->update($data);
+                }
                 return view('member-panel',compact('title','description','banner','member','myMembers'));
 
                }else{

@@ -30,6 +30,9 @@
         Log In
     </div>
     <div class="windows-form">
+        <a href="{{ url('auth/google') }}" style="font-weight: 400;margin-bottom: 30px;box-shadow: unset !important;" class="btn btn-style btn-lg btn-block">
+          <strong>Login With Google</strong>
+        </a> 
         <form method="POST" action="{{ route('login') }}">
          @csrf
          <label class="dis-none" for="user-email">Email</label>

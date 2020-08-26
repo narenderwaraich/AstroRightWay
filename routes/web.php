@@ -17,6 +17,9 @@ Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('AdminLogi
 Route::post('admin/login', 'Auth\LoginController@login')->name('auth.login');
 Route::post('admin/logout', 'Auth\LoginController@logout')->name('auth.logout');
 
+Route::get('auth/google', 'GoogleController@redirectToGoogle');
+Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
+
 Auth::routes();
 
 Route::get('/admin','AdminController@homePage');
