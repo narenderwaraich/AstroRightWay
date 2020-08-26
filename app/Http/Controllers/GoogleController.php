@@ -32,9 +32,9 @@ class GoogleController extends Controller
         try {
     
             $user = Socialite::driver('google')->user(); //dd($user);
-            
+            /// find user create by google
             $finduser = User::where('google_id', $user->id)->first();
-
+            /// user login with google
             $exitUser = User::where('email', $user->email)->first();
 
             if($exitUser){
