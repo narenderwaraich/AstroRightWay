@@ -61,6 +61,9 @@
                                     <th>ID</th>
                                     <th><input type="checkbox" id="master"> Name</th>
                                     <th>Email</th>
+                                    <th>Gender</th>
+                                    <th>Google Id</th>
+                                    <th>Profile</th>
                                     <th>Status</th>
                                     <th>Role</th>
                                     <th>Actions</th>
@@ -72,6 +75,13 @@
                                         <td>{{ $userData->id }}</td>
                                         <td><input type="checkbox" class="sub_chk" data-id="{{$userData->id}}" email-id="{{ $userData->email }}"><a href="/user/{{$userData->id}}/view">  {{ $userData->name }}</a></td>
                                         <td>{{ $userData->email }}</td>
+                                        <td>{{ $userData->gender }}</td>
+                                        <td>{{ $userData->google_id }}</td>
+                                        <td>{{  }}
+                                          @if($userData->avatar)
+                                          <img src="{{asset('/public/images/user/'.$userData->avatar)}}" style="width: 100px;height: 100px;border-radius: 100%;border:2px solid #dc3545;">
+                                          @endif
+                                        </td>
                                         <td>@if($userData->verified == 1)
                                             <span class="user-active">Verified</span>
                                             @else
