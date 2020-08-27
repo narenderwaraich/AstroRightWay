@@ -33,7 +33,7 @@ class PaymentNotification extends Mailable
     public function build()
     {
         $userName = $this->user['name']; 
-        $subject = $userName.' '."payment Recive";
+        $subject = $userName.' '."Payment Recived";
         return $this->from('info@astrorightway.com')->subject($subject)->view('email.Payment-notification');
     }
 }

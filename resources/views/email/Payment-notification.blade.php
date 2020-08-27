@@ -33,7 +33,7 @@ input[type="button"]:focus{
     
 <h2>Hi <span style="text-transform: uppercase;">{{$user->name}}</span></h2>
 <br><br><br>
-<p>{{$user->name}} has paid {{$order->net_amount}} amount for Message. Date {{$order->created_at}}</p>
+<p>{{$user->name}} has paid {{$order->amount}} amount for Message Plan. Date {{$order->created_at}}</p>
 <br>
 <center>
     <br>

@@ -12,6 +12,7 @@ use App\User;
 use DB;
 use Mail;
 use App\Mail\AstrologerVerification;
+use App\Mail\PaymentNotification;
 use App\Payment;
 use Carbon\Carbon;
 use Redirect;
@@ -744,6 +745,10 @@ class AstrologerController extends Controller
                     $astrologer = Astrologer::where('email',Auth::user()->email)->first();
                     $astrologer->verified = 2;
                     $astrologer->save();
+
+                    $user = User::where('id',$order->user_id)->first();
+                    $adminMail = "singh4narender@gmail.com";
+                    Mail::to($adminMail)->send(new PaymentNotification($user,$order));
 
                     Toastr::success('Payment Success', 'Success', ["positionClass" => "toast-top-right"]);
                     return redirect()->to('/');

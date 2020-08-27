@@ -21,6 +21,7 @@ use App\Contact;
 use Mail;
 use App\Mail\MemberNotification;
 use App\Mail\EmailVerification;
+use App\Mail\PaymentNotification;
 use App\Setting;
 use App\Chat; 
 
