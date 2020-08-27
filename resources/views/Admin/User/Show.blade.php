@@ -62,7 +62,7 @@
                                     <th><input type="checkbox" id="master"> Name</th>
                                     <th>Email</th>
                                     <th>Gender</th>
-                                    <th>Google Id</th>
+                                    <th>Google</th>
                                     <th>Profile</th>
                                     <th>Status</th>
                                     <th>Role</th>
@@ -77,7 +77,7 @@
                                         <td>{{ $userData->email }}</td>
                                         <td>{{ $userData->gender }}</td>
                                         <td>{{ $userData->google_id }}</td>
-                                        <td>{{  }}
+                                        <td>
                                           @if($userData->avatar)
                                           <img src="{{asset('/public/images/user/'.$userData->avatar)}}" style="width: 100px;height: 100px;border-radius: 100%;border:2px solid #dc3545;">
                                           @endif

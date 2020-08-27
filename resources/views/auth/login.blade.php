@@ -32,7 +32,8 @@
     <div class="windows-form">
         <a href="{{ url('auth/google') }}" style="font-weight: 400;margin-bottom: 30px;box-shadow: unset !important;" class="btn btn-style btn-lg btn-block">
           <strong>Login With Google</strong>
-        </a> 
+        </a>
+        <div class="or-seperator"><i>or</i></div> 
         <form method="POST" action="{{ route('login') }}">
          @csrf
          <label class="dis-none" for="user-email">Email</label>
@@ -63,6 +64,20 @@
     </div>
 </div>
 </section>
+<style>
+.or-seperator {
+    margin: 20px 0 10px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+.or-seperator i {
+    padding: 0 10px;
+    background: #f7f7f7;
+    position: relative;
+    top: -11px;
+    z-index: 1;
+}
+</style>
 <script src="/public/jquery/jquery-3.2.1.min.js"></script>
 <script>
 $(".toggle-password").click(function() {
