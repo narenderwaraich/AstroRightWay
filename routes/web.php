@@ -385,6 +385,7 @@ Route::get('/member/suspend-member/{id}','MemberJoinController@enableDisableMemb
 Route::get('/member/verified/{id}','MemberJoinController@verifyMember');
 Route::post('/member-payment-status', 'MemberJoinController@paytmCallback');
 Route::any('/member/search','MemberJoinController@SearchData');
+Route::get('/member/with-member/{id}','MemberJoinController@memberWithMember');
 
 //// millionairethink
 Route::get('/millionaire-think/data-list','MillionairethinkController@index');

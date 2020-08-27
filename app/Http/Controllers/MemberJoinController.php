@@ -65,6 +65,8 @@ class MemberJoinController extends Controller
         
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -849,6 +851,21 @@ class MemberJoinController extends Controller
             $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
             $member = MemberJoin::where('status',1)->orderBy('created_at','desc')->paginate(10);
             return view('Admin.User.Member',compact('getOrders','contacts','chats'),['member' =>$member]);
+          }
+      }else{
+          return redirect()->to('/login');
+      }
+    }
+
+    public function memberWithMember($id){
+        if(Auth::check()){
+        if(Auth::user()->role == "admin"){
+            $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
+            $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
+            $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
+            $member = MemberJoin::find($id);
+            $myMembers = MemberJoin::where('refer_code',$member->member_code)->get();
+            return view('Admin.User.Member-Show',compact('getOrders','contacts','chats'),['member' =>$member, 'myMembers' =>$myMembers]);
           }
       }else{
           return redirect()->to('/login');

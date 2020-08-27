@@ -60,6 +60,7 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Code</th>
+                                    <th>Refer</th>
                                     <th>Member</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -67,12 +68,13 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($member as $memberData)
-                                    <tr>
+                                    <tr class="clickable-row" data-href='/member/with-member/{{$memberData->id}}' style="cursor: pointer;">
                                         <td>{{ $memberData->id }}</td>
                                         <td>{{ $memberData->name }}</td>
                                         <td>{{ $memberData->email }}</td>
                                         <td>{{ $memberData->phone_no }}</td>
                                         <td>{{ $memberData->member_code }}</td>
+                                        <td>{{ $memberData->refer_code }}</td>
                                         <td>{{ $memberData->down_member }}</td>
                                         <td>@if($memberData->status == 1)
                                             <span class="user-active">Verified</span>
@@ -143,7 +145,13 @@
  <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
 <script>
 
-  
+  jQuery(document).ready(function($) {
+      $(".clickable-row").click(function(e) {
+        
+          window.location = $(this).data("href");
+        
+      });
+  });
   /// hide search button
       if($('#search').val()!=""){
         $('#clearBtn').show();
