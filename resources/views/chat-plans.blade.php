@@ -32,7 +32,7 @@
     		<div class="row chat-plan-list">
     			@foreach ($plans as $plan)
     			<div class="col-md-4" style="margin-top: 30px;">
-    				<div class="plan-box @if($plan->id==6) top-plan @endif">
+    				<div class="plan-box @if($plan->id==6) top-plan animation-css @endif">
     					<div class="plan-name"><span>Name</span> <span>{{ $plan->name }}</span></div>
     					<div class="plan-day"><span>Day</span>  <span>{{ $plan->access_day }} day</span> </div>
     					<div class="plan-message"><span>Message</span> <span>{{ $plan->message }}</span> </div>
@@ -53,5 +53,12 @@
 		background: #000;
 		border: 5px solid #ce2350 !important;
 	}
+	@keyframes blink { 
+   50% { border-color: #00C851;
+   background-color:  transparent;} 
+}
+.animation-css{ 
+    animation: blink .5s step-end infinite alternate;
+}
 </style>
 @endsection

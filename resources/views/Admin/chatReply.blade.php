@@ -21,18 +21,38 @@
                         </div>
 
                         <div class="box-body">
+                            <table class="table table-hover" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                     <th style="width: 50%;float: left;">User Message</th>
+                                     <th style="width: 50%;float: right;">Reply Message</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                             @foreach ($allMessage->take(5) as $message)
-                                    @if($message->user_message)
-                                        @if($message->file)
-                                            <img src="/public/images/user/messages/{{$message->file}}" style="width: 320px;">
-                                        @endif
-                                        <p style="text-align: left;border-bottom: 2px solid #007bff;">{!! nl2br($message->user_message) !!}</p>
-                                    @endif
-                                    @if($message->reply_message)
-                                        <p style="text-align: right;border-bottom: 2px solid #28a745;">{!! nl2br($message->reply_message) !!}</p>
-                                    @endif
-                                @endforeach
-                            <!-- <p>{{$chat->user_message}}</p> -->
+                            <tr>
+                                        <td style="width: 50%;float: left;">@if($message->user_message)
+                                            @if($message->file)
+                                                <img src="/public/images/user/messages/{{$message->file}}" style="width: 320px;">
+                                            @endif
+                                            <p>{!! nl2br($message->user_message) !!}
+                                                <br>
+                                                <span style="font-size: 11px;font-weight: 400;color: #878787;">{{$message->created_at}}</span></p>
+                                            @endif
+                                        </td>
+                                        <td style="width: 50%;float: right;">
+                                            @if($message->reply_message)
+                                                <p>{!! nl2br($message->reply_message) !!}</p>
+                                            @endif
+                                        </td>
+                                </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <br>
+                            <h6>Open Message</h6>
+                            <br>
+                            <p style="border: 2px dashed;padding: 15px;">{{$chat->user_message}}</p>
                             <div class="form-group">
                                 <label for="title">Reply Message</label>
                                 <textarea name="reply_message" rows="5" placeholder="Reply Message" class="form-control"></textarea>

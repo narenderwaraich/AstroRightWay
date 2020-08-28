@@ -32,9 +32,9 @@
 
 
 
-	@foreach ($messages->take(5) as $message)
+	@foreach ($messages->take(3) as $message)
 		@if($message->user_message)
-	    	<div class="user-message-chat-box">
+	    	<div class="user-message-chat-box" @if($message->message_status =="Sent") style="border: 2px solid #00C851;" @endif>
 	    	@if($message->file)
 	    		<img src="/public/images/user/messages/{{$message->file}}" style="width: 320px;">
 	    	@endif
@@ -61,7 +61,7 @@
 	    @endif
 
 	    @if($message->message_status == "Sent")
-	    	<div class="message-chat-plan">
+	    	<div class="message-chat-plan animation-css border-px">
 	    	<p class="plan-text-msg">हमारे ज्योतिष भवन से जुड़ने के लिए धन्यवाद,
 आपके प्रश्नो का उत्तर हमारे विद्वान ज्योतिषियों द्वारा जल्द ही देखकर बताया जाएगा
 कृप्या इंतज़ार करें</p>
@@ -141,6 +141,16 @@ select option {
 select option[value="1"] {
   background: #ce2350;
 }
+.border-px{
+	border:5px solid #ce2350;
+}
+
+@keyframes blink { 
+   50% { border-color: #fff;
+   background-color:  #ce2350;} 
+}
+.animation-css{ 
+    animation: blink .5s step-end infinite alternate;
 }
 </style>
  <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
