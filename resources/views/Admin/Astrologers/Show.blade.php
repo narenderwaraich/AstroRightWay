@@ -44,7 +44,7 @@
                                     <th><input type="checkbox" id="master"> Name</th>
                                     <th>Email</th>
                                     <th>Status</th>
-                                    <th>Role</th>
+                                    <th>Payment</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -54,13 +54,19 @@
                                         <td>{{ $astrologerData->id }}</td>
                                         <td><input type="checkbox" class="sub_chk" data-id="{{$astrologerData->id}}" email-id="{{ $astrologerData->email }}"> {{ $astrologerData->name }}</td>
                                         <td>{{ $astrologerData->email }}</td>
-                                        <td>@if($astrologerData->verified == 1 || $astrologerData->verified ==2 )
+                                        <td>@if($astrologerData->verified ==1 )
                                             <span class="astrologer-active">Verified</span>
                                             @else
                                             <span class="astrologer-deactive">Unverified</span>
                                             @endif
                                             </td>
-                                        <td>{{ $astrologerData->role }}</td>
+                                        <td>@if($astrologerData->verified ==2)
+                                            <span class="astrologer-active">Received</span>
+                                            @endif
+                                            @if($astrologerData->verified ==1)
+                                            <span class="astrologer-deactive">Pending</span>
+                                            @endif
+                                          </td>
                                         <td><a href="/astrologer/edit/{{ $astrologerData->id }}" class="btn btn-secondary">Edit</a>
                                         @if($astrologerData->verified == 1)
                                         <a href="/astrologer/verified/{{ $astrologerData->id }}" class="btn btn-success  on-mob-table-btn">Verify</a>

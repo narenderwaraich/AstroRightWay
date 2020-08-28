@@ -42,7 +42,7 @@ class GoogleController extends Controller
                 $exitUser->update($data);
                 Auth::login($exitUser);
     
-                return redirect('/');
+                return redirect('/talk-astro');
             }
      
             if($finduser){
@@ -62,7 +62,7 @@ class GoogleController extends Controller
     
                 Auth::login($newUser);
      
-                return redirect('/');
+                return redirect('/talk-astro');
             }
     
         } catch (Exception $e) {

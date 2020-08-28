@@ -72,7 +72,7 @@ class SessionController extends Controller
             if($checkCart){
                 CartStorage::where('user_id',Auth::id())->delete();
             }
-            return redirect()->to('/');
+            return redirect()->to('/talk-astro');
         }
  
     }
