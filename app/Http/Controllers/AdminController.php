@@ -28,6 +28,7 @@ use App\UserAddress;
 use App\MemberJoin;
 use App\UserPlan;
 use App\AstrologerPayment;
+use App\Astrologer;
 
 class AdminController extends Controller
 {
@@ -64,13 +65,17 @@ class AdminController extends Controller
                 $memberPayment = MemberPayment::where('transaction_status','=','Success')->sum('amount');
                 $totalCollectPayment = $totalProfit + $memberPayment;
 
-                //// all members
-                $members = MemberJoin::where('status', '=', 1)->get();
-                foreach ($members as $memberData) {
-                  $memberData->down_member_join = MemberJoin::where('refer_code','=', $memberData->member_code)->get();
-                }
+                $activeAstrologer = Astrologer::where('verified', '=', 2)->count();
+                $deActiveAstrologer = Astrologer::where('verified', '=', 1)->count();
+                $totalAstrologer = Astrologer::all()->count();
+
+                // //// all members
+                // $members = MemberJoin::where('status', '=', 1)->get();
+                // foreach ($members as $memberData) {
+                //   $memberData->down_member_join = MemberJoin::where('refer_code','=', $memberData->member_code)->get();
+                // }
                 $totalMessage = Chat::All()->count();
-                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','totalProfit','directPayment','memberPayment','member','members','deActiveMember','totalMember', 'totalCollectPayment','totalMessage'));
+                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','totalProfit','directPayment','memberPayment','member','deActiveMember','totalMember', 'totalCollectPayment','totalMessage','activeAstrologer','deActiveAstrologer','totalAstrologer'));
             }else{
                 // message
                 return redirect('/login');

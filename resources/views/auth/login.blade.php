@@ -30,7 +30,7 @@
         Log In
     </div>
     <div class="windows-form">
-        <a href="{{ url('auth/google') }}" style="font-weight: 400;margin-bottom: 30px;box-shadow: unset !important;" class="btn btn-style btn-lg btn-block">
+        <a href="{{ url('auth/google') }}" class="btn btn-style btn-lg btn-block">
           <strong>Login With Google</strong>
         </a>
         <div class="or-seperator"><i>or</i></div> 
@@ -65,14 +65,38 @@
 </div>
 </section>
 <style>
+.btn-style {
+    text-transform: uppercase;
+    background: transparent;
+    color: #ce2350;
+    border: 2px solid #ce2350;
+    margin: auto;
+    text-align: center;
+    border-radius: 0px;
+    padding: .6180469716em 1.41575em;
+    font-size: 17px;
+    font-family: 'Montserrat', sans-serif;
+    display: block !important;
+    width: auto !important;
+    outline: none;
+    font-weight: 400;
+    margin-bottom: 30px;
+    box-shadow: unset !important;
+}
+.btn-style:hover {
+    color: #ffffff;
+    background-color: #ce2350;
+    border: 2px solid #ce2350;
+}
 .or-seperator {
     margin: 20px 0 10px;
     text-align: center;
-    border-top: 1px solid #ccc;
+    border-top: 2px solid #ce2350;
 }
 .or-seperator i {
     padding: 0 10px;
-    background: #f7f7f7;
+    background: #ce2350;
+    color: #fff;
     position: relative;
     top: -11px;
     z-index: 1;
