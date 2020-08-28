@@ -268,7 +268,7 @@
                             <p class="red">You have @if(isset($chats)) {{$chats->count()}} @else 0 @endif Chat Messages</p>
                             @if(isset($chats))
                                         @foreach ($chats as $chat)
-                            <a class="dropdown-item media bg-flat-color-2" href="/admin/chat">
+                            <a class="dropdown-item media bg-flat-color-2" href="/chat/reply/{{$chat->id}}">
                                 <!-- <span class="photo media-left">@if(empty($chat->userImg))<img src="/public/images/User-Profile/">@else<img src="/public/images/User-Profile/{{$chat->userImg}}">@endif</span> -->
                                 <span class="message media-body">
                                     <span class="name float-left">{{$chat->user_name}}</span>

@@ -9,6 +9,8 @@ use Auth;
 use Exception;
 use App\User;
 use Toastr;
+use Mail;
+use App\Mail\UserNotification;
 
 class GoogleController extends Controller
 {
@@ -59,6 +61,10 @@ class GoogleController extends Controller
                     'password' => encrypt('password'),
                     'verified' => 1
                 ]);
+                
+                $user = $newUser;
+                $adminMail = "singh4narender@gmail.com";
+                Mail::to($adminMail)->send(new UserNotification($user));
     
                 Auth::login($newUser);
      

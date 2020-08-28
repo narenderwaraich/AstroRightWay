@@ -47,7 +47,7 @@ class ChatController extends Controller
                 $description = $banner->description;
             }
             $astrologers = Astrologer::where('verified','=',2)->get(); //dd($astrologers);
-            $messages = Chat::where('user_id',Auth::id())->get(); //dd($messages);
+            $messages = Chat::where('user_id',Auth::id())->orderBy('created_at','desc')->get(); //dd($messages);
             $member = MemberJoin::where('user_id',Auth::id())->where('status','=',1)->first();
             $deactiveMember = MemberJoin::where('user_id',Auth::id())->where('status','=',0)->first();
             if($deactiveMember){
@@ -409,7 +409,7 @@ class ChatController extends Controller
         $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
         $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
         $chat = Chat::find($id); //dd($chat);
-        $allMessage = Chat::where('user_id',$chat->user_id)->get(); //dd($allMessage);
+        $allMessage = Chat::where('user_id',$chat->user_id)->orderBy('created_at','desc')->get(); //dd($allMessage);
         return view('Admin.chatReply',compact('getOrders','contacts'),['chat' =>$chat, 'allMessage' =>$allMessage]);
         }
     }else{
