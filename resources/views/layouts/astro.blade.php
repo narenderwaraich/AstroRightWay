@@ -25,18 +25,7 @@
 @include('etc.astrologerNavbar')
 
 @yield('content')
-@if(isset($astrologer))
-<input type="text" name="" value="{{env('APP_URL')}}/talk-astro/{{$astrologer->chat_refer}}" id="linkCopy" style="visibility: hidden;">
-<script>
-function copyLink() {
-  var copyText = document.getElementById("linkCopy");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999)
-  document.execCommand("copy");
-  alert("Copied the text: " + copyText.value);
-}
-</script>
-@endif
+
     <script type="text/javascript" src="/public/bootstrap/js/popper.js"></script>
     <script src="/public/js/plugins.js"></script>
     <script src="/public/js/main.js"></script>

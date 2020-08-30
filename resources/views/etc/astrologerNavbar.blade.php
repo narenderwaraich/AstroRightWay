@@ -16,6 +16,9 @@
                     <li class="active">
                         <a href="/astrologer/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
+                    <li>
+                        <a href="/"> <i class="menu-icon fa fa-dashboard"></i>Web Dashboard </a>
+                    </li>
                     <h3 class="menu-title">Daily Rashifal</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list-alt"></i>Rashi</a>
@@ -57,6 +60,17 @@
                                 <li><i class="fa fa-whatsapp"></i><a href="whatsapp://send?text=Click on link and chat with me {{env('APP_URL')}}/talk-astro/{{$astrologer->chat_refer}}" data-action="share/whatsapp/share">Share Whatapp</a></li>
                             </ul>
                         </li>
+                      
+                        <input type="text" value="{{env('APP_URL')}}/talk-astro/{{$astrologer->chat_refer}}" id="linkCopy" style="width: 0px;visibility: hidden;height: 0px;">
+                        <script>
+                        function copyLink() {
+                          var copyText = document.getElementById("linkCopy");
+                          copyText.select();
+                          copyText.setSelectionRange(0, 99999)
+                          document.execCommand("copy");
+                          alert("Copied the text: " + copyText.value);
+                        }
+                        </script>
                      @endif
                     @endif
                     <li>

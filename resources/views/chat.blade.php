@@ -34,7 +34,7 @@
 
 	@foreach ($messages->take(3) as $message)
 		@if($message->user_message)
-	    	<div class="user-message-chat-box" @if($message->message_status =="Sent") style="border: 2px solid #00C851;" @endif>
+	    	<div class="user-message-chat-box @if($message->message_status =='Sent') sent-msg-status @endif @if($message->message_status =='Reply') reply-msg-status @endif">
 	    	@if($message->file)
 	    		<img src="/public/images/user/messages/{{$message->file}}" style="width: 320px;">
 	    	@endif
@@ -50,7 +50,7 @@
 	    	</div>
 	    @endif
 	    @if($message->message_status == "Pending")
-	    	<div class="message-chat-plan">
+	    	<div class="message-chat-plan animation-css">
 	    	<p class="plan-text-msg">Wellcome to AstroRightWay
 तब तक आपका Message पेंडिंग रहेगा जब तक आप कोई वैल्यू प्लान नही चुन लेते,
 आपके द्वारा दी जाने वाली थोड़ी सी फ़ीस ज़रुरतमन्दो के कल्याण के लिए उपयोग की जाती है
@@ -144,10 +144,16 @@ select option[value="1"] {
 .border-px{
 	border:5px solid #ce2350;
 }
+.reply-msg-status{
+	border: 2px solid #FF8800;
+}
+.sent-msg-status{
+	border: 2px solid #00C851;
+}
 
 @keyframes blink { 
    50% { border-color: #fff;
-   background-color:  #ce2350;} 
+   background-color:  #000;} 
 }
 .animation-css{ 
     animation: blink .5s step-end infinite alternate;

@@ -29,6 +29,8 @@ use App\MemberJoin;
 use App\UserPlan;
 use App\AstrologerPayment;
 use App\Astrologer;
+use Mail;
+use App\Mail\EmailVerification;
 
 class AdminController extends Controller
 {
@@ -337,6 +339,19 @@ class AdminController extends Controller
             return redirect()->to('/login');
         }
         }
+
+    public function verifyMailReminder($id){
+      if(Auth::check()){
+        if(Auth::user()->role == "admin"){
+           $user = User::find($id);
+           Mail::to($user->email)->send(new EmailVerification($user));
+           Toastr::success('Verify mail reminder sent', 'Success', ["positionClass" => "toast-bottom-right"]);
+              return back();
+          }
+        }else{
+            return redirect()->to('/login');
+        }
+    }
     
     public function enableDisableUser($id){
       if(Auth::check()){
@@ -540,7 +555,7 @@ class AdminController extends Controller
 
         private function setEnv($key, $value)
         { 
-            echo env('MAIL_FROM_ADDRESS');
+            //echo env('MAIL_FROM_ADDRESS');
             file_put_contents(app()->environmentFilePath(), str_replace(
                     env($key),
                     $value,

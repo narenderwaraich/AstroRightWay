@@ -210,6 +210,7 @@ Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 Route::post('/verify-Otp', 'Auth\RegisterController@verifyOtp');
 Route::get('/resend-Otp/{id}', 'Auth\RegisterController@resendOtp');
 
+Route::get('/user/verified-mail/{id}', 'AdminController@verifyMailReminder');
 //Product Controller
 Route::get('/product','ProductController@productView');
 Route::get('/product/category/{name}','ProductController@categoryView');

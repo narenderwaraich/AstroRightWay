@@ -347,7 +347,7 @@ chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
 // Create axes
 var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
+valueAxis.maxPrecision = 0;
 // Create series
 var series = chart.series.push(new am4charts.LineSeries());
 series.dataFields.valueY = "value";

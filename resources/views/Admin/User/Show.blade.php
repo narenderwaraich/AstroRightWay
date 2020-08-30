@@ -92,6 +92,7 @@
                                         <td><a href="/user/edit/{{ $userData->id }}" class="btn btn-secondary">Edit</a>
                                         @if($userData->verified == 0)
                                         <a href="/user/verified/{{ $userData->id }}" class="btn btn-success  on-mob-table-btn">Verify</a>
+                                         <a href="/user/verified-mail/{{ $userData->id }}" class="btn btn-dark  on-mob-table-btn">Verification Mail</a>
                                         @endif
                                         @if($userData->suspend)
                                             <a href="/user/suspend-user/{{$userData->id}}" class="btn btn-success on-mob-table-btn">Enable</a>

@@ -88,6 +88,9 @@
                             @endif
                          @else
                          <li><a href="/user-profile">Profile</a></li>
+                         @if(Auth::user()->role == "astrologer")
+                          <li><a href="/astrologer/dashboard">Astrologer</a></li>
+                         @endif
                          <li><a href="/member-panel">Member</a></li>
                          <li><a href="/user-order">Orders</a></li>
                           <li class="log-out"><a href="{{ route('logout') }}"
@@ -194,6 +197,9 @@
                             @endif
                          @else
                          <li><a href="/user-profile">Profile</a></li>
+                         @if(Auth::user()->role == "astrologer")
+                          <li><a href="/astrologer/dashboard">Astrologer</a></li>
+                         @endif
                          <li><a href="/member-panel">Member</a></li>
                          <li><a href="/user-order">Orders</a></li>
                           <li class="log-out"><a href="{{ route('logout') }}"
