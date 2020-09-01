@@ -68,9 +68,11 @@ class ContactController extends Controller
             Redirect::back()->withInput();
           }
           $data = request(['name','message','email','phone_number']);
+          $mail = $request->email;
           $query = Contact::create($data);
           $email = "Singh4narender@gmail.com";
           Mail::to($email)->send(new ContactUs($query));
+          $this->returnBackReplyMail($mail);
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/');
    } 
@@ -120,9 +122,8 @@ class ContactController extends Controller
    public function contactMarkReply($id){
     if(Auth::check()){
     if(Auth::user()->role == "admin"){
-        $contact = Contact::find($id); //dd($contact);
         $status['status'] = "Reply";
-        $contact->update($status);
+        Contact::where('id',$id)->update($status);
         Toastr::success('Message mark reply', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/admin/contact-us');
         }
@@ -188,5 +189,10 @@ class ContactController extends Controller
           Toastr::success('Mail Send', 'Success', ["positionClass" => "toast-top-right"]);
           return redirect()->to('/user');
       
+   }
+
+   public function returnBackReplyMail($mail){
+    $reply ="हमारे ज्योतिष भवन से जुड़ने के लिए धन्यवाद, please app chat box m apna message send kre wha our astrologer hai click on link http://www.astrorightway.com/talk-astro how to chat our asrologers see this video https://www.youtube.com/watch?v=U_X2B5ZzfO8 plz Register your account and talk-astro menu choose http://astrorightway.com/join-member any website help 8847553149 on WhatsApp contact";
+     Mail::to($mail)->send(new ContactReply($reply));
    }
 }
