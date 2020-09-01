@@ -279,19 +279,19 @@ class ChatController extends Controller
             if(!$validate){
                     Redirect::back()->withInput();
                     }
-            $plan = Chat::find($id);
+            $chat = Chat::find($id);
             $data['reply_message'] = $request->reply_message;
-            $data['user_id'] = $plan->user_id;
+            $data['user_id'] = $chat->user_id;
             $data['message_status'] = "Reply";
-            // $userPlan = UserPlan::where('user_id',$plan->user_id)->first(); //dd($userPlan);
+            // $userPlan = UserPlan::where('user_id',$chat->user_id)->first(); //dd($userPlan);
             // $message['get_message'] = $userPlan->get_message - 1;
             // if($userPlan->get_message == 1){
             //     $message['is_activated'] = 0;
             // } 
             // $userPlan->update($message);
-            $plan->update($data);
+            $chat->update($data);
             $reply = $request->reply_message;
-            $user = User::where('id',$plan->user_id)->first();
+            $user = User::where('id',$chat->user_id)->first();
             $email = $user->email;
             Mail::to($email)->send(new ChatReply($reply));
             Toastr::success('Message Reply', 'Success', ["positionClass" => "toast-bottom-right"]);

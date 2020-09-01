@@ -49,6 +49,7 @@
                                         <td>
                                         @if($contact->status == "Pending")
                                         <a href="/contact/reply/{{ $contact->id }}"><button class="btn btn-success">Reply</button></a>
+                                        <a href="/contact/mark-reply/{{ $contact->id }}"><button class="btn btn-dark">Mark Reply</button></a>
                                         @endif
                                         <a href="/contact/block/{{ $contact->id }}"><button class="btn btn-danger on-mob-table-btn">Block</button></a>
                                         </td>

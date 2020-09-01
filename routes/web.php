@@ -282,6 +282,7 @@ Route::post('contactUs','ContactController@store');
 Route::get('/admin/contact-us','ContactController@getContact');
 Route::get('/contact/reply/{id}','ContactController@contactReplyGet');
 Route::post('contact-reply','ContactController@contactReply');
+Route::get('/contact/mark-reply/{id}','ContactController@contactMarkReply');
 
 //// send manumal mail
 Route::get('/send-mail','ContactController@sendMailView');

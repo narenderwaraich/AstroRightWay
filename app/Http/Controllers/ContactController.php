@@ -117,6 +117,20 @@ class ContactController extends Controller
     }
    }
 
+   public function contactMarkReply($id){
+    if(Auth::check()){
+    if(Auth::user()->role == "admin"){
+        $contact = Contact::find($id); //dd($contact);
+        $status['status'] = "Reply";
+        $contact->update($status);
+        Toastr::success('Message mark reply', 'Success', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->to('/admin/contact-us');
+        }
+    }else{
+        return redirect()->to('/login');
+    }
+   }
+
    public function contactReply(Request $request){
       $email = $request->email;
       $reply = $request->reply;
