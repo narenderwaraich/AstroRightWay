@@ -49,14 +49,14 @@
                             </li>
  -->
                              <li class="{{ (request()->is('talk-astro')) ? 'active' : '' }}">
-                                <a href="/talk-astro">Talk Astro</a>
+                                <a href="/talk-astro">Talk to Astro</a>
                             </li>
-                            <li class="{{ (request()->is('today-rashifal')) ? 'active' : '' }}">
+                            <!-- <li class="{{ (request()->is('today-rashifal')) ? 'active' : '' }}">
                                 <a href="/today-rashifal">Today Rashifal</a>
                             </li>
                             <li class="{{ (request()->is('covid19-update')) ? 'active' : '' }}">
                                 <a href="/covid19-update">COVID19</a>
-                            </li>
+                            </li> -->
                             <li class="{{ (request()->is('about-us')) ? 'active' : '' }}">
                                 <a href="/about-us">About Us</a>
                             </li>
@@ -312,12 +312,12 @@
                     <li class="item-menu-mobile {{ (request()->is('talk-astro')) ? 'active' : '' }}">
                                 <a href="/talk-astro">Talk Astro</a>
                     </li>
-                    <li class="item-menu-mobile {{ (request()->is('today-rashifal')) ? 'active' : '' }}">
+                    <!-- <li class="item-menu-mobile {{ (request()->is('today-rashifal')) ? 'active' : '' }}">
                                 <a href="/today-rashifal">Today Rashifal</a>
                     </li>
                     <li class="item-menu-mobile {{ (request()->is('covid19-update')) ? 'active' : '' }}">
                                 <a href="/covid19-update">COVID19</a>
-                    </li>
+                    </li> -->
                     <li class="item-menu-mobile {{ (request()->is('about-us')) ? 'active' : '' }}">
                         <a href="/about-us">About Us</a>
                     </li>

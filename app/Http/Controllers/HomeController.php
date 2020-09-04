@@ -36,19 +36,19 @@ class HomeController extends Controller
         $videos = Youtube::latest()->paginate(6);
         $products = Product::orderBy('created_at','desc')->paginate(9);
         $gellery = Gellery::orderBy('created_at','desc')->paginate(5);
-        $current = Carbon::now();
-        $todayDate = $current->format('Y-m-d'); //dd($todayDate);
-        $rashi = Rashifal::where('today_date','=',$todayDate)->orderBy('created_at','desc')->paginate(1); //dd($rashi);
-        $yesterday = date("Y-m-d", strtotime( '-1 days' ) );
-        $covid = Covid19::orderBy('created_at','desc')->paginate(1); //dd($covid);
-        foreach ($covid as $covidData) {
-            $covid19 = Covid19::whereDate('created_at', $yesterday )->first();
+        // $current = Carbon::now();
+        // $todayDate = $current->format('Y-m-d'); //dd($todayDate);
+        // $rashi = Rashifal::where('today_date','=',$todayDate)->orderBy('created_at','desc')->paginate(1); //dd($rashi);
+        // $yesterday = date("Y-m-d", strtotime( '-1 days' ) );
+        // $covid = Covid19::orderBy('created_at','desc')->paginate(1); //dd($covid);
+        // foreach ($covid as $covidData) {
+        //     $covid19 = Covid19::whereDate('created_at', $yesterday )->first();
 
-            $covidData->lastConfirmed = $covid19 ? $covid19->confirmed : 0;
-            $covidData->lastRecovered = $covid19 ? $covid19->recovered : 0;
-            $covidData->lastDeceased = $covid19 ? $covid19->deceased : 0;
-            $covidData->lastActive = $covid19 ? $covid19->active : 0;
-        }
+        //     $covidData->lastConfirmed = $covid19 ? $covid19->confirmed : 0;
+        //     $covidData->lastRecovered = $covid19 ? $covid19->recovered : 0;
+        //     $covidData->lastDeceased = $covid19 ? $covid19->deceased : 0;
+        //     $covidData->lastActive = $covid19 ? $covid19->active : 0;
+        // }
         $bannerSlide = BanerSlide::where('page_name','=','home')->get(); //dd($bannerSlide);
         $title = "Astrology & Vastu Products Store";
         $description = "Get wide range of astrology & vastu products like ruby and rudraksh at low price. Browse our astrology store for more items. india corona update, coronavirus in india update today, coronavirus in india news today, Aaj ka Rashifal (आज का राशिफल): Daily Horoscope in Hindi";
@@ -58,7 +58,7 @@ class HomeController extends Controller
             $subTotal = DB::table("cart_storages")->where('user_id',$userId)->sum('subtotal');       
             return view('index',compact('title','description','rashi','covid'),['bannerSlide' => $bannerSlide,'products' =>$products, 'videos' => $videos,'cartCollection' =>$cartCollection, 'subTotal' =>$subTotal,'gellery' =>$gellery]);
         }else{
-          return view('index',compact('title','description','rashi','covid'),['bannerSlide' => $bannerSlide, 'products' => $products, 'videos' => $videos,'gellery' =>$gellery]);  
+          return view('index',compact('title','description'),['bannerSlide' => $bannerSlide, 'products' => $products, 'videos' => $videos,'gellery' =>$gellery]);  
         }
         
     }

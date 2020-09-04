@@ -82,7 +82,7 @@ You achieve Diamond lavel get 1 lacks
 
 </section>
 
-@foreach($covid as $covidData)
+<!-- @foreach($covid as $covidData)
     <section class="chart-section section-top container">
       <h1 class="section-heading-txt heading-color text-center">India Corona Update</h1>
         <div class="last-uptd  m-t-15">
@@ -128,10 +128,10 @@ You achieve Diamond lavel get 1 lacks
         <input type="hidden" id="active" value="{{$covidData->active}}">
     </section>
   @endforeach
-
+ -->
 
 <!-- Daily Rashi Section -->
- @foreach($rashi as $todayRashi)
+<!--  @foreach($rashi as $todayRashi)
     <section class="daily-rashi-section section-top container">
         <h1 class="section-heading-txt heading-color text-center">आज का राशिफल</h1>
             <div class="today-date">{{ date('l, d/m/Y', strtotime($todayRashi->today_date)) }}</div>
@@ -139,8 +139,7 @@ You achieve Diamond lavel get 1 lacks
         <div class="row m-t-30">
             <div class="col-sm-12 col-md-8 col-lg-9">
 
-               <!-- rashi section -->
-               <div class="row">
+                <div class="row">
                    <div class="col-auto">
                     <a href="/today-rashifal/mesh">
                        <div class="rashi-box">
@@ -226,7 +225,6 @@ You achieve Diamond lavel get 1 lacks
                      </a>
                    </div>
                </div> 
-               <!-- end rashi section -->
             </div>
             <div class="col-sm-12 col-md-4 col-lg-3">
               <iframe width="100%" height="100%" src="https://www.youtube.com/embed/bpTzSylho_8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
@@ -235,7 +233,7 @@ You achieve Diamond lavel get 1 lacks
             </div>
         </div>
     </section>
-  @endforeach
+  @endforeach -->
 
     <!-- Product Show Section Start -->
 
@@ -408,7 +406,7 @@ You achieve Diamond lavel get 1 lacks
                 </div>
             </div>
             <div class="row">
-              @foreach ($videos->take(6) as $videoData)
+              @foreach ($videos->take(3) as $videoData)
                 <div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
 
                         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ $videoData->url}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
@@ -492,109 +490,109 @@ You achieve Diamond lavel get 1 lacks
             
 </script>
 
-<style>
+<!-- <style>
 #userChart {
   width: 100%;
   height: 580px;
 }
 
-</style>
+</style> -->
 
-<script src="/public/amcharts4/core.js"></script>
+<!-- <script src="/public/amcharts4/core.js"></script>
 <script src="/public/amcharts4/charts.js"></script>
 <script src="/public/amcharts4/plugins/sunburst.js"></script>
 <script src="/public/amcharts4/themes/animated.js"></script>
-
+ -->
 <!-- Chart code -->
 <script>
-am4core.ready(function() {
+// am4core.ready(function() {
 
-// Themes begin
-am4core.useTheme(am4themes_animated);
-// Themes end
+// // Themes begin
+// am4core.useTheme(am4themes_animated);
+// // Themes end
 
-var ConfirmedCase = document.getElementById("confirmed").value;
-var RecoveredCase = document.getElementById("recovered").value;
-var DeceasedCase = document.getElementById("deceased").value;
-var ActiveCase = document.getElementById("active").value;
+// var ConfirmedCase = document.getElementById("confirmed").value;
+// var RecoveredCase = document.getElementById("recovered").value;
+// var DeceasedCase = document.getElementById("deceased").value;
+// var ActiveCase = document.getElementById("active").value;
 
 
-/**
- * COVID19 Status Chart
- */
+// /**
+//  * COVID19 Status Chart
+//  */
 
-var chart = am4core.create("userChart", am4charts.PieChart);
+// var chart = am4core.create("userChart", am4charts.PieChart);
 
-// Add and configure Series
-var pieSeries = chart.series.push(new am4charts.PieSeries());
-pieSeries.dataFields.value = "values";
-pieSeries.dataFields.category = "type";
+// // Add and configure Series
+// var pieSeries = chart.series.push(new am4charts.PieSeries());
+// pieSeries.dataFields.value = "values";
+// pieSeries.dataFields.category = "type";
 
-// Let's cut a hole in our Pie chart the size of 30% the radius
-chart.innerRadius = am4core.percent(50);
+// // Let's cut a hole in our Pie chart the size of 30% the radius
+// chart.innerRadius = am4core.percent(50);
 
-// Put a thick white border around each Slice
-pieSeries.slices.template.stroke = am4core.color("#fff");
-pieSeries.slices.template.strokeWidth = 2;
-pieSeries.slices.template.strokeOpacity = 1;
-pieSeries.slices.template
+// // Put a thick white border around each Slice
+// pieSeries.slices.template.stroke = am4core.color("#fff");
+// pieSeries.slices.template.strokeWidth = 2;
+// pieSeries.slices.template.strokeOpacity = 1;
+// pieSeries.slices.template
 
-  // change the cursor on hover to make it apparent the object can be interacted with
-  .cursorOverStyle = [
-    {
-      "property": "cursor",
-      "value": "pointer"
-    }
-  ];
+//   // change the cursor on hover to make it apparent the object can be interacted with
+//   .cursorOverStyle = [
+//     {
+//       "property": "cursor",
+//       "value": "pointer"
+//     }
+//   ];
 
-pieSeries.alignLabels = false;
-pieSeries.labels.template.bent = true;
-pieSeries.labels.template.radius = 3;
-pieSeries.labels.template.padding(0,0,0,0);
-pieSeries.labels.template.disabled = true;
+// pieSeries.alignLabels = false;
+// pieSeries.labels.template.bent = true;
+// pieSeries.labels.template.radius = 3;
+// pieSeries.labels.template.padding(0,0,0,0);
+// pieSeries.labels.template.disabled = true;
 
-pieSeries.ticks.template.disabled = true;
-pieSeries.colors.list = [
-  am4core.color("#007bff"),
-  am4core.color("#28a745"),
-  am4core.color("#FF8800"),
-  am4core.color("#dc3545"),
-];
-// Create a base filter effect (as if it's not there) for the hover to return to
-var shadow = pieSeries.slices.template.filters.push(new am4core.DropShadowFilter);
-shadow.opacity = 0;
+// pieSeries.ticks.template.disabled = true;
+// pieSeries.colors.list = [
+//   am4core.color("#007bff"),
+//   am4core.color("#28a745"),
+//   am4core.color("#FF8800"),
+//   am4core.color("#dc3545"),
+// ];
+// // Create a base filter effect (as if it's not there) for the hover to return to
+// var shadow = pieSeries.slices.template.filters.push(new am4core.DropShadowFilter);
+// shadow.opacity = 0;
 
-// Create hover state
-var hoverState = pieSeries.slices.template.states.getKey("hover"); // normally we have to create the hover state, in this case it already exists
+// // Create hover state
+// var hoverState = pieSeries.slices.template.states.getKey("hover"); // normally we have to create the hover state, in this case it already exists
 
-// Slightly shift the shadow and make it more prominent on hover
-var hoverShadow = hoverState.filters.push(new am4core.DropShadowFilter);
-hoverShadow.opacity = 0.7;
-hoverShadow.blur = 5;
+// // Slightly shift the shadow and make it more prominent on hover
+// var hoverShadow = hoverState.filters.push(new am4core.DropShadowFilter);
+// hoverShadow.opacity = 0.7;
+// hoverShadow.blur = 5;
 
-// Add a legend
-chart.legend = new am4charts.Legend();
-chart.legend.position = "bottom";
-chart.data = [
-    {
-      type: "Confirm",
-      values: ConfirmedCase
-    },
-    {
-      type: "Recover",
-      values: RecoveredCase
-    },
-    {
-      type: "Active",
-      values: ActiveCase
-    },
-    {
-      type: "Death",
-      values: DeceasedCase
-    } 
-  ];
+// // Add a legend
+// chart.legend = new am4charts.Legend();
+// chart.legend.position = "bottom";
+// chart.data = [
+//     {
+//       type: "Confirm",
+//       values: ConfirmedCase
+//     },
+//     {
+//       type: "Recover",
+//       values: RecoveredCase
+//     },
+//     {
+//       type: "Active",
+//       values: ActiveCase
+//     },
+//     {
+//       type: "Death",
+//       values: DeceasedCase
+//     } 
+//   ];
 
-}); // end am4core.ready()
+// }); // end am4core.ready()
 
 </script>
 

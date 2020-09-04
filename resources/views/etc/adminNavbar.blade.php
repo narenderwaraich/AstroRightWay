@@ -25,13 +25,13 @@
                         </ul>
                     </li>
                     @if(Auth::user()->role == "admin")
-                    <li class="menu-item-has-children dropdown">
+                    <!-- <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list-alt"></i>COVID19</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="fa fa fa-plus"></i><a href="/covid19/create">Add</a></li>
                                 <li><i class="fa fa-table"></i><a href="/covid19">View</a></li>
                             </ul>
-                    </li>
+                    </li> -->
                     @endif
                     <h3 class="menu-title">Products Menu</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
@@ -111,9 +111,11 @@
                     </li>
                     @endif
                     <h3 class="menu-title">Account</h3><!-- /.menu-title -->
+                    @if(Auth::user()->role == "admin")
                     <li>
                         <a href="/admin/contact-us"> <i class="menu-icon fa fa-address-book"></i>Contacts</a>
                     </li>
+                    @endif
                     <li>
                         <a href="/admin/chat"> <i class="menu-icon fa fa-comments"></i>Chat</a>
                     </li>
