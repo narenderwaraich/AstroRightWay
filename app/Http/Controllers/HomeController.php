@@ -50,8 +50,8 @@ class HomeController extends Controller
         //     $covidData->lastActive = $covid19 ? $covid19->active : 0;
         // }
         $bannerSlide = BanerSlide::where('page_name','=','home')->get(); //dd($bannerSlide);
-        $title = "Astrology & Vastu Products Store";
-        $description = "Get wide range of astrology & vastu products like ruby and rudraksh at low price. Browse our astrology store for more items. india corona update, coronavirus in india update today, coronavirus in india news today, Aaj ka Rashifal (आज का राशिफल): Daily Horoscope in Hindi";
+        $title = "Vedic Astrology & Buy Vastu Products Online";
+        $description = "Astrorightway provides free Vedic astrology and kundli remedies. Join our divya Jyoti helping plan and buy vastu astrology products online.";
         if(Auth::check()){
             $userId = Auth::id();
             $cartCollection = CartStorage::where('user_id',$userId)->get();
