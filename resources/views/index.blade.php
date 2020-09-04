@@ -43,6 +43,27 @@
     </div>
 </section>
 
+<section class="chat-service-section section-top container">
+  <h1 class="section-heading-txt heading-color text-center text-up">Talk to Astrologer</h1>
+  <p class="member-subheading" style="margin-top: 30px;">
+          <ul class="service-list animation-css">
+            <li>Get your love back</li>
+            <li>Love marriage specialist</li>
+            <li>Love Problem</li>
+            <li>Court Case Problem</li>
+            <li>Relationship Problem</li>
+            <li>Love Issue</li>
+            <li>Manglik Dosh</li>
+            <li>Family Problem</li>
+            <li>Children Problem</li>
+            <li>Kundli Matching Services</li>
+            <li>Husband Wife Disputes</li>
+          </ul>
+    <a href="/talk-astro"><button type="button" class="btn btn-style on-mob-bottom-30" style="margin-top: 40px;">Chat with Astrologer</button></a>
+  </p>
+
+</section>
+<hr class="section-devider">
 <section class="member-section section-top container">
   <h1 class="section-heading-txt heading-color text-center">Join Helping Plan</h1>
   <p class="member-subheading">If you achieve pearl level then you will get a gift product and when 20 people below you achieve pearl level then you achieve ruby ​​level and you get ten thousand rupees and honor symbol and when 20 people below you ruby ​​level  If you achieve, you achieve the diamond level and you get 1 lakh rupees.
@@ -81,7 +102,6 @@ You achieve Diamond lavel get 1 lacks
 </table>
 
 </section>
-
 <!-- @if(isset($covid))
 @foreach($covid as $covidData)
     <section class="chart-section section-top container">
@@ -258,6 +278,7 @@ You achieve Diamond lavel get 1 lacks
         </div>
         @endforeach
       </div>
+      <a href="/product" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;width:150px !important;">View More</a>
 <!--     <div class="row m-t-50">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="row">
@@ -290,10 +311,9 @@ You achieve Diamond lavel get 1 lacks
         <!--<div class="col-sm-12 col-md-4 col-lg-3">-->
                
         <!--</div>-->
-    </div> -->
+    </div>
 
     </section>
-
 
     <section>
         <div class="parallax-container" id="para_sec">
@@ -397,10 +417,11 @@ You achieve Diamond lavel get 1 lacks
                     
                 <!--</div>-->
             </div>
+            <a href="/gallery" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;width:150px !important;">View More</a>
     </section>
 
     
-
+<hr class="section-devider">
     <!-- Blog -->
     <section class="blog bgwhite m-t-70">
         <div class="container">
@@ -427,6 +448,7 @@ You achieve Diamond lavel get 1 lacks
                 </div>
              @endforeach
             </div>
+            <a href="/youtube-videos" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;width:150px !important;">View More</a>
         </div>
     </section>
 
@@ -494,13 +516,38 @@ You achieve Diamond lavel get 1 lacks
             
 </script>
 
-<!-- <style>
-#userChart {
+<style>
+/*#userChart {
   width: 100%;
   height: 580px;
+}*/
+ul.service-list{
+  border: 4px solid #ce2350;
+  padding: 40px; width: 100%;
+  min-width: 280px;
+  max-width: 500px;
+  margin: auto;
+  font-size: 16px;
+    font-weight: 600;
+    color: #007bff;
 }
-
-</style> -->
+@keyframes blink { 
+   50% { color: #fff;
+    font-weight: 400;
+   background-color:  #000;} 
+}
+.animation-css{ 
+    animation: blink .6s step-end infinite alternate;
+}
+hr.section-devider {
+    border: 4px dashed;
+    color: #ce2350;
+    margin-top: 50px;
+    width: 75%;
+    margin: auto;
+    margin-top: 50px;
+}
+</style>
 
 <!-- <script src="/public/amcharts4/core.js"></script>
 <script src="/public/amcharts4/charts.js"></script>
