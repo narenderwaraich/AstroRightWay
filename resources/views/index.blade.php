@@ -82,7 +82,8 @@ You achieve Diamond lavel get 1 lacks
 
 </section>
 
-<!-- @foreach($covid as $covidData)
+<!-- @if(isset($covid))
+@foreach($covid as $covidData)
     <section class="chart-section section-top container">
       <h1 class="section-heading-txt heading-color text-center">India Corona Update</h1>
         <div class="last-uptd  m-t-15">
@@ -128,10 +129,12 @@ You achieve Diamond lavel get 1 lacks
         <input type="hidden" id="active" value="{{$covidData->active}}">
     </section>
   @endforeach
+  @endif
  -->
 
 <!-- Daily Rashi Section -->
-<!--  @foreach($rashi as $todayRashi)
+<!--  @if(isset($rashi))
+@foreach($rashi as $todayRashi)
     <section class="daily-rashi-section section-top container">
         <h1 class="section-heading-txt heading-color text-center">आज का राशिफल</h1>
             <div class="today-date">{{ date('l, d/m/Y', strtotime($todayRashi->today_date)) }}</div>
@@ -233,7 +236,8 @@ You achieve Diamond lavel get 1 lacks
             </div>
         </div>
     </section>
-  @endforeach -->
+  @endforeach 
+@endif-->
 
     <!-- Product Show Section Start -->
 
