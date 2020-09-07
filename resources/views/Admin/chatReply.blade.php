@@ -52,7 +52,13 @@
                             <br>
                             <h6>Open Message</h6>
                             <br>
-                            <p style="border: 2px dashed;padding: 15px;">{{$chat->user_message}}</p>
+                            <p style="border: 2px dashed;padding: 15px;">
+                                @if($message->file)
+                                    <img src="/public/images/user/messages/{{$message->file}}" style="width: 320px;">
+                                    <br>
+                                @endif
+                                {{$chat->user_message}}
+                            </p>
                             <div class="form-group">
                                 <label for="title">Reply Message</label>
                                 <textarea name="reply_message" rows="5" placeholder="Reply Message" class="form-control"></textarea>
