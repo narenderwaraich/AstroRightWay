@@ -43,6 +43,7 @@
                                     <th>ID</th>
                                     <th><input type="checkbox" id="master"> Name</th>
                                     <th>Email</th>
+                                    <th>Phone</th>
                                     <th>Status</th>
                                     <th>Payment</th>
                                     <th>Actions</th>
@@ -54,10 +55,11 @@
                                         <td>{{ $astrologerData->id }}</td>
                                         <td><input type="checkbox" class="sub_chk" data-id="{{$astrologerData->id}}" email-id="{{ $astrologerData->email }}"> {{ $astrologerData->name }}</td>
                                         <td>{{ $astrologerData->email }}</td>
-                                        <td>@if($astrologerData->verified ==1 )
-                                            <span class="astrologer-active">Verified</span>
+                                        <td>{{ $astrologerData->phone_no }}</td>
+                                        <td>@if($astrologerData->verified ==0 )
+                                             <span class="astrologer-deactive">Unverified</span>
                                             @else
-                                            <span class="astrologer-deactive">Unverified</span>
+                                             <span class="astrologer-active">Verified</span>
                                             @endif
                                             </td>
                                         <td>@if($astrologerData->verified ==2)

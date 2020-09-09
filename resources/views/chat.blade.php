@@ -74,6 +74,13 @@
 	    	<div class="chat-box">
 	    		<form method="POST" action="/send-message" enctype="multipart/form-data" class="chat-form">
                 	@csrf
+                	<div class="astro-info-box full-w" style="width: 70%;margin-right: auto;margin-left: auto;margin-bottom: 30px;position: relative;display: none;">
+
+                				<img src="" id="astroLogo" style="width: 80px;height: 80px;border-radius: 100%;">
+                				<img src="/public/images/user/user.jpg" id="dumyLogo" style="width: 80px;height: 80px;border-radius: 100%;">
+                				<div style="position: absolute;top: 29px;left: 95px;">From <span id="city"></span> (<span id="state"></span>)</div>
+
+                	</div>
                 	<select name="astrologer" id="astrologer"  class="input-style form-control {{ $errors->has('astrologer') ? ' is-invalid' : '' }}" required style="margin-bottom: 25px;width: 70%;color: #fff;background: transparent;border: 2px solid #ce2350 !important;">
                         @if(isset($member))
                              <option value="1">Guru Ji</option>
@@ -167,5 +174,38 @@ select option[value="1"] {
         }, 5000);
         
     });
+
+     $(document).ready(function(){
+           $('#astrologer').on('change', function() {
+              var ID = $(this).val();
+              if(ID){
+  	            $.ajax({
+                  type: 'GET',
+                  url: '/getAstrologer?astrologer_id='+ID,
+                  dataType: 'json',
+                  success: function(data){
+                    console.log(data);
+                    $(".astro-info-box #astro-name").text(data.name);
+                    // $(".astro-info-box #address").text(data.address);
+                    $(".astro-info-box #city").text(data.city);
+                    $(".astro-info-box #state").text(data.state);
+                    // $(".astro-info-box #country").text(data.country);
+                    $(".astro-info-box #astroLogo").attr('src','/public/images/user/'+data.avatar);
+                    if(!data.avatar){
+                      $('#astroLogo').hide();
+                      $('#dumyLogo').show();
+                    }else{
+                      $('#astroLogo').show();
+                      $('#dumyLogo').hide();
+                    }
+                     
+                    $('.astro-info-box').show();
+                  }
+                });
+              }else{
+                $('.astro-info-box').hide();
+              }
+           });
+ 	});
  </script>
 @endsection

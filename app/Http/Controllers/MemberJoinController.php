@@ -866,8 +866,25 @@ class MemberJoinController extends Controller
             $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
             $member = MemberJoin::find($id);
             $myMembers = MemberJoin::where('refer_code',$member->member_code)->get();
-            return view('Admin.User.Member-Show',compact('getOrders','contacts','chats'),['member' =>$member, 'myMembers' =>$myMembers]);
+            $activeMembers = MemberJoin::where('refer_code',$member->member_code)->where('status', '=', 1)->count();
+            $deactiveMembers = MemberJoin::where('refer_code',$member->member_code)->where('status', '=', 0)->count();
+            return view('Admin.User.Member-Show',compact('getOrders','contacts','chats'),['member' =>$member, 'myMembers' =>$myMembers, 'activeMembers' => $activeMembers, 'deactiveMembers' => $deactiveMembers]);
           }
+      }else{
+          return redirect()->to('/login');
+      }
+    }
+
+    public function userMemberWithMember($id){
+        if(Auth::check()){
+            $banner = BanerSlide::where('page_name','=','member-panel')->first(); //dd($banner);
+                    if (isset($banner)) {
+                        $title = $banner->title;
+                        $description = $banner->description;
+                    }
+            $member = MemberJoin::find($id);
+            $myMembers = MemberJoin::where('refer_code',$member->member_code)->get();
+            return view('member-with-member',compact('title','description','banner','member','myMembers'));
       }else{
           return redirect()->to('/login');
       }

@@ -430,6 +430,19 @@ class ChatController extends Controller
         }
     }
 
+    public function astrologerlistWithStatus($status){
+        if(Auth::user()->role == "astrologer"){
+            $userId = Auth::id();
+            $astrologerId = Astrologer::where('auth_id',$userId)->first()->id; //dd($astrologerId);
+            $getChats = Chat::where('message_status',$status)->where('message_assign','=',$astrologerId)->orderBy('created_at','desc')->paginate(10);
+            foreach ($getChats as $chat) {
+                $chat->name = User::where('id',$chat->user_id)->first()->name;
+                $chat->email = User::where('id',$chat->user_id)->first()->email;
+            }
+            return view('Astrologer.chat',['getChats' =>$getChats]);
+        }
+    }
+
     public function viewClientChat($id){
         if(Auth::check()){
     if(Auth::user()->role == "astrologer"){
@@ -446,11 +459,12 @@ class ChatController extends Controller
                 $userId = Auth::id();
                 $astrologerId = Astrologer::where('auth_id',$userId)->first()->id; //dd($astrologerId);
                 $chats = Chat::where('message_status','=',"Sent")->where('message_assign','=',$astrologerId)->get(); //dd($chats);
+                $allMessage = Chat::where('user_id',$chat->user_id)->orderBy('created_at','desc')->get(); //dd($allMessage);
                 foreach ($chats as $chat) {
                   $chat->user_name = User::where('id',$chat->user_id)->first()->name;
                 } 
                 $chat = Chat::find($id);
-        return view('Astrologer.chatReply',['chat' =>$chat, 'chats' =>$chats]);
+        return view('Astrologer.chatReply',['chat' =>$chat, 'chats' =>$chats, 'allMessage' =>$allMessage]);
         }
     }
 
@@ -471,4 +485,10 @@ class ChatController extends Controller
     Toastr::success('Message mark sent', 'Success', ["positionClass" => "toast-bottom-right"]);
     return redirect()->to('/admin/chat');
     }
+
+
+    public function getAstrologer(Request $request){
+          $astrologer = Astrologer::find($request->astrologer_id);
+          return response()->json(['name' => $astrologer->name, 'avatar' => $astrologer->avatar, 'country' => $astrologer->country, 'state' => $astrologer->state, 'city' => $astrologer->city, 'address' => $astrologer->address]);
+      }
 }

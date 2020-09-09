@@ -157,7 +157,7 @@
                                         <th>Members</th>
                                       </tr>
                                       @foreach($myMembers as $key => $myMember)
-                                      <tr>
+                                      <tr class="clickable-row" data-href='/user/member/with-member/{{$myMember->id}}' style="cursor: pointer;">
                                         <td>{{$key +1}}</td>
                                         <td>{{$myMember->member_code}}</td>
                                         <td>{{$myMember->name}}</td>
@@ -198,5 +198,12 @@
   document.execCommand("copy");
   alert("Copied the text: " + copyText.value);
 }
+jQuery(document).ready(function($) {
+      $(".clickable-row").click(function(e) {
+        
+          window.location = $(this).data("href");
+        
+      });
+  });
 </script>
 @endsection

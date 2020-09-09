@@ -15,7 +15,13 @@
                         </div>
 
                         <div class="box-body">
-                            <p style="text-align: right;">{{$chat->user_message}}</p>
+                            <p style="text-align: right;">
+                                @if($chat->file)
+                                    <img src="/public/images/user/messages/{{$chat->file}}" style="width: 320px;">
+                                    <br>
+                                @endif
+                                {{$chat->user_message}}
+                            </p>
                             <br>
                             <p style="text-align: left;">{{$chat->reply_message}}</p>
                         </div>

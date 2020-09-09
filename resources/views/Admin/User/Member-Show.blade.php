@@ -21,6 +21,8 @@
                                     <i class="fa fa-refresh"></i> Refresh
                                 </button>
                             </div>
+                            <span class="user-active">Active Member - {{$activeMembers}}</span>
+                            <span class="user-deactive"> Deactive Member - {{$deactiveMembers}}</span>
                         </div>
 
                         <div class="box-body">
@@ -39,7 +41,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($myMembers as $myMember)
-                                    <tr>
+                                    <tr class="clickable-row" data-href='/member/with-member/{{$myMember->id}}' style="cursor: pointer;">
                                         <td>{{ $myMember->id }}</td>
                                         <td>{{ $myMember->name }}</td>
                                         <td>{{ $myMember->email }}</td>
@@ -64,5 +66,15 @@
             </div>
         </section>
     </section>
+ <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
+<script>
 
+  jQuery(document).ready(function($) {
+      $(".clickable-row").click(function(e) {
+        
+          window.location = $(this).data("href");
+        
+      });
+  });
+</script>
 @endsection

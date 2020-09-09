@@ -301,12 +301,14 @@ Route::get('/talk-astro/{refer}','ChatController@createReferMesg');
 Route::post('refer-send-message','ChatController@storeReferMesg');
 Route::get('/admin/chat','ChatController@showList');
 Route::get('/admin/{status}/chat','ChatController@listWithStatus');
+Route::get('/astrologer/{status}/chat','ChatController@astrologerlistWithStatus');
 Route::get('/chat/reply/{id}','ChatController@userMessage');
 Route::post('/chat-reply/{id}','ChatController@astroReply');
 Route::post('message-transfer','ChatController@transferMessage');
 Route::get('/chat/view/{id}','ChatController@viewChat');
 Route::get('/chat/status/mark-sent/{id}','ChatController@markSentChat');
 Route::get('/chat/status/mark-reply/{id}','ChatController@markReplyChat');
+Route::get('/getAstrologer','ChatController@getAstrologer');
 
 Route::get('/buy/plan','UserPlanController@create');
 Route::get('/buy-plan/{id}','UserPlanController@buyPlan');
@@ -388,6 +390,7 @@ Route::get('/member/verified/{id}','MemberJoinController@verifyMember');
 Route::post('/member-payment-status', 'MemberJoinController@paytmCallback');
 Route::any('/member/search','MemberJoinController@SearchData');
 Route::get('/member/with-member/{id}','MemberJoinController@memberWithMember');
+Route::get('/user/member/with-member/{id}','MemberJoinController@userMemberWithMember');
 
 //// millionairethink
 Route::get('/millionaire-think/data-list','MillionairethinkController@index');

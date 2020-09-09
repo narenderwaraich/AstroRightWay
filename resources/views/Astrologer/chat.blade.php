@@ -19,8 +19,14 @@
                                 <button type="button" class="btn btn-default btn-sm" onClick="refreshPage()">
                                     <i class="fa fa-refresh"></i> Refresh
                                 </button>
-                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" id="sendButton">
-                                    Change Status
+                                <a href="/astrologer/Sent/chat">
+                                    <button type="button" class="btn btn-success btn-sm">Sent</button>
+                                </a>
+                                <a href="/astrologer/Reply/chat">
+                                    <button type="button" class="btn btn-danger btn-sm">Reply</button>
+                                </a>
+                                <a href="/astrologer/Pending/chat">
+                                    <button type="button" class="btn btn-warning btn-sm">Pending</button>
                                 </a>
                             </div>
                         </div>

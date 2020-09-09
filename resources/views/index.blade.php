@@ -63,7 +63,7 @@
   </p>
 
 </section>
-<hr class="section-devider">
+
 <section class="member-section section-top container">
   <h1 class="section-heading-txt heading-color text-center">Join Helping Plan</h1>
   <p class="member-subheading">If you achieve pearl level then you will get a gift product and when 20 people below you achieve pearl level then you achieve ruby ​​level and you get ten thousand rupees and honor symbol and when 20 people below you ruby ​​level  If you achieve, you achieve the diamond level and you get 1 lakh rupees.
@@ -421,7 +421,7 @@ You achieve Diamond lavel get 1 lacks
     </section>
 
     
-<hr class="section-devider">
+
     <!-- Blog -->
     <section class="blog bgwhite m-t-70">
         <div class="container">
@@ -538,14 +538,6 @@ ul.service-list{
 }
 .animation-css{ 
     animation: blink .6s step-end infinite alternate;
-}
-hr.section-devider {
-    border: 4px dashed;
-    color: #ce2350;
-    margin-top: 50px;
-    width: 75%;
-    margin: auto;
-    margin-top: 50px;
 }
 </style>
 
