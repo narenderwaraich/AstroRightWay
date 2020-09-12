@@ -365,6 +365,7 @@ Route::get('/astrologer/chat/view/{id}','ChatController@viewClientChat');
 Route::get('/astrologer/create','AstrologerController@addAstrologer');
 Route::get('/astrologer/list','AstrologerController@astrologerList');
 Route::get('/astrologer/verified/{id}','AstrologerController@verifyAstrologer');
+Route::get('/astrologer/inactive/{id}','AstrologerController@inActiveAstrologer');
 Route::get('/astrologer/delete/{id}','AstrologerController@destroy');
 Route::get('/payment/collect','AstrologerController@collectPayment');
 Route::get('/astrologer/change-password/','AstrologerController@changeAstrologerPassword');

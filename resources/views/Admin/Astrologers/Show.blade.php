@@ -71,7 +71,10 @@
                                           </td>
                                         <td><a href="/astrologer/edit/{{ $astrologerData->id }}" class="btn btn-secondary">Edit</a>
                                         @if($astrologerData->verified == 1)
-                                        <a href="/astrologer/verified/{{ $astrologerData->id }}" class="btn btn-success  on-mob-table-btn">Verify</a>
+                                        <a href="/astrologer/verified/{{ $astrologerData->id }}" class="btn btn-success  on-mob-table-btn">Active</a>
+                                        @endif
+                                        @if($astrologerData->verified == 2)
+                                        <a href="/astrologer/inactive/{{ $astrologerData->id }}" class="btn btn-dander  on-mob-table-btn">Inactive</a>
                                         @endif
                                         <!-- @if($astrologerData->suspend)
                                             <a href="/astrologer/suspend-astrologer/{{$astrologerData->id}}" class="btn btn-success on-mob-table-btn">Enable</a>

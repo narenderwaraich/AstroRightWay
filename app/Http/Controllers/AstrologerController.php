@@ -42,7 +42,8 @@ class AstrologerController extends Controller
                 } 
                 $astrologer = Astrologer::where('email',Auth::user()->email)->first(); //dd($astrologer);
                   if($astrologer->verified == 2){
-                    return view('Astrologer.index',compact('chats','astrologer'));
+                    $totalMessage = Chat::where('message_assign','=',$astrologerId)->count();
+                    return view('Astrologer.index',compact('chats','astrologer','totalMessage'));
                 }else{
                     $banner = BanerSlide::where('page_name','=','pay')->first(); //dd($banner);
                     if (isset($banner)) {
@@ -273,8 +274,22 @@ class AstrologerController extends Controller
             }
           }else{
         return redirect()->to('/login');
+      }
     }
-        }
+
+    public function inActiveAstrologer($id){
+      if(Auth::check()){
+          if(Auth::user()->role == "admin"){
+              $atrologer = Astrologer::find($id);
+              $data['verified'] = 1;
+              $atrologer->update($data);
+              Toastr::success('Astrologer Inactive', 'Success', ["positionClass" => "toast-bottom-right"]);
+                  return back();
+            }
+          }else{
+        return redirect()->to('/login');
+      }
+    }
 
     public function editAstrologer($id)
     {
