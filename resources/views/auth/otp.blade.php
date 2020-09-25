@@ -17,12 +17,12 @@
 <section class="login-section">
 <div class="windows-firm-Box">
     <div class="top-tile">
-        ENTER OTP
+        Enter Verification Code
     </div>
     <div class="windows-form">
         <form method="POST" action="/verify-Otp">
          @csrf
-            <p>Check your email id in otp code.</p>
+            <p>Check your email id in Verification code.</p>
             <input name="email" type="hidden" value="{{$user->email}}">
             <input id="partitioned" name="otp" type="text" maxlength="6" />
             <div><a href="/resend-Otp/{{$user->id}}" class="sign-up-link">Resend Otp</a></div>

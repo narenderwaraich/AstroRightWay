@@ -71,9 +71,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($user as $userData)
-                                    <tr>
+                                    <tr class="clickable-row" data-href='/user/{{$userData->id}}/view' style="cursor: pointer;">
                                         <td>{{ $userData->id }}</td>
-                                        <td><input type="checkbox" class="sub_chk" data-id="{{$userData->id}}" email-id="{{ $userData->email }}"><a href="/user/{{$userData->id}}/view">  {{ $userData->name }}</a></td>
+                                        <td><input type="checkbox" class="sub_chk" data-id="{{$userData->id}}" email-id="{{ $userData->email }}">
+                                          {{ $userData->name }}</td>
                                         <td>{{ $userData->email }}</td>
                                         <td>{{ $userData->gender }}</td>
                                         <td>{{ $userData->google_id }}</td>
@@ -157,6 +158,14 @@
 </div>
  <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
 <script>
+
+  jQuery(document).ready(function($) {
+      $(".clickable-row").click(function(e) {
+        
+          window.location = $(this).data("href");
+        
+      });
+  });
 
   /// hide search button
       if($('#search').val()!=""){

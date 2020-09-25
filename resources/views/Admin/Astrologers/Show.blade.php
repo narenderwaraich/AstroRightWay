@@ -74,7 +74,7 @@
                                         <a href="/astrologer/verified/{{ $astrologerData->id }}" class="btn btn-success  on-mob-table-btn">Active</a>
                                         @endif
                                         @if($astrologerData->verified == 2)
-                                        <a href="/astrologer/inactive/{{ $astrologerData->id }}" class="btn btn-dander  on-mob-table-btn">Inactive</a>
+                                        <a href="/astrologer/inactive/{{ $astrologerData->id }}" class="btn btn-warning  on-mob-table-btn">Inactive</a>
                                         @endif
                                         <!-- @if($astrologerData->suspend)
                                             <a href="/astrologer/suspend-astrologer/{{$astrologerData->id}}" class="btn btn-success on-mob-table-btn">Enable</a>

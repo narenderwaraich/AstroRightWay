@@ -94,11 +94,11 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-inr"></i>Payments</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="/payment/cash">Cash</a></li>
+                            <!-- <li><i class="fa fa-table"></i><a href="/payment/cash">Cash</a></li> -->
                             <li><i class="fa fa-table"></i><a href="/payment/paytm">Paytem</a></li>
                             <li><i class="fa fa-table"></i><a href="/pay/payment/list">Drect</a></li>
                             <li><i class="fa fa-table"></i><a href="/member/payments">Member</a></li>
-                            <li><i class="fa fa-table"></i><a href="/payment/refund">Refund</a></li>
+                            <!-- <li><i class="fa fa-table"></i><a href="/payment/refund">Refund</a></li> -->
                         </ul>
                     </li>
                      @if(Auth::user()->role == "admin")
@@ -144,8 +144,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon  fa fa-user"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa fa-plus"></i><a href="/user/create">Add</a></li>
-                            <li><i class="fa fa-table"></i><a href="/user">View</a></li>
-                            <li><i class="fa fa-table"></i><a href="/member/list">Members</a></li>
+                            <li><i class="fa fa-users"></i><a href="/user">Users</a></li>
+                            <li><i class="fa fa-users"></i><a href="/member/list">Members</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

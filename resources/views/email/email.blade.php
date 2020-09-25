@@ -35,7 +35,7 @@ input[type="button"]:focus{
 <br><br><br>
 <p>Greetings for choosing AstroRightWay.
 
-Your Account Verify Code is <strong style="color: #ce2350;">{{$otp}}</strong> <br>
+Your Account Verification Code is <strong style="color: #ce2350;">{{$otp}}</strong> <br>
 Please click the link below to confirm your email and activate your account.</p>
 <center>
     <br>

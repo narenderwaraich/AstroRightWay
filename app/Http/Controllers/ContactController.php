@@ -140,6 +140,11 @@ class ContactController extends Controller
       $status['reply_message'] = $reply;
       Contact::where('id',$mesg_id)->update($status);
       Mail::to($email)->send(new ContactReply($reply));
+      if (Mail::failures()) {
+        // return response showing failed emails
+        Toastr::error('Message not Send', 'Error', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->to('/admin/contact-us');
+      }
       Toastr::success('Message Reply', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/admin/contact-us');
    }
