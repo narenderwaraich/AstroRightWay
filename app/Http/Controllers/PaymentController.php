@@ -607,9 +607,8 @@ class PaymentController extends Controller
             Payment::create($data);
             CartStorage::where('user_id',$userId)->delete();
             $user = User::where('id',$userId)->first();
-            $admin_mail = "singh4narender@gmail.com";
-            $other_mail = "vs679280@gmail.com";
-            $adminMail = array($admin_mail, $other_mail);
+            $setting = Setting::find(1);
+            $adminMail = array($setting->admin_mail);
             Mail::to($adminMail)->send(new PaymentNotification($order,$user));
             return view( 'order-complete', compact( 'order', 'status' ) );
         } else if( 'TXN_FAILURE' === $request['STATUS'] ){

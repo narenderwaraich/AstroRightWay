@@ -17,6 +17,7 @@ use App\SendMail;
 use Mail;
 use App\Mail\ContactReply;
 use App\Mail\SendEMail;
+use App\Setting;
 use App\Order;
 use App\Product;
 use App\BanerSlide;
@@ -70,9 +71,8 @@ class ContactController extends Controller
           $data = request(['name','message','email','phone_number']);
           $mail = $request->email;
           $query = Contact::create($data);
-          $admin_mail = "singh4narender@gmail.com";
-          $other_mail = "vs679280@gmail.com";
-          $adminMail = array($admin_mail, $other_mail);
+          $setting = Setting::find(1);
+          $adminMail = array($setting->admin_mail);
           Mail::to($admin_mail)->send(new ContactUs($query));
           $this->returnBackReplyMail($mail);
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
@@ -91,9 +91,8 @@ class ContactController extends Controller
           }
           $data = request(['name','message','email']);
           $query = Contact::create($data);
-          $admin_mail = "singh4narender@gmail.com";
-          $other_mail = "vs679280@gmail.com";
-          $adminMail = array($admin_mail, $other_mail);
+          $setting = Setting::find(1);
+          $adminMail = array($setting->admin_mail);
           Mail::to($admin_mail)->send(new ContactUs($query));
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/');
@@ -101,7 +100,7 @@ class ContactController extends Controller
    
    public function getContact(){
     if(Auth::check()){
-    if(Auth::user()->role == "admin"){
+    if(Auth::user()->role == "admin" || Auth::user()->role == "administrator"){
           $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
           $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
           $getContacts = Contact::orderBy('created_at','desc')->paginate(10); //dd($contacts);
@@ -114,7 +113,7 @@ class ContactController extends Controller
    
    public function contactReplyGet($id){
     if(Auth::check()){
-    if(Auth::user()->role == "admin"){
+    if(Auth::user()->role == "admin" || Auth::user()->role == "administrator"){
         $contact = Contact::find($id); //dd($contact);
         return view('Admin.contactReply',compact('getOrders','contacts'),['contact' =>$contact]);
         }
@@ -125,7 +124,7 @@ class ContactController extends Controller
 
    public function contactMarkReply($id){
     if(Auth::check()){
-    if(Auth::user()->role == "admin"){
+    if(Auth::user()->role == "admin" || Auth::user()->role == "administrator"){
         $status['status'] = "Reply";
         Contact::where('id',$id)->update($status);
         Toastr::success('Message mark reply', 'Success', ["positionClass" => "toast-bottom-right"]);
@@ -155,7 +154,7 @@ class ContactController extends Controller
 
    public function sendMailView(){
     if(Auth::check()){
-    if(Auth::user()->role == "admin"){
+    if(Auth::user()->role == "admin" || Auth::user()->role == "administrator"){
           $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
           $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
         return view('Admin.send-Mail',compact('getOrders','contacts'));

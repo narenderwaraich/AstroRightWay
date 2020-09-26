@@ -767,9 +767,8 @@ class AstrologerController extends Controller
                     $astrologer->save();
 
                     $user = User::where('id',$order->user_id)->first();
-                    $admin_mail = "singh4narender@gmail.com";
-                    $other_mail = "vs679280@gmail.com";
-                    $adminMail = array($admin_mail, $other_mail);
+                    $setting = Setting::find(1);
+                    $adminMail = array($setting->admin_mail);
                     Mail::to($adminMail)->send(new PaymentNotification($user,$order));
 
                     Toastr::success('Payment Success', 'Success', ["positionClass" => "toast-top-right"]);

@@ -111,11 +111,9 @@
                     </li>
                     @endif
                     <h3 class="menu-title">Account</h3><!-- /.menu-title -->
-                    @if(Auth::user()->role == "admin")
                     <li>
                         <a href="/admin/contact-us"> <i class="menu-icon fa fa-address-book"></i>Contacts</a>
                     </li>
-                    @endif
                     <li>
                         <a href="/admin/chat"> <i class="menu-icon fa fa-comments"></i>Chat</a>
                     </li>
