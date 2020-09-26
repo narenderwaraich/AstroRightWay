@@ -73,7 +73,7 @@ class ContactController extends Controller
           $query = Contact::create($data);
           $setting = Setting::find(1);
           $adminMail = array($setting->admin_mail);
-          Mail::to($admin_mail)->send(new ContactUs($query));
+          Mail::to($adminMail)->send(new ContactUs($query));
           $this->returnBackReplyMail($mail);
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/');
@@ -93,7 +93,7 @@ class ContactController extends Controller
           $query = Contact::create($data);
           $setting = Setting::find(1);
           $adminMail = array($setting->admin_mail);
-          Mail::to($admin_mail)->send(new ContactUs($query));
+          Mail::to($adminMail)->send(new ContactUs($query));
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/');
    }
