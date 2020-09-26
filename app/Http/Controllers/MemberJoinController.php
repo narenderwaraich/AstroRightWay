@@ -178,7 +178,7 @@ class MemberJoinController extends Controller
                 }else{
                     UserPlan::create($userPlan);
                 }
-                $adminMail = "singh4narender@gmail.com";
+                $adminMail = "Singh4narender@gmail.com, vs679280@gmail.com";
                 Mail::to($adminMail)->send(new MemberNotification($member));
                 Toastr::success('Meember Join', 'Success', ["positionClass" => "toast-bottom-right"]);
                     return redirect()->to('/member-panel');
@@ -249,7 +249,7 @@ class MemberJoinController extends Controller
                 }else{
                     UserPlan::create($userPlan);
                 }
-                $adminMail = "singh4narender@gmail.com";
+                $adminMail = "Singh4narender@gmail.com, vs679280@gmail.com";
                 Mail::to($adminMail)->send(new MemberNotification($member));
                 Toastr::success('Meember Join', 'Success', ["positionClass" => "toast-bottom-right"]);
                     return redirect()->to('/member-panel');
@@ -317,7 +317,7 @@ class MemberJoinController extends Controller
 
                 // send mail to user for varify
                 Mail::to($request->email)->send(new EmailVerification($user));
-                $adminMail = "singh4narender@gmail.com";
+                $adminMail = "Singh4narender@gmail.com, vs679280@gmail.com";
                 Mail::to($adminMail)->send(new MemberNotification($member));
                 Toastr::success('Meember Join', 'Success', ["positionClass" => "toast-bottom-right"]);
                     // return redirect()->to('/member-panel');
@@ -803,7 +803,7 @@ class MemberJoinController extends Controller
                     $chat->update($chatData);
 
                     $user = User::where('id',$order->user_id)->first();
-                    $adminMail = "singh4narender@gmail.com";
+                    $adminMail = "Singh4narender@gmail.com, vs679280@gmail.com";
                     Mail::to($adminMail)->send(new PaymentNotification($user,$order));
 
                     Toastr::success('Payment Success', 'Success', ["positionClass" => "toast-top-right"]);

@@ -357,6 +357,8 @@ Route::post('/astrologer/payment/status', 'AstrologerController@paytmCallback');
 Route::get('/astrologer/edit/{id}','AstrologerController@edit');
 Route::post('astrologer/update/{id}', 'AstrologerController@update');
 
+Route::get('/astrologer/{id}/view','AstrologerController@astrologerView');
+
 Route::get('/astrologer/chat','ChatController@astrologerChatList');
 Route::get('/astrologer/chat/reply/{id}','ChatController@astroUserMessage');
 // Route::post('/chat-reply/{id}','ChatController@astroReply');

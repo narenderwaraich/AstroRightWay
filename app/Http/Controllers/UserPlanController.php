@@ -507,7 +507,7 @@ class UserPlanController extends Controller
 
                     $order = $payment;
                     $user = User::where('id',$userId)->first();
-                    $adminMail = "singh4narender@gmail.com";
+                    $adminMail = "Singh4narender@gmail.com, vs679280@gmail.com";
                     Mail::to($adminMail)->send(new PaymentNotification($user,$order));
                 Toastr::success('Your Plan Activated', 'Success', ["positionClass" => "toast-bottom-right"]);
                 return redirect()->to('/talk-astro');

@@ -75,6 +75,11 @@ class AstrologerController extends Controller
     }
     }
 
+    public function astrologerView($id){
+      $astrologer = Astrologer::find($id); //dd($astrologer);
+      return view('Admin.Astrologers.View',compact('astrologer'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -762,7 +767,7 @@ class AstrologerController extends Controller
                     $astrologer->save();
 
                     $user = User::where('id',$order->user_id)->first();
-                    $adminMail = "singh4narender@gmail.com";
+                    $adminMail = "Singh4narender@gmail.com, vs679280@gmail.com";
                     Mail::to($adminMail)->send(new PaymentNotification($user,$order));
 
                     Toastr::success('Payment Success', 'Success', ["positionClass" => "toast-top-right"]);

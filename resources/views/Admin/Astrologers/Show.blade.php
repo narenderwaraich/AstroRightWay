@@ -51,7 +51,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($astrologer as $astrologerData)
-                                    <tr>
+                                    <tr class="clickable-row" data-href='/astrologer/{{$astrologerData->id}}/view' style="cursor: pointer;">
                                         <td>{{ $astrologerData->id }}</td>
                                         <td><input type="checkbox" class="sub_chk" data-id="{{$astrologerData->id}}" email-id="{{ $astrologerData->email }}"> {{ $astrologerData->name }}</td>
                                         <td>{{ $astrologerData->email }}</td>
@@ -135,6 +135,12 @@
  <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
 <script>
     $(document).ready(function () {
+
+      $(".clickable-row").click(function(e) {
+        
+          window.location = $(this).data("href");
+        
+      });
 
           // select all 
         $('#master').on('click', function(e) {
