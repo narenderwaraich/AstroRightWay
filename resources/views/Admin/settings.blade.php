@@ -18,6 +18,15 @@
 
                             <div class="box-body">
                                 <div class="form-group">
+                                    <label for="tax">Admin Email</label>
+                                    <input type="text" class="form-control{{ $errors->has('admin_mail') ? ' is-invalid' : '' }}" name="admin_mail" placeholder="Enter Admin Email" value="{{ $data->admin_mail }}">
+                                    @if ($errors->has('admin_mail'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('admin_mail') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
                                     <label for="tax">Tax Rate</label>
                                     <input type="text" class="form-control{{ $errors->has('tax_rate') ? ' is-invalid' : '' }}" name="tax_rate" placeholder="Enter Tax Rate" value="{{ $data->tax_rate }}">
                                     @if ($errors->has('tax_rate'))
