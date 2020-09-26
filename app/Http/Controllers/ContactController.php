@@ -70,8 +70,10 @@ class ContactController extends Controller
           $data = request(['name','message','email','phone_number']);
           $mail = $request->email;
           $query = Contact::create($data);
-          $email = "Singh4narender@gmail.com, vs679280@gmail.com";
-          Mail::to($email)->send(new ContactUs($query));
+          $admin_mail = "singh4narender@gmail.com";
+          $other_mail = "vs679280@gmail.com";
+          $adminMail = array($admin_mail, $other_mail);
+          Mail::to($admin_mail)->send(new ContactUs($query));
           $this->returnBackReplyMail($mail);
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/');
@@ -89,8 +91,10 @@ class ContactController extends Controller
           }
           $data = request(['name','message','email']);
           $query = Contact::create($data);
-          $email = "Singh4narender@gmail.com, vs679280@gmail.com";
-          Mail::to($email)->send(new ContactUs($query));
+          $admin_mail = "singh4narender@gmail.com";
+          $other_mail = "vs679280@gmail.com";
+          $adminMail = array($admin_mail, $other_mail);
+          Mail::to($admin_mail)->send(new ContactUs($query));
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/');
    }
