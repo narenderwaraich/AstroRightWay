@@ -17,6 +17,7 @@ use App\SendMail;
 use Mail;
 use App\Mail\ContactReply;
 use App\Mail\SendEMail;
+use App\Mail\EMail;
 use App\Setting;
 use App\Order;
 use App\Product;
@@ -72,7 +73,7 @@ class ContactController extends Controller
           $mail = $request->email;
           $query = Contact::create($data);
           $setting = Setting::find(1);
-          $adminMail = array($setting->admin_mail);
+          $adminMail = $setting->admin_mail;
           Mail::to($adminMail)->send(new ContactUs($query));
           $this->returnBackReplyMail($mail);
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
@@ -92,7 +93,7 @@ class ContactController extends Controller
           $data = request(['name','message','email']);
           $query = Contact::create($data);
           $setting = Setting::find(1);
-          $adminMail = array($setting->admin_mail);
+          $adminMail = $setting->admin_mail;
           Mail::to($adminMail)->send(new ContactUs($query));
     Toastr::success('Message Sent', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/');
@@ -168,10 +169,24 @@ class ContactController extends Controller
       $email = $request->email;
       $subject = $request->subject;
       $message = $request->message;
-      $data = [];
-      $data['message'] = $message;
-      $data['subject'] = $subject;
-      Mail::to($email)->send(new SendEMail($data));
+      $document = $request->document;
+
+      if ($document->getError() == 1) {
+        $max_size = $document->getMaxFileSize() / 1024 / 1024;  // Get size in Mb
+        $error = 'The document size must be less than ' . $max_size . 'Mb.';
+        Toastr::error($error, 'Error', ["positionClass" => "toast-top-right"]);
+        return redirect()->back();
+      }
+      $data = [
+        'subject' => $subject,
+        'document' => $document,
+        'message' => $message
+      ];
+      //dd($data);
+      // $data = [];
+      // $data['message'] = $message;
+      // $data['subject'] = $subject;
+      Mail::to($email)->send(new EMail($data));
       Toastr::success('Mail Send', 'Success', ["positionClass" => "toast-top-right"]);
         return redirect()->to('/admin');
    }

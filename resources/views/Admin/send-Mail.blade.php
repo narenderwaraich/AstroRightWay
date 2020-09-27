@@ -8,7 +8,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <form action="/send-mail" method="post">
+                <form action="/send-mail" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="box">
                         <div class="box-header with-border">
@@ -29,8 +29,12 @@
                                 <input type="text" name="subject" placeholder="Subject" class="form-control" required>
                             </div>
                             <div class="form-group">
+                                <label for="title">File</label>
+                                <input type="file" name="document" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label for="title">Message</label>
-                                <textarea name="message" rows="5" placeholder="Message" class="form-control" required></textarea>
+                                <textarea name="message" rows="10" placeholder="Message" class="form-control" required></textarea>
                             </div>
                         </div>
 
