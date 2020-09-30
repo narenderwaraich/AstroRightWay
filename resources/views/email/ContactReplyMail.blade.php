@@ -37,7 +37,7 @@ input[type="button"]:focus{
 <br>
 <center>
     <br>
-     <img src="{{env('APP_URL')}}/public/images/icons/logo.png" style="width: 220px;height: 90px; text-align: center;display: block;margin: auto;">
+     <img src="{{env('APP_URL')}}/public/images/icons/logo.png" style="width: auto;height: 90px; text-align: center;display: block;margin: auto;">
     <br>
 </center>
 <h3>Thanks <br>

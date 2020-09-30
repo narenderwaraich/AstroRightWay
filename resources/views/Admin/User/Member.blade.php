@@ -91,6 +91,7 @@
                                         @else
                                             <a href="/member/suspend-member/{{$memberData->id}}" class="btn btn-warning on-mob-table-btn">Disable</a>
                                         @endif
+                                        <a href="/member/edit/{{ $memberData->id }}" class="btn btn-secondary">Edit</a>
                                         <a onclick="return removeAlert();" href="/member/delete/{{ $memberData->id }}" class="btn btn-danger on-mob-table-btn">Delete</a>
                                     </tr>
                                     @endforeach

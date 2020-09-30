@@ -170,12 +170,13 @@ class ContactController extends Controller
       $subject = $request->subject;
       $message = $request->message;
       $document = $request->document;
-
-      if ($document->getError() == 1) {
-        $max_size = $document->getMaxFileSize() / 1024 / 1024;  // Get size in Mb
-        $error = 'The document size must be less than ' . $max_size . 'Mb.';
-        Toastr::error($error, 'Error', ["positionClass" => "toast-top-right"]);
-        return redirect()->back();
+      if($document){
+        if ($document->getError() == 1) {
+          $max_size = $document->getMaxFileSize() / 1024 / 1024;  // Get size in Mb
+          $error = 'The document size must be less than ' . $max_size . 'Mb.';
+          Toastr::error($error, 'Error', ["positionClass" => "toast-top-right"]);
+          return redirect()->back();
+        }
       }
       $data = [
         'subject' => $subject,

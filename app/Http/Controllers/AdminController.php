@@ -249,15 +249,24 @@ class AdminController extends Controller
     {
         $validate = $this->validate(request(),[
                   'name'=>'required|string|max:50',
-                  'email' => 'required',
-                  'password' => 'string|min:6',
                 ]);
         if(!$validate){
           Redirect::back()->withInput();
         }
         $user = User::find($id);
-        $data = request(['name','email','phone_no','gender','role']);
+        $data = request(['name','phone_no','gender','role']);
         $password = $request->password;
+        $email =  $request->email;
+        if ($email) {
+          $checkEmail = User::where('email','=',$email)->first();
+          if($checkEmail){
+            Toastr::error('Email id already exit', 'Error', ["positionClass" => "toast-bottom-right"]);
+            return back();
+          }else{
+            $data['email'] = $email;
+          }
+        }
+        
         if($password){
           $data['password'] = Hash::make($password);
         }

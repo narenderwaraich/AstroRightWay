@@ -8,7 +8,7 @@
       <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="/user/update/{{ $user->id }}" method="post" enctype="multipart/form-data" autocomplete="">
+                    <form action="/member/update/{{ $member->id }}" method="post">
                     {{ csrf_field() }}
                       <div class="box">
                             <div class="box-header with-border">
@@ -22,14 +22,14 @@
                                             type="text"
                                             class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                             name="name"
-                                            placeholder="Enter Name" value="{{ $user->name }}"
+                                            placeholder="Enter Name" value="{{ $member->name }}"
                                             >
                                 </div>
 
                                  <div class="form-group">
                                     <label for="title">Email</label>
                                      <div class="row">
-                                      <div class="col-6"><input type="text" class="form-control" name="" value="{{ $user->email}}" readonly></div>
+                                      <div class="col-6"><input type="text" class="form-control" name="" value="{{ $member->email}}" readonly></div>
                                       <div class="col-6"><input type="email "class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Change Email" value="">
                                         @if ($errors->has('email'))
                                           <span class="invalid-feedback" role="alert">
@@ -41,18 +41,10 @@
                               
                                 
                                  </div>
-                                  <div class="form-group">
-                                    <label for="title">Password</label>
-                                    <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Enter Password">
-                                  </div>
-                                  @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                                @endif
+                                 
                                   <div class="form-group">
                                     <label for="title">Phone</label>
-                                    <input type="text" class="form-control {{ $errors->has('phone_no') ? ' is-invalid' : '' }}" name="phone_no" value="{{ $user->phone_no }}" placeholder="Enter Phone">
+                                    <input type="text" class="form-control {{ $errors->has('phone_no') ? ' is-invalid' : '' }}" name="phone_no" value="{{ $member->phone_no }}" placeholder="Enter Phone">
                                     @if ($errors->has('phone_no'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('phone_no') }}</strong>
@@ -60,26 +52,18 @@
                                     @endif
                                   </div>
                                   <div class="form-group">
-                                    <label for="title">Gender</label>
-                                    <select name="gender" id="select" required class="windows-form-input form-control ">
-                                            <option value="">-- Select Gender--</option>    
-                                            <option value="male" @if ($user->gender == "male") {{ 'selected' }} @endif>Male</option>
-                                            <option value="female" @if ($user->gender == "female") {{ 'selected' }} @endif>Female</option>
+                                    <label for="title">Refer</label>
+                                    <input type="text" class="form-control" name="refer_code" value="{{$member->refer_code}}">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="title">Level</label>
+                                    <select name="level" id="select" class="windows-form-input form-control ">
+                                            <option value="">-- Select Level--</option>    
+                                            <option value="Pearl" @if ($member->level == "Pearl") {{ 'selected' }} @endif>Pearl</option>
+                                            <option value="Ruby" @if ($member->level == "Ruby") {{ 'selected' }} @endif>Ruby</option>
+                                            <option value="Diamond" @if ($member->level == "Diamond") {{ 'selected' }} @endif>Diamond</option>
                                     </select>
-                                 </div>
-                                 <div class="form-group">
-                                    <label for="title">Role</label>
-                                      <select class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"  name="role">
-                                        <option value="admin" disabled @if ($user->role == "admin") {{ 'selected' }} @endif>Admin</option>
-                                        <option value="administrator" @if ($user->role == "administrator") {{ 'selected' }} @endif>Administrator</option>
-                                        <option value="user" @if ($user->role == "user") {{ 'selected' }} @endif>User</option>
-                                        <option value="editor" @if ($user->role == "editor") {{ 'selected' }} @endif>Editor</option>
-                                        <option value="author" @if ($user->role == "author") {{ 'selected' }} @endif>Author</option>
-                                        <option value="astrologer" @if ($user->role == "astrologer") {{ 'selected' }} @endif>Astrologer</option>
-                                      </select>
-                                 </div>
-
-                                 
+                                 </div>     
                             </div>
 
                             <div class="box-footer">

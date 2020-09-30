@@ -394,6 +394,8 @@ Route::post('/member-payment-status', 'MemberJoinController@paytmCallback');
 Route::any('/member/search','MemberJoinController@SearchData');
 Route::get('/member/with-member/{id}','MemberJoinController@memberWithMember');
 Route::get('/user/member/with-member/{id}','MemberJoinController@userMemberWithMember');
+Route::get('/member/edit/{id}','MemberJoinController@editMember');
+Route::post('/member/update/{id}','MemberJoinController@updateMember');
 
 //// millionairethink
 Route::get('/millionaire-think/data-list','MillionairethinkController@index');

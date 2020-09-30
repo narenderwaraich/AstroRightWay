@@ -345,9 +345,29 @@ class MemberJoinController extends Controller
      * @param  \App\MemberJoin  $memberJoin
      * @return \Illuminate\Http\Response
      */
-    public function edit(MemberJoin $memberJoin)
+    public function editMember($id)
     {
-        //
+        $member = MemberJoin::find($id);
+        return view('Admin.User.Edit-Member',compact('member'));
+    }
+
+    public function updateMember(Request $request, $id){
+        $member = MemberJoin::where('id',$id)->first();
+        $data = request(['name','phone_no','refer_code','level']);
+        $email =  $request->email;
+        if ($email) {
+          $checkEmail = MemberJoin::where('email','=',$email)->first();
+          if($checkEmail){
+            Toastr::error('Email id already exit', 'Error', ["positionClass" => "toast-bottom-right"]);
+            return back();
+          }else{
+            $data['email'] = $email;
+          }
+        }
+
+        $member->update($data);
+        Toastr::success('Member Updated', 'Success', ["positionClass" => "toast-bottom-right"]);
+        return redirect()->to('/member/list');
     }
 
     /**
