@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Auth;
 use Hash;
 use App\User;
+use Carbon\Carbon;
 use App\CartStorage;
 use Redirect;
 use Toastr;
@@ -72,11 +73,19 @@ class SessionController extends Controller
             if($checkCart){
                 CartStorage::where('user_id',Auth::id())->delete();
             }
+
+            $authUser = Auth::user();
+            $active['online_status'] = 1;
+            $active['lastLoginDate'] = Carbon::now();
+            $authUser->update($active);
             return back();
         }
  
     }
     public function destroy(){
+        $authUser = Auth::user(); //dd($authUser);
+        $deActive['online_status'] = 0;
+        $authUser->update($deActive);
         auth()->logout();
         return redirect()->to('/login');
 

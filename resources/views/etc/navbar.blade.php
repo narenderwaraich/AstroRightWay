@@ -93,14 +93,15 @@
                          @endif
                          <li><a href="/member-panel">Member</a></li>
                          <li><a href="/user-order">Orders</a></li>
-                          <li class="log-out"><a href="{{ route('logout') }}"
+                          <li class="log-out"><a href="/logout">Logout</a>
+                          <!-- <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}</a>
+                            {{ __('Logout') }}</a> -->
                           </li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form>
+                                    </form> -->
            
                           @endguest
                         </ul>
@@ -202,14 +203,15 @@
                          @endif
                          <li><a href="/member-panel">Member</a></li>
                          <li><a href="/user-order">Orders</a></li>
-                          <li class="log-out"><a href="{{ route('logout') }}"
+                          <li class="log-out"><a href="/logout">Logout</a>
+                          <!-- <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }} </a>
+                            {{ __('Logout') }} </a> -->
                           </li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form>
+                                    </form> -->
            
                             @endguest
                         </ul>

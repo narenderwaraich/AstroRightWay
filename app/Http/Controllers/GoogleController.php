@@ -11,6 +11,7 @@ use App\User;
 use Toastr;
 use Mail;
 use App\Mail\UserNotification;
+use Carbon\Carbon;
 
 class GoogleController extends Controller
 {
@@ -41,6 +42,9 @@ class GoogleController extends Controller
 
             if($exitUser){
                 $data['google_id'] = $user->id;
+                $data['login_type'] = "Gmail";
+                $data['online_status'] = 1;
+                $data['lastLoginDate'] = Carbon::now();
                 $exitUser->update($data);
                 Auth::login($exitUser);
     
@@ -50,6 +54,9 @@ class GoogleController extends Controller
             if($finduser){
      
                 Auth::login($finduser);
+                $active['online_status'] = 1;
+                $active['lastLoginDate'] = Carbon::now();
+                $finduser->update($active);
     
                 return redirect('/');
      
@@ -59,6 +66,7 @@ class GoogleController extends Controller
                     'email' => $user->email,
                     'google_id'=> $user->id,
                     'password' => encrypt('password'),
+                    'login_type' => 'Gmail',
                     'verified' => 1
                 ]);
                 
@@ -67,6 +75,10 @@ class GoogleController extends Controller
                 Mail::to($adminMail)->send(new UserNotification($user));
     
                 Auth::login($newUser);
+
+                $active['online_status'] = 1;
+                $active['lastLoginDate'] = Carbon::now();
+                $newUser->update($active);
      
                 return redirect('/talk-astro');
             }

@@ -172,6 +172,22 @@
                     </div>
 
 
+                     <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="fa fa-users text-success border-success"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Online User</div>
+                                        <div class="stat-digit">{{$activeNowUser}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
 
 
                      <div class="col-lg-3 col-md-6">
@@ -208,20 +224,6 @@
                                     <div class="stat-content dib">
                                         <div class="stat-text">Total Astrologer</div>
                                         <div class="stat-digit">{{$totalAstrologer}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="stat-widget-one">
-                                    <div class="stat-icon dib"><i class="ti-email text-success border-success"></i></div>
-                                    <div class="stat-content dib">
-                                        <div class="stat-text">Empty</div>
-                                        <div class="stat-digit"></div>
                                     </div>
                                 </div>
                             </div>

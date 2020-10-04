@@ -53,6 +53,7 @@ class AdminController extends Controller
                 $activeUser =User::where('verified', '=', 1)->count();
                 $deActiveUser =User::where('verified', '=', 0)->count();
                 $newUser =User::whereMonth('created_at', '>=', Carbon::now()->subMonth(12))->count();
+                $activeNowUser = User::where('online_status', '=', 1)->count();
                 $userData =DB::table('users')
                      ->select(DB::raw('COUNT(*) as user_num'),DB::raw('DATE_FORMAT(created_at, "%Y-%m-01") as month'))
                      ->groupBy('month')
@@ -77,7 +78,7 @@ class AdminController extends Controller
                 //   $memberData->down_member_join = MemberJoin::where('refer_code','=', $memberData->member_code)->get();
                 // }
                 $totalMessage = Chat::All()->count();
-                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','totalProfit','directPayment','memberPayment','member','deActiveMember','totalMember', 'totalCollectPayment','totalMessage','activeAstrologer','deActiveAstrologer','totalAstrologer'));
+                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','activeNowUser','totalProfit','directPayment','memberPayment','member','deActiveMember','totalMember', 'totalCollectPayment','totalMessage','activeAstrologer','deActiveAstrologer','totalAstrologer'));
             }else{
                 // message
                 return redirect('/login');

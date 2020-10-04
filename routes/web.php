@@ -202,6 +202,7 @@ Route::post('update-user-address/{id}','UserProfileControler@updateAddress');
 ///Session Controller
 Route::get('/login','SessionController@loginView')->name('login');
 Route::post('login','SessionController@loginId');
+Route::get('/logout','SessionController@destroy')->name('logout');
 Route::post('request/verifyemail','SessionController@resendVerifyMail');
 
 

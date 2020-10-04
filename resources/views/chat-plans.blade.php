@@ -36,7 +36,7 @@
     					<div class="plan-name"><span>Name</span> <span>{{ $plan->name }}</span></div>
     					<div class="plan-day"><span>Day</span>  <span>{{ $plan->access_day }} day</span> </div>
     					<div class="plan-message"><span>Message</span> <span>{{ $plan->message }}</span> </div>
-    					<div class="plan-amount"><span>Amount</span> <span>{{ $plan->amount }} <i class="fa fa-inr" aria-hidden="true"></i></span> </div>
+    					<div class="plan-amount"><span>Amount</span> <span><i class="fa fa-inr" aria-hidden="true"></i> {{ $plan->amount }}</span> </div>
     					<a href="/buy-plan/{{ $plan->id }}"><button type="button" class="btn btn-style btn-top">Buy</button></a>
     				</div>
     			</div>

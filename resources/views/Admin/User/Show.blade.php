@@ -66,6 +66,9 @@
                                     <th>Profile</th>
                                     <th>Status</th>
                                     <th>Role</th>
+                                    <th>Online</th>
+                                    <th>Login Type</th>
+                                    <th>Login Date</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -90,6 +93,13 @@
                                             @endif
                                             </td>
                                         <td>{{ $userData->role }}</td>
+                                        <td>@if($userData->online_status == 1)
+                                            <span class="user-active">Active</span>
+                                            @else
+                                            <span class="user-deactive">Inactive</span>
+                                            @endif</td>
+                                        <td>{{ $userData->login_type }}</td>
+                                        <td>{{ $userData->lastLoginDate }}</td>
                                         <td><a href="/user/edit/{{ $userData->id }}" class="btn btn-secondary">Edit</a>
                                         @if($userData->verified == 0)
                                         <a href="/user/verified/{{ $userData->id }}" class="btn btn-success  on-mob-table-btn">Verify</a>
