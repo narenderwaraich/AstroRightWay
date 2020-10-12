@@ -61,6 +61,9 @@
                                         @if($chat->message_status == "Sent")
                                         <a href="/chat/reply/{{ $chat->id }}"><button class="btn btn-success">Reply</button></a>
                                         <a href="/chat/status/mark-reply/{{ $chat->id }}"><button class="btn btn-dark">Mark Reply</button></a>
+                                        @if($chat->block == 1)
+                                            <a href="/user/plan-inactive/{{$chat->block_user_id}}" class="btn btn-danger on-mob-table-btn">Block</a>
+                                        @endif
                                         @endif
                                         @if($chat->message_status == "Pending")
                                         <a href="/chat/status/mark-sent/{{ $chat->id }}"><button class="btn btn-dark">Mark Sent</button></a>

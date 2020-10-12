@@ -371,9 +371,12 @@ class ChatController extends Controller
                     $getChats = Chat::where('message_status','=','Sent')->orderBy('created_at','desc')->paginate(10);
                     foreach ($getChats as $chat) {
                         $astrologer = Astrologer::where('id',$chat->message_assign)->first();
+                        $userPlan = UserPlan::where('user_id',$chat->user_id)->first();
                         $chat->name = User::where('id',$chat->user_id)->first()->name;
                         $chat->email = User::where('id',$chat->user_id)->first()->email;
                         $chat->astrologer = $astrologer ? $astrologer->name : 'Guru';
+                        $chat->block = $userPlan ? $userPlan->is_activated : '';
+                        $chat->block_user_id = $userPlan ? $userPlan->id : '';
                     }
                 return view('Admin.chat',compact('getOrders','contacts','chats'),['getChats' =>$getChats, 'astrologers' => $astrologers]);
                 }

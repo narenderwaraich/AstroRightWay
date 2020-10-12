@@ -700,6 +700,9 @@ class AdminController extends Controller
           $plan = UserPlan::find($id);
           $data['is_activated'] = 0;
           $plan->update($data);
+          $chat = Chat::where('user_id',$plan->user_id)->where('message_status','=','Sent')->first();
+          $msgStats['message_status'] = 'Pending';
+          $chat->update($msgStats);
           Toastr::success('User plan Inactive successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
             return back();
         }

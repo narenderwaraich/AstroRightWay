@@ -138,6 +138,7 @@
                             <li><i class="fa fa-table"></i><a href="/settings">Settings</a></li>
                         </ul>
                     </li>
+                    @endif
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon  fa fa-user"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -153,7 +154,6 @@
                             <li><i class="fa fa-table"></i><a href="/astrologer/list">View</a></li>
                         </ul>
                     </li>
-                    @endif
                     <li>
                         <a href="/change-password/show"> <i class="menu-icon fa fa-key"></i>Change Password</a>
                     </li>
