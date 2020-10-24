@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="title">Cross Price</label>
-                                  <input type="number" class="form-control{{ $errors->has('cross_price') ? ' is-invalid' : '' }}" name="cross_price" placeholder="Enter Cross Price" value="{{ old('cross_price') }}" min="1" max="10000">
+                                  <input type="number" class="form-control{{ $errors->has('cross_price') ? ' is-invalid' : '' }}" name="cross_price" placeholder="Enter Cross Price" value="{{ $product->cross_price }}" min="1" max="10000">
                                   @if ($errors->has('cross_price'))
                                   <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('cross_price') }}</strong>

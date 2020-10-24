@@ -87,6 +87,12 @@
                      Out Of Stock
                      @endif
                 </p>
+                @if($productData->cross_price)
+				<span class="m-text17" style="color: #ce2350;font-weight: 600;text-decoration: line-through;">
+					₹{{$productData->cross_price}}
+				</span>
+				@endif
+				
 				<span class="m-text17">
 					₹{{$productData->price}}
 				</span>
