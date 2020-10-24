@@ -272,7 +272,6 @@ You achieve Diamond lavel get 1 lacks
             <div class="product-content">
                 <a href="/product-details/{{$product->id}}"><h2 class="m-top heading-color2">{{$product->name}}</h2></a>
                 <br>
-                
                 <p class="offer-text">@if($product->cross_price)<span style="color: #ce2350;font-weight: 600;text-decoration: line-through;">₹{{$product->cross_price}}</span> - @endif ₹{{$product->price}}</p>
                 <button type="button" class="btn secondary_btn mt40 add-on-cart" addId="{{ $product->id }}">Add to Cart</button>
             </div>
