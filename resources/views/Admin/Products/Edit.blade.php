@@ -28,21 +28,19 @@
                                 @endif
                                 </div>
 
-
-                     <div class="col-md-12">
-                        <label class="user-input-label">Product Main Image(720x960)</label>
-                        <div class="form-group">
-                          <button type="button" class="btn secondary_btn" id="selectFile">Change</button>
-                        </div>
-                        <img src="/public/images/products/{{ $product->image }}" id="showUpLog" class="show-product-img profile-img-tag">
-                          <input type="file" name="image" id="getFile" accept="/image/*" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }} input-border" style="display: none;">
-                        </div>
-                              @if ($errors->has('image'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('image') }}</strong>
-                                </span>
-                                @endif
-
+                  <div class="form-group">
+                  <label class="user-input-label">Product Main Image(720x960)</label>
+                  <!-- <div class="form-group">
+                    <button type="button" class="btn secondary_btn" id="selectFile">Change</button>
+                  </div> -->
+                  <input type="file" name="image" id="getFile" accept="/image/*" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" style="">
+                  @if ($errors->has('image'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('image') }}</strong>
+                  </span>
+                  @endif
+                  </div>
+                  <img src="/public/images/products/{{ $product->image }}" id="showUpLog" class="show-product-img profile-img-tag">
                                 <div class="form-group">
                                     <label for="title">Original Price</label>
                                     <input type="number" min="10" max="10000" class="form-control{{ $errors->has('original_price') ? ' is-invalid' : '' }}" name="original_price" placeholder="Enter Original Price" value="{{ $product->original_price }}" required>
@@ -60,6 +58,15 @@
                                     <strong>{{ $errors->first('price') }}</strong>
                                 </span>
                                 @endif
+                                </div>
+                                <div class="form-group">
+                                  <label for="title">Cross Price</label>
+                                  <input type="number" class="form-control{{ $errors->has('cross_price') ? ' is-invalid' : '' }}" name="cross_price" placeholder="Enter Cross Price" value="{{ old('cross_price') }}" min="1" max="10000">
+                                  @if ($errors->has('cross_price'))
+                                  <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('cross_price') }}</strong>
+                                  </span>
+                                  @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Quantity</label>

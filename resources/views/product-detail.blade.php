@@ -113,7 +113,7 @@
 
 			        </div> 
 			    </p>
-			    <p><a href="whatsapp://send?text=Product Details Check Click Here {{env('APP_URL')}}//product-details/{{$productData->id}}" data-action="share/whatsapp/share" class="btn btn-success" aria-label="Whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></p>
+			    <p><a href="whatsapp://send?text=Product Details Check Click Here {{env('APP_URL')}}/product-details/{{$productData->id}}" data-action="share/whatsapp/share" class="btn btn-success" aria-label="Whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></p>
 
 				<!--  -->
 				<div class="p-t-33 p-b-60">

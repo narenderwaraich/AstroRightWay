@@ -87,13 +87,13 @@ class ProductController extends Controller
     {
       //return $request;
       $validate = $this->validate(request(),[
-          'name'=>'required|string|max:50',
+          'name'=>'required|string|max:80',
           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
       ]);
             if(!$validate){ 
                  Redirect::back()->withInput();
             }
-        $data = request(['name','price','original_price','qty','category_id','product_types_id','description']);
+        $data = request(['name','price','original_price','cross_price','qty','category_id','product_types_id','description']);
         $file = $request->image;
         $filename = time().'.'.$file->getClientOriginalExtension();
         $file->move(public_path('images/products'), $filename);
@@ -170,7 +170,7 @@ class ProductController extends Controller
                  Redirect::back()->withInput();
             }
         $product = Product::find($id);
-        $data = request(['name','price','original_price','qty','category_id','product_types_id','description']);
+        $data = request(['name','price','original_price','cross_price','qty','category_id','product_types_id','description']);
         if($request->image){
             $file = $request->image;
             $filename = time().'.'.$file->getClientOriginalExtension();
