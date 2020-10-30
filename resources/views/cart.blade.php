@@ -133,7 +133,8 @@
                 <li>Shipping<span>₹<input type="text" name=""  value="" id="shipCharge" readonly style="border:none; width: 100px;"></span></li>
                 <li class="discount-field" style="display: none;">Discount <!-- <b style="font-size: 10px;color: #ce2350;">()</b> --> <span class="discount-price">-₹<input type="text" name="discount"  value="0" id="net_discount" readonly style="border:none; width: 100px;color: #CA0B00;"></span>
                 </li>
-                <li class="total">Total<span>₹<input type="text" name="net_amount"  value="" id="net_amount" readonly style="border:none; color: #ce2350;font-weight: 600; width: 100px;background: transparent;"></span></li>
+                <li class="total">Total<span>₹<input type="text" name="net_amount"  value="" id="net_amount" readonly style="border:none; color: #ce2350;font-weight: 600; width: 100px;background: transparent;"></span>
+                </li>
                 <!-- <li class="cart-payment-method">
                   <div class="form-check-inline">
         <label class="form-check-label radio-btn-labl">

@@ -95,6 +95,12 @@ class PaymentController extends Controller
     public function paytmPay($amount)
     {
         $userId = Auth::id();
+        $checkUserData = User::where('id',$userId)->first();
+        $checkUserMobile = $checkUserData->phone_no;
+        if($checkUserMobile == ""){
+                Toastr::error('Please Update your mobile number in profile', 'Error', ["positionClass" => "toast-top-right"]);
+                    return back();
+            }
         $userAddress = UserAddress::where('user_id',$userId)->first();
             if(!$userAddress){
                 Toastr::error('Please First Update Address', 'Error', ["positionClass" => "toast-top-right"]);
@@ -112,6 +118,7 @@ class PaymentController extends Controller
                 $order = new Order();
                 $order->order_id = $order_id;
                 $order->status = 'Fields';
+                $order->method = 'Paytm';
                 $order->user_id = Auth::id();
                 $order->order_number = $newOrderNum;
                 // $order->price = ( $request->price ) ? $request->price : '';
@@ -549,9 +556,10 @@ class PaymentController extends Controller
                 $transaction_status = $request['STATUS'];
                 $bank_transaction_id = $request['BANKTXNID'];
                 $bank_name = $request['BANKNAME'];
-                $userId = Auth::id();
 
         if ( 'TXN_SUCCESS' === $request['STATUS'] ) {
+                $order = Order::where('order_id', $order_id )->first();
+                $userId = $order->user_id;
                 //$orderTax = DB::table("cart_storages")->where('user_id',$userId)->sum('tax');
                 $orderDiscount = DB::table("cart_storages")->where('user_id',$userId)->sum('discount');
                 $orderSubTotal = DB::table("cart_storages")->where('user_id',$userId)->sum('subtotal');
@@ -564,11 +572,9 @@ class PaymentController extends Controller
 
 
                     $transaction_id = $request['TXNID'];
-                    $order = Order::where( 'order_id', $order_id )->first();
-                    $order->status = 'Pending';
+                    $order->status = 'Success';
                     $order->transaction_id = $transaction_id;
-                    $order->user_id = $userId;
-                    $order->method = "Paytm";
+                    $order->method = $payment_method;
                     //$order->tax = $orderTax;
                     //$order->tax_rate = $taxRate;
                     $order->ship_charge = $shipCharge;
