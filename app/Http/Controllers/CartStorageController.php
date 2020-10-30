@@ -227,7 +227,7 @@ class CartStorageController extends Controller
     public function putCoupan(Request $request){
 
         $id = Auth::id();
-        $checkCoupan = DiscountCoupan::where('code',$request->coupon_code)->first();
+        $checkCoupan = DiscountCoupan::where('code',$request->coupon_code)->first(); //dd($checkCoupan);
         if($checkCoupan){
             if($checkCoupan->code == "FREESHIP"){
                 $storeProduct = CartStorage::where('user_id',$id)->first(); //dd($storeProduct);
@@ -240,19 +240,16 @@ class CartStorageController extends Controller
                 $storeProduct->update($data);
                 Toastr::success('Coupan apply', 'Success', ["positionClass" => "toast-bottom-right"]);
                 return back();
-                }else{
-                Toastr::error('Coupan not exists', 'Error', ["positionClass" => "toast-bottom-right"]);
-                return back();
                 }
-        $storeProduct = CartStorage::where('user_id',$id)->first();
-        $discount = $storeProduct->total * $checkCoupan->percentage /100;
-        $data['discount'] = $discount;
-        $data['discount_percentage'] = $checkCoupan->percentage;
-        $data['coupan_code'] = $checkCoupan->code;
-        $data['net_amount'] = $storeProduct->total - $discount;
-        $storeProduct->update($data);
-        Toastr::success('Coupan apply', 'Success', ["positionClass" => "toast-bottom-right"]);
-        return back();
+                $storeProduct = CartStorage::where('user_id',$id)->first();
+                $discount = $storeProduct->total * $checkCoupan->percentage /100;
+                $data['discount'] = $discount;
+                $data['discount_percentage'] = $checkCoupan->percentage;
+                $data['coupan_code'] = $checkCoupan->code;
+                $data['net_amount'] = $storeProduct->total - $discount;
+                $storeProduct->update($data);
+                Toastr::success('Coupan apply', 'Success', ["positionClass" => "toast-bottom-right"]);
+                return back();
         }else{
         Toastr::error('Coupan not exists', 'Error', ["positionClass" => "toast-bottom-right"]);
         return back();

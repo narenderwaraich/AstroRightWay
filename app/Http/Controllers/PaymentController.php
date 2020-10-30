@@ -572,7 +572,7 @@ class PaymentController extends Controller
 
 
                     $transaction_id = $request['TXNID'];
-                    $order->status = 'Success';
+                    $order->status = 'Pending';
                     $order->transaction_id = $transaction_id;
                     $order->method = $payment_method;
                     //$order->tax = $orderTax;
