@@ -462,7 +462,7 @@ class ChatController extends Controller
                 $userId = Auth::id();
                 $astrologerId = Astrologer::where('auth_id',$userId)->first()->id; //dd($astrologerId);
                 $chats = Chat::where('message_status','=',"Sent")->where('message_assign','=',$astrologerId)->get(); //dd($chats);
-                $allMessage = Chat::where('user_id',$chat->user_id)->orderBy('created_at','desc')->get(); //dd($allMessage);
+                $allMessage = Chat::where('user_id',$chats->user_id)->orderBy('created_at','desc')->get(); //dd($allMessage);
                 foreach ($chats as $chat) {
                   $chat->user_name = User::where('id',$chat->user_id)->first()->name;
                 } 
