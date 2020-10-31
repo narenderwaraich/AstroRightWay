@@ -95,10 +95,18 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-inr"></i>Payments</a>
                         <ul class="sub-menu children dropdown-menu">
                             <!-- <li><i class="fa fa-table"></i><a href="/payment/cash">Cash</a></li> -->
+                            <li><i class="fa fa-table"></i><a href="/order/payment/paytm">Orders</a></li>
                             <li><i class="fa fa-table"></i><a href="/payment/paytm">Paytem</a></li>
                             <li><i class="fa fa-table"></i><a href="/pay/payment/list">Drect</a></li>
                             <li><i class="fa fa-table"></i><a href="/member/payments">Member</a></li>
                             <!-- <li><i class="fa fa-table"></i><a href="/payment/refund">Refund</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon  fa fa-inr"></i>Profit</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-inr"></i><a href="/profit-show">Show</a></li>
+                            <li><i class="fa fa-retweet"></i><a href="/profit-show/transfer">Transfer</a></li>
                         </ul>
                     </li>
                      @if(Auth::user()->role == "admin")

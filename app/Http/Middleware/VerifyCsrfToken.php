@@ -23,5 +23,7 @@ class VerifyCsrfToken extends Middleware
         '/paytm-call-back',
         '/direct-payment-call-back',
         '/member-payment-status',
+        '/order-payment-status',
+        '/profit-share-transaction-status',
     ];
 }

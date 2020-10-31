@@ -74,6 +74,7 @@ Route::get('/discount/delete/{id}', 'DiscountCoupanController@destroy');
 
 
 Route::get('/orders/show', 'OrderController@showOrder');
+Route::get('/orders/items/show/{id}', 'OrderController@showOrderItems');
 Route::get('/orders/accept/{id}', 'OrderController@orderAccept');
 Route::post('orders/dispatch', 'OrderController@orderDispatch');
 Route::get('/orders/track/{id}', 'OrderController@orderTrack');
@@ -247,6 +248,8 @@ Route::get('/place-order/{id}','OrderController@takeOrder');
 Route::get('/show-orders','OrderController@showOrder');
 Route::get('/user-order','OrderController@showUserOrder');
 Route::get('/order-details/{id}','OrderController@userOrderDitails');
+Route::get('/order/payment/paytm','OrderController@paytmShowPayments');
+Route::get('/order/payment/{status}/paytm','OrderController@paytmWithStatus');
 
 Route::get('eventRegistration', 'OrderController@register');
 Route::post('paytmPayment', 'OrderController@order');
@@ -411,3 +414,11 @@ Route::get('/member_payments/table/list','AdminController@memberPayments');
 Route::get('/payments/table/list','AdminController@paymentTable');
 Route::get('/user_addresses/table/list','AdminController@userAddresses');
 Route::get('/user_plans/table/list','AdminController@userPlans');
+
+Route::get('/profit-show','ProfitShareController@index');
+Route::get('/profit-record/add','ProfitShareController@create');
+Route::post('profit-record/store','ProfitShareController@store');
+Route::get('/profit-show/transfer','ProfitShareController@transfer');
+Route::get('/profit/calculat','ProfitShareController@calculatProfit');
+Route::get('/profit/transfer','ProfitShareController@transferProfit');
+Route::post('/profit-share-transaction-status','ProfitShareController@paytmCallback');

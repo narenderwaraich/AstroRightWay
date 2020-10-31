@@ -39,7 +39,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($orders as $order)
-                                    <tr>
+                                    <tr class="clickable-row" data-href='/orders/items/show/{{$order->id}}' style="cursor: pointer;">
                                         <td>{{ $order->order_number }}</td>
                                         <td>{{ $order->method }}</td>
                                         <td>{{ $order->subtotal }}</td>
@@ -159,6 +159,13 @@
 
 <script src="/public/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
+                jQuery(document).ready(function($) {
+                    $(".clickable-row").click(function(e) {
+                      
+                        window.location = $(this).data("href");
+                      
+                    });
+                });
 
                 $(".btnModal").click(function () {
                     var passedID = $(this).data('id');//get the id of the selected button

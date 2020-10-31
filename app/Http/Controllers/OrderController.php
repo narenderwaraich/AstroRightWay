@@ -477,11 +477,14 @@ class OrderController extends Controller
                        $orderItem['description'] = $cartData->description;
                        $orderItem['image'] = $cartData->image;
                        $orderItem['qty'] = $cartData->qty;
-                       $profitAmount += Product::where('id',$cartData->product_id)->first()->original_price;
+                       $saleProductAmount = Product::where('id',$cartData->product_id)->first()->original_price * $cartData->qty;
+                       $profitAmount += $saleProductAmount; 
                        OrderItem::create($orderItem);
                     }
 
-                    $shareProfitAmount = $amount - $profitAmount - $shipCharge;
+                    $orderExp = $profitAmount + $shipCharge;
+
+                    $shareProfitAmount = $amount - $orderExp;
 
                     $profitShare['order_id'] = $order_id;
                     $profitShare['order_profit'] = $shareProfitAmount;
@@ -538,6 +541,13 @@ class OrderController extends Controller
         $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
         $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
         return view('Admin.Orders.Show',compact('getOrders','contacts'),['orders' =>$orders]);
+    }
+
+    public function showOrderItems($id){
+        $orderItem = OrderItem::where('order_id',$id)->get(); //dd($orderItem);
+        $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
+        $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
+        return view('Admin.Orders.Order-Item',compact('getOrders','contacts'),['orderItem' =>$orderItem]);
     }
 
     public function showUserOrder(){
@@ -670,5 +680,28 @@ class OrderController extends Controller
            Toastr::error('Order not Dispatch', 'Error', ["positionClass" => "toast-bottom-right"]);
            return redirect()->to('/user-order');
         }
+    }
+
+
+    public function paytmShowPayments(){
+        $payments = OrderPayment::where('transaction_status','=','Success')->orderBy('created_at','desc')->paginate(10); //dd($payments);
+        foreach ($payments as $payment) {
+            $user = User::find($payment->user_id);
+            $payment->userName = $user->name;
+        }
+        $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
+        $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
+        return view('Admin.Payments.order-payment',compact('getOrders','contacts'),['payments' =>$payments]);
+    }
+
+    public function paytmWithStatus($status){
+        $payments = OrderPayment::where('transaction_status',$status)->orderBy('created_at','desc')->paginate(10); //dd($payments);
+        foreach ($payments as $payment) {
+            $user = User::find($payment->user_id);
+            $payment->userName = $user->name;
+        }
+        $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
+        $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
+        return view('Admin.Payments.order-payment',compact('getOrders','contacts'),['payments' =>$payments]);
     }
 }

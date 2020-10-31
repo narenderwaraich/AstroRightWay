@@ -231,6 +231,67 @@
                     </div>
 
 
+
+
+            <!-- Cal profit -->
+            <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="fa fa-inr text-success border-success"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Order Payment</div>
+                                        <div class="stat-digit">{{$orderAmount}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="fa fa-inr text-success border-success"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Net Profit</div>
+                                        <div class="stat-digit">{{$netProfitData->total_profit}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="fa fa-inr text-warning border-warning"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Pay Profit</div>
+                                        <div class="stat-digit">{{$netProfitData->pay_profit}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="fa fa-inr text-danger border-danger"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Pending Profit</div>
+                                        <div class="stat-digit">{{$netProfitData->pending_profit}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">

@@ -31,6 +31,9 @@ use App\AstrologerPayment;
 use App\Astrologer;
 use Mail;
 use App\Mail\EmailVerification;
+use App\ProfitSharePayment;
+use App\OrderPayment;
+use App\ProfitShare;
 
 class AdminController extends Controller
 {
@@ -72,13 +75,17 @@ class AdminController extends Controller
                 $deActiveAstrologer = Astrologer::where('verified', '=', 1)->count();
                 $totalAstrologer = Astrologer::all()->count();
 
+                $orderAmount = OrderPayment::where('transaction_status','=','TXN_SUCCESS')->sum('amount');
+
+                $netProfitData = ProfitShare::where('id',1)->first();
+
                 // //// all members
                 // $members = MemberJoin::where('status', '=', 1)->get();
                 // foreach ($members as $memberData) {
                 //   $memberData->down_member_join = MemberJoin::where('refer_code','=', $memberData->member_code)->get();
                 // }
                 $totalMessage = Chat::All()->count();
-                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','activeNowUser','totalProfit','directPayment','memberPayment','member','deActiveMember','totalMember', 'totalCollectPayment','totalMessage','activeAstrologer','deActiveAstrologer','totalAstrologer'));
+                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','activeNowUser','totalProfit','directPayment','memberPayment','member','deActiveMember','totalMember', 'totalCollectPayment','totalMessage','activeAstrologer','deActiveAstrologer','totalAstrologer','orderAmount','netProfitData'));
             }else{
                 // message
                 return redirect('/login');
