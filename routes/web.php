@@ -414,6 +414,7 @@ Route::get('/member_payments/table/list','AdminController@memberPayments');
 Route::get('/payments/table/list','AdminController@paymentTable');
 Route::get('/user_addresses/table/list','AdminController@userAddresses');
 Route::get('/user_plans/table/list','AdminController@userPlans');
+Route::get('/profit/table/list','AdminController@profitPayments');
 
 Route::get('/profit-show','ProfitShareController@index');
 Route::get('/profit-record/add','ProfitShareController@create');

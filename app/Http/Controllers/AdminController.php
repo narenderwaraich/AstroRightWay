@@ -34,6 +34,7 @@ use App\Mail\EmailVerification;
 use App\ProfitSharePayment;
 use App\OrderPayment;
 use App\ProfitShare;
+use App\ProfitPaymentTransaction;
 
 class AdminController extends Controller
 {
@@ -685,6 +686,21 @@ class AdminController extends Controller
                   $table->user = $user ? $user->name : "";
                 }
                 return view('Admin.Table.user_plans',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
+              }
+            }else{
+                  return redirect()->to('/login');
+            }
+        }
+
+        //// member_payments table data
+        public function profitPayments(){
+          if(Auth::check()){
+            if(Auth::user()->role == "admin"){
+                $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
+                $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
+                $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
+                $tableData = ProfitPaymentTransaction::orderBy('created_at','desc')->paginate(10);
+                return view('Admin.Table.member-payments',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
               }
             }else{
                   return redirect()->to('/login');

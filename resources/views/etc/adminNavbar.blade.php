@@ -186,6 +186,7 @@
                             <li><i class="fa fa-table"></i><a href="/payments/table/list">Payments</a></li>
                             <li><i class="fa fa-table"></i><a href="/user_addresses/table/list">User Addresses</a></li>
                             <li><i class="fa fa-table"></i><a href="/user_plans/table/list">User Plans</a></li>
+                            <li><i class="fa fa-table"></i><a href="/profit/table/list">Profit</a></li>
                         </ul>
                     </li>
                     @endif
