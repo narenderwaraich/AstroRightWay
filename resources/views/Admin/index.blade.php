@@ -241,7 +241,8 @@
                                     <div class="stat-icon dib"><i class="fa fa-inr text-success border-success"></i></div>
                                     <div class="stat-content dib">
                                         <div class="stat-text">Order Payment</div>
-                                        <div class="stat-digit">{{$orderAmount}}</div>
+                                        <div class="stat-digit">{{$orderAmount}}
+                                            <p style="margin-bottom: 0;"><i class="fa fa-truck"></i> {{$orderCount}}</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +256,8 @@
                                     <div class="stat-icon dib"><i class="fa fa-inr text-success border-success"></i></div>
                                     <div class="stat-content dib">
                                         <div class="stat-text">Net Profit</div>
-                                        <div class="stat-digit">{{$netProfitData->total_profit}}</div>
+                                        <div class="stat-digit">{{$netProfitData->total_profit}}
+                                            <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{$netProfitData->total_profit * 30 / 100}}</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -269,7 +271,8 @@
                                     <div class="stat-icon dib"><i class="fa fa-inr text-warning border-warning"></i></div>
                                     <div class="stat-content dib">
                                         <div class="stat-text">Pay Profit</div>
-                                        <div class="stat-digit">{{$netProfitData->pay_profit}}</div>
+                                        <div class="stat-digit">{{$netProfitData->pay_profit}}
+                                        <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{$netProfitData->pay_profit * 30 / 100}}</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +286,8 @@
                                     <div class="stat-icon dib"><i class="fa fa-inr text-danger border-danger"></i></div>
                                     <div class="stat-content dib">
                                         <div class="stat-text">Pending Profit</div>
-                                        <div class="stat-digit">{{$netProfitData->pending_profit}}</div>
+                                        <div class="stat-digit">{{$netProfitData->pending_profit}}
+                                        <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{$netProfitData->pending_profit * 30 / 100}}</p></div>
                                     </div>
                                 </div>
                             </div>

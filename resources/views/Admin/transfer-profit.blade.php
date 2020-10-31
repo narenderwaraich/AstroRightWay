@@ -30,25 +30,29 @@
 
                         <div class="box-body">
                             <table class="table table-hover">
-                                <tr>
+                                <tr style="color: #28a745;font-weight: 500;font-size: 16px;">
                                     <td>Total Profit</td>
                                     <td>{{ $profitTable->total_profit }}</td>
                                   </tr>
-                                  <tr>
+                                  <tr style="color: #17a2b8;font-weight: 500;font-size: 16px;">
                                     <td>Pay Profit</td>
                                     <td>{{ $profitTable->pay_profit }}</td>
                                   </tr>
-                                  <tr>
+                                  <tr style="color: #dc3545;font-weight: 500;font-size: 16px;">
                                     <td>Pending Profit</td>
                                     <td>{{ $profitTable->pending_profit }}</td>
                                   </tr>
-                                  <tr>
+                                  <tr style="color: #aa66cc;font-weight: 500;font-size: 16px;">
                                     <td>Calculat Profit Date</td>
                                     <td>{{ $profitTable->cal_profit_date }}</td>
                                   </tr>
-                                  <tr>
+                                  <tr style="color: #4B515D;font-weight: 500;font-size: 16px;">
                                     <td>Last Pay Profit Date</td>
                                     <td>{{ $profitTable->last_pay_profit_date }}</td>
+                                  </tr>
+                                  <tr style="color: #ffc107;font-weight: 800;font-size: 18px;">
+                                      <td>Total Profit of 30%</td>
+                                      <td>{{$profitTable->total_profit * 30 / 100}}</td>
                                   </tr>
                             </table>  
                         </div>

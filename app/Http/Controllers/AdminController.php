@@ -76,6 +76,7 @@ class AdminController extends Controller
                 $totalAstrologer = Astrologer::all()->count();
 
                 $orderAmount = OrderPayment::where('transaction_status','=','TXN_SUCCESS')->sum('amount');
+                $orderCount = OrderPayment::where('transaction_status','=','TXN_SUCCESS')->get()->count();
 
                 $netProfitData = ProfitShare::where('id',1)->first();
 
@@ -85,7 +86,7 @@ class AdminController extends Controller
                 //   $memberData->down_member_join = MemberJoin::where('refer_code','=', $memberData->member_code)->get();
                 // }
                 $totalMessage = Chat::All()->count();
-                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','activeNowUser','totalProfit','directPayment','memberPayment','member','deActiveMember','totalMember', 'totalCollectPayment','totalMessage','activeAstrologer','deActiveAstrologer','totalAstrologer','orderAmount','netProfitData'));
+                return view('Admin.index',compact('getOrders','contacts','chats','totalUser','activeUser','newUser','userData','deActiveUser','activeNowUser','totalProfit','directPayment','memberPayment','member','deActiveMember','totalMember', 'totalCollectPayment','totalMessage','activeAstrologer','deActiveAstrologer','totalAstrologer','orderAmount','netProfitData','orderCount'));
             }else{
                 // message
                 return redirect('/login');
