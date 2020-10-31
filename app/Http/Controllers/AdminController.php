@@ -700,7 +700,7 @@ class AdminController extends Controller
                 $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
                 $chats = Chat::where('message_status','=',"Sent")->get(); //dd($chats);
                 $tableData = ProfitPaymentTransaction::orderBy('created_at','desc')->paginate(10);
-                return view('Admin.Table.member-payments',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
+                return view('Admin.Table.profit_share',compact('getOrders','contacts','chats'),['tableData' =>$tableData]);
               }
             }else{
                   return redirect()->to('/login');
