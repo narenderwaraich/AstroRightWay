@@ -23,6 +23,7 @@ use App\Chat;
 use App\Order;
 use App\Contact;
 use App\AstrologerPayment;
+use App\ProfitSharePayment; 
 
 class AstrologerController extends Controller
 {
@@ -770,6 +771,12 @@ class AstrologerController extends Controller
                     $setting = Setting::find(1);
                     $adminMail = $setting->admin_mail;
                     Mail::to($adminMail)->send(new PaymentNotification($user,$order));
+
+
+                    $profitShare['order_id'] = $order_id;
+                    $profitShare['astrologer_security'] = $amount;
+                    $profitShare['astrologer_id'] = $astrologer->id;
+                    ProfitSharePayment::create($profitShare);
 
                     Toastr::success('Payment Success', 'Success', ["positionClass" => "toast-top-right"]);
                     return redirect()->to('/');

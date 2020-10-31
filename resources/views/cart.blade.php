@@ -170,7 +170,7 @@
     $('#checkOut').on('click', function(){
       //$('#checkOutForm').submit();
       var payment = document.getElementById("net_amount").value;
-      window.location.href = '/paytm/'+payment+'/pay';
+      window.location.href = '/order/paytm/'+payment+'/pay';
       // if($("#paytmMethod").prop('checked')){
       //   window.location.href = '/paytm/'+payment+'/pay';
       //   // $('.coupan-form').show();

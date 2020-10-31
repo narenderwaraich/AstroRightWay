@@ -23,7 +23,8 @@ use App\Mail\MemberNotification;
 use App\Mail\EmailVerification;
 use App\Mail\PaymentNotification;
 use App\Setting;
-use App\Chat; 
+use App\Chat;
+use App\ProfitSharePayment; 
 
 class MemberJoinController extends Controller
 {
@@ -829,6 +830,11 @@ class MemberJoinController extends Controller
                     $setting = Setting::find(1);
                 $adminMail = $setting->admin_mail;
                     Mail::to($adminMail)->send(new PaymentNotification($user,$order));
+
+                    $profitShare['order_id'] = $order_id;
+                    $profitShare['user_id'] = $order->user_id;
+                    $profitShare['member_payment'] = $amount;
+                    ProfitSharePayment::create($profitShare);
 
                     Toastr::success('Payment Success', 'Success', ["positionClass" => "toast-top-right"]);
                     return redirect()->to('/member-panel');

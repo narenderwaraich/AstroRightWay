@@ -241,6 +241,8 @@ Route::post('/paytm-callback', 'PaymentController@paytmCallback');
 
 
 ///Order Controller
+Route::get('/order/paytm/{amount}/pay','OrderController@paytmPay');
+Route::post('/order-payment-status', 'OrderController@paytmCallback');
 Route::get('/place-order/{id}','OrderController@takeOrder');
 Route::get('/show-orders','OrderController@showOrder');
 Route::get('/user-order','OrderController@showUserOrder');

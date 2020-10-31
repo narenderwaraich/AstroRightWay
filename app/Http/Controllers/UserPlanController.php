@@ -21,6 +21,7 @@ use App\Mail\PaymentNotification;
 use App\User;
 use App\MemberJoin;
 use App\Setting;
+use App\ProfitSharePayment;
 
 class UserPlanController extends Controller
 {
@@ -411,6 +412,7 @@ class UserPlanController extends Controller
                 $userId = Auth::id();
 
         if ( 'TXN_SUCCESS' === $request['STATUS'] ) {
+                    $profitShare['order_id'] = $order_id;
                     $payment = Payment::where( 'order_id', $order_id )->first();
                     $payment->transaction_status = 'Success';
                     $payment->transaction_id = $transaction_id;
@@ -462,6 +464,8 @@ class UserPlanController extends Controller
                         $setting = Setting::find($setId);
                         $addAmount = $amount * $setting->astrologer_profit_share / 100;
 
+                        $profitShare['astrologer_msg_profit'] = $amount - $addAmount;
+
                         $astroPay['order_id'] = $order_id;
                         $astroPay['transaction_status'] = 'Success';
                         $astroPay['transaction_id'] = $transaction_id;
@@ -477,6 +481,8 @@ class UserPlanController extends Controller
                         $astroPay['astrologer_id'] = $astrologer->id;
                         $astroPay['amount'] = $addAmount;
                         AstrologerPayment::create($astroPay);
+                    }else{
+                        $profitShare['message_payment'] = $amount;
                     }
 
                     
@@ -502,7 +508,7 @@ class UserPlanController extends Controller
                         $memberData['user_id'] = $userId;
                         
                         $member = MemberJoin::create($memberData);
-
+                        $profitShare['member_payment'] = $amount;
                     }
 
                     $order = $payment;
@@ -510,6 +516,10 @@ class UserPlanController extends Controller
                     $setting = Setting::find(1);
                     $adminMail = $setting->admin_mail;
                     Mail::to($adminMail)->send(new PaymentNotification($user,$order));
+
+                // share profit
+                $profitShare['user_id'] = $userId;
+                ProfitSharePayment::create($profitShare);
                 Toastr::success('Your Plan Activated', 'Success', ["positionClass" => "toast-bottom-right"]);
                 return redirect()->to('/talk-astro');
         } else if( 'TXN_FAILURE' === $request['STATUS'] ){
