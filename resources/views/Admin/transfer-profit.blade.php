@@ -44,15 +44,15 @@
                                   </tr>
                                   <tr style="color: #aa66cc;font-weight: 500;font-size: 16px;">
                                     <td>Calculat Profit Date</td>
-                                    <td>{{ $profitTable->cal_profit_date }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($profitTable->cal_profit_date)) }}</td>
                                   </tr>
                                   <tr style="color: #4B515D;font-weight: 500;font-size: 16px;">
                                     <td>Last Pay Profit Date</td>
-                                    <td>{{ $profitTable->last_pay_profit_date }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($profitTable->last_pay_profit_date)) }}</td>
                                   </tr>
                                   <tr style="color: #ffc107;font-weight: 800;font-size: 18px;">
                                       <td>Total Profit of 30%</td>
-                                      <td>{{$profitTable->total_profit * 30 / 100}}</td>
+                                      <td>{{round($profitTable->total_profit * 30 / 100)}}</td>
                                   </tr>
                             </table>  
                         </div>

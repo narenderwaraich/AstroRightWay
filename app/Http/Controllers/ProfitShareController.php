@@ -110,8 +110,9 @@ class ProfitShareController extends Controller
         $msgPayment = DB::table("profit_share_payments")->sum('message_payment');
         $memberPayment = DB::table("profit_share_payments")->sum('member_payment');
         $orderProfit = DB::table("profit_share_payments")->sum('order_profit');
-        $profit = $amount + $astroSecurity + $astroMsg + $msgPayment + $memberPayment + $orderProfit;
-        $data['total_profit'] = $profit;
+        $profit = round($amount) + round($astroSecurity) + round($astroMsg) + round($msgPayment) + round($memberPayment) + round($orderProfit);
+        $profitAmount = round($profit); //dd($profitAmount);
+        $data['total_profit'] = $profitAmount;
         $data['cal_profit_date'] = Carbon::now();
         $data['pending_profit'] = $profit - $profitTable->pay_profit;
         // $data =['total_profit','pay_profit','pending_profit','cal_profit_date','last_pay_profit_date'];
@@ -124,7 +125,8 @@ class ProfitShareController extends Controller
         $id = 1;
         $profitTable = ProfitShare::where('id',$id)->first();
         $payAmount = $profitTable->pending_profit;
-        $amount = $payAmount * 30/100;
+        $profit = $payAmount * 30/100;
+        $amount = round($profit);
         $order_id = uniqid();
         $profitPaymentTransaction = new ProfitPaymentTransaction();
         $profitPaymentTransaction->order_id = $order_id;

@@ -242,7 +242,9 @@
                                     <div class="stat-content dib">
                                         <div class="stat-text">Order Payment</div>
                                         <div class="stat-digit">{{$orderAmount}}
-                                            <p style="margin-bottom: 0;"><i class="fa fa-truck"></i> {{$orderCount}}</p></div>
+                                            <p style="margin-bottom: 0;"><i class="fa fa-truck"></i> {{$orderCount}}</p>
+                                            <p style="margin-bottom: 0;"><i class="fa fa-calendar"></i> {{ date('d-m-Y') }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +259,10 @@
                                     <div class="stat-content dib">
                                         <div class="stat-text">Net Profit</div>
                                         <div class="stat-digit">{{$netProfitData->total_profit}}
-                                            <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{$netProfitData->total_profit * 30 / 100}}</p></div>
+                                            <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{round($netProfitData->total_profit * 30 / 100)}}
+                                            </p>
+                                            <p style="margin-bottom: 0;"><i class="fa fa-calendar"></i> {{ date('d/m/Y', strtotime($netProfitData->cal_profit_date)) }}</p>
+                                         </div>
                                     </div>
                                 </div>
                             </div>
@@ -272,7 +277,9 @@
                                     <div class="stat-content dib">
                                         <div class="stat-text">Pay Profit</div>
                                         <div class="stat-digit">{{$netProfitData->pay_profit}}
-                                        <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{$netProfitData->pay_profit * 30 / 100}}</p></div>
+                                        <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{round($netProfitData->pay_profit * 30 / 100)}}</p>
+                                        <p style="margin-bottom: 0;"><i class="fa fa-calendar"></i> {{ date('d/m/Y', strtotime($netProfitData->last_pay_profit_date)) }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -287,7 +294,9 @@
                                     <div class="stat-content dib">
                                         <div class="stat-text">Pending Profit</div>
                                         <div class="stat-digit">{{$netProfitData->pending_profit}}
-                                        <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{$netProfitData->pending_profit * 30 / 100}}</p></div>
+                                        <p style="margin-bottom: 0;"><i class="fa fa-inr"></i> {{round($netProfitData->pending_profit * 30 / 100)}}</p>
+                                        <p style="margin-bottom: 0;"><i class="fa fa-calendar"></i> {{ date('d-m-Y') }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

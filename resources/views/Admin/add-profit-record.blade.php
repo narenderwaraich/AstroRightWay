@@ -25,31 +25,31 @@
                             </div>
                             <div class="form-group">
                                 <label>Amount</label>
-                                <input type="number" class="form-control" name="amount" placeholder="Enter Amount">
+                                <input type="text" value="0.00" class="form-control" name="amount" placeholder="Enter Amount">
                             </div>
                             <div class="form-group">
                                 <label>Astrologer Security</label>
-                                <input type="number" class="form-control" name="astrologer_security" placeholder="Enter  Id">
+                                <input type="text" value="0.00" class="form-control" name="astrologer_security" placeholder="Enter  Id">
                             </div>
                             <div class="form-group">
                                 <label>Astrologer Message</label>
-                                <input type="number" class="form-control" name="astrologer_msg_profit" placeholder="Enter Astrologer Message">
+                                <input type="text" value="0.00" class="form-control" name="astrologer_msg_profit" placeholder="Enter Astrologer Message">
                             </div>
                             <div class="form-group">
                                 <label>Order Profit</label>
-                                <input type="number" class="form-control" name="order_profit" placeholder="Enter Order Profit">
+                                <input type="text" value="0.00" class="form-control" name="order_profit" placeholder="Enter Order Profit">
                             </div>
                             <div class="form-group">
                                 <label>Message Payment</label>
-                                <input type="number" class="form-control" name="message_payment" placeholder="Enter message_payment">
+                                <input type="text" value="0.00" class="form-control" name="message_payment" placeholder="Enter message_payment">
                             </div>
                             <div class="form-group">
                                 <label>Astrologer Id</label>
-                                <input type="number" class="form-control" name="astrologer_id" placeholder="Enter Astrologer Id">
+                                <input type="text" class="form-control" name="astrologer_id" placeholder="Enter Astrologer Id">
                             </div>
                             <div class="form-group">
                                 <label>User Id</label>
-                                <input type="number" class="form-control" name="user_id" placeholder="Enter User Id">
+                                <input type="text"  class="form-control" name="user_id" placeholder="Enter User Id">
                             </div>
                         </div>
 
