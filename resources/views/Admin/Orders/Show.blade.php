@@ -161,9 +161,10 @@
 <script type="text/javascript">
                 jQuery(document).ready(function($) {
                     $(".clickable-row").click(function(e) {
-                      
-                        window.location = $(this).data("href");
-                      
+                      if(e.target.tagName != 'BUTTON'){
+                            window.location = $(this).data("href");
+                        }
+                     
                     });
                 });
 
