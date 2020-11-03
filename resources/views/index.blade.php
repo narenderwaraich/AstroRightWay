@@ -44,7 +44,8 @@
 </section>
 
 <section class="chat-service-section section-top container">
-  <h1 class="section-heading-txt heading-color text-center text-up">Talk to Astrologer</h1>
+  <h2 class="fs-50 text-center title-main-heading">Talk to Astrologer</h2>
+        <hr class="under-line">
   <p class="member-subheading" style="margin-top: 30px;">
           <ul class="service-list animation-css">
             <li>Get your love back</li>
@@ -65,7 +66,8 @@
 </section>
 
 <section class="member-section section-top container">
-  <h1 class="section-heading-txt heading-color text-center">Join Helping Plan</h1>
+  <h2 class="fs-50 text-center title-main-heading">Join Helping Plan</h2>
+        <hr class="under-line">
   <p class="member-subheading">If you achieve pearl level then you will get a gift product and when 20 people below you achieve pearl level then you achieve ruby ​​level and you get ten thousand rupees and honor symbol and when 20 people below you ruby ​​level  If you achieve, you achieve the diamond level and you get 1 lakh rupees.
   <br><br>
   आप सभी का दिव्य दृष्टि ज्योतिष भवन में स्वागत है
@@ -261,8 +263,28 @@ You achieve Diamond lavel get 1 lacks
 
     <!-- Product Show Section Start -->
 
-    <section class="programs-section section-top container">
-      <h1 class="section-heading-txt heading-color text-center">Products</h1>
+    <section class="section-top container">
+        <h2 class="fs-50 text-center title-main-heading">Our Products</h2>
+        <hr class="under-line">
+        <!-- <div class="row">
+          @foreach($products->take(6) as $product)
+          <div class="col-md-4 mb-cols">
+            <div class="product-div">
+              <a href="/product-details">
+                <img src="img/img-01.jpg" alt="">
+              </a>
+              <a href="/product-details">
+                <h2 class="m-t-20">Navratra mala</h2>
+              </a>
+                <p class="product-price"> ₹2121.00</p>
+              <button type="button" class="btn secondary_btn mt40 add-on-cart" addid="13">Add to Cart</button>
+            </div>
+          </div>
+          @endforeach
+        </div>
+        <a href="/product" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;width:150px !important;">View More</a> -->
+
+
       <div class="row m-t-50">
         @foreach($products->take(6) as $product)
         <div class="col-md-4 mb-cols">
@@ -381,12 +403,31 @@ You achieve Diamond lavel get 1 lacks
         </div>
     </section>
 
-    <section class="m-t-70 container">
-        <div class="sec-title p-b-52">
-                <div class="t-center heading-color section-heading-txt">
-                    Gallery
-                </div>
+      <section class="m-t-70 astrologer-section container bgwhite text-center">
+        <div class="">
+          <h2 class="fs-50 text-center title-main-heading">Our Astrologers</h2>
+          <hr class="under-line">
+          <div class="carousel-default owl-carousel carousel-wide-arrows">
+            @foreach($astrologers as $astrologer)
+            <div class="item">
+              <div class="col-sm-12 col-md-12 col-lg-12 center text-center">
+                @if($astrologer->avatar)
+                <img class="image-testimonial-small" src="/public/images/user/{{$astrologer->avatar}}" alt="">
+                @else
+                <img class="image-testimonial-small" src="/public/images/user/user.jpg" alt="">
+                @endif
+                <p class="astro-desc margin-bottom fs-20">{{$astrologer->address}}<br>{{$astrologer->city}}<br>{{$astrologer->state}}</p>
+                <p class="astro-postion fs-16" style="color: #ce2350;">{{$astrologer->name}}</p>
+              </div>
             </div>
+            @endforeach
+          </div>
+        </div>
+      </section>
+
+    <section class="m-t-70 container">
+      <h2 class="fs-50 text-center title-main-heading">Our Gallery</h2>
+          <hr class="under-line">
         <div class="row">
                 <div class="col-md-12 col-lg-12">
                     @foreach($gellery->take(2) as $item)
@@ -427,11 +468,8 @@ You achieve Diamond lavel get 1 lacks
     <!-- Blog -->
     <section class="blog bgwhite m-t-70">
         <div class="container">
-            <div class="sec-title p-b-52">
-                <div class="t-center heading-color section-heading-txt">
-                    Videos
-                </div>
-            </div>
+          <h2 class="fs-50 text-center title-main-heading">Videos</h2>
+          <hr class="under-line">
             <div class="row">
               @foreach ($videos->take(3) as $videoData)
                 <div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
@@ -550,6 +588,79 @@ ul.service-list{
  -->
 <!-- Chart code -->
 <script>
+  jQuery(document).ready(function($) {      
+  // Owl Carousel                     
+  var owl = $('.carousel-default');
+  owl.owlCarousel({
+    nav: true,
+    dots: true,
+    items: 1,
+    loop: true,
+    navText: ["",""],
+    autoplay: true,
+    autoplayTimeout: 4000
+  });
+
+  // Owl Carousel content section  
+  var owl = $('.carousel-blocks');
+  owl.owlCarousel({
+    nav: true,
+    dots: false,
+    items: 4,
+    responsive: {
+      0: {
+        items: 1
+      },
+      481: {
+        items: 3
+      },
+      769: {
+        items: 4
+      }
+    },
+    loop: true,
+    navText: ["",""],
+    autoplay: true,
+    autoplayTimeout: 5000
+  });
+  
+  // Owl Carousel content section
+  var owl = $('.carousel-3-blocks');
+  owl.owlCarousel({
+    nav: true,
+    dots: true,
+    items: 3,
+    responsive: {
+      0: {
+        items: 1
+      },
+      481: {
+        items: 3
+      },
+      769: {
+        items: 4
+      }
+    },
+    loop: true,
+    navText: ["",""],
+    autoplay: true,
+    autoplayTimeout: 5000
+  });  
+  
+  var owl = $('.carousel-fade-transition');
+  owl.owlCarousel({
+    nav: true,
+    dots: true,
+    items: 1,
+    loop: true,
+    navText: ["",""],
+    autoplay: true,
+    animateOut: 'fadeOut',
+    autoplayTimeout: 4000
+  }); 
+
+});
+
 // am4core.ready(function() {
 
 // // Themes begin

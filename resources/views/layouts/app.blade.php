@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="/public/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="/public/css/design.css">
     <link rel="stylesheet" type="text/css" href="/public/css/custom.css">
+    <link rel="stylesheet" href="/public/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/public/owl-carousel/owl.theme.css">
     <link rel="stylesheet" type="text/css" href="/public/css/template-main.css">
     <link rel="stylesheet" type="text/css" href="/public/css/responsive.css">
     <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
@@ -59,6 +61,7 @@
     <!-- <script type="text/javascript" src="/countdowntime/countdowntime.js"></script> -->
     <script src="/public/js/template-main.js"></script>
     <script src="/public/js/toastr.min.js"></script>
+    <script src="/public/owl-carousel/owl.carousel.js"></script>
     <script src="/public/js/custom.js"></script>
 
     {!! Toastr::message() !!}

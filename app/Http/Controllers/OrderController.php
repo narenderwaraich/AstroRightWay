@@ -595,7 +595,7 @@ class OrderController extends Controller
         Toastr::success('Order Accept', 'Success', ["positionClass" => "toast-bottom-right"]);
         return redirect()->to('/orders/show');
     }
-    public function orderDispatch(){
+    public function orderDispatch(Request $request){
         $allData = request(['dispatch_id','code']); 
         $data  = request(['code']); 
         $orderId = $allData['dispatch_id']; 
@@ -629,7 +629,7 @@ class OrderController extends Controller
         }
     }
 
-    public function orderReject($id){
+    public function orderReject(Request $request){
         $allData = request(['reject_id','message']); 
         $message  = request(['message']); 
         $orderId = $allData['reject_id']; 

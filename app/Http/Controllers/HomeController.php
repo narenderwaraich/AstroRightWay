@@ -13,6 +13,7 @@ use App\Gellery;
 use App\BanerSlide;
 use App\Rashifal;
 use App\Covid19;
+use App\Astrologer;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,7 @@ class HomeController extends Controller
         $videos = Youtube::latest()->paginate(6);
         $products = Product::orderBy('created_at','desc')->paginate(9);
         $gellery = Gellery::orderBy('created_at','desc')->paginate(5);
+        $astrologers = Astrologer::where('verified','=',2)->get(); //dd($astrologers);
         // $current = Carbon::now();
         // $todayDate = $current->format('Y-m-d'); //dd($todayDate);
         // $rashi = Rashifal::where('today_date','=',$todayDate)->orderBy('created_at','desc')->paginate(1); //dd($rashi);
@@ -56,9 +58,9 @@ class HomeController extends Controller
             $userId = Auth::id();
             $cartCollection = CartStorage::where('user_id',$userId)->get();
             $subTotal = DB::table("cart_storages")->where('user_id',$userId)->sum('subtotal');       
-            return view('index',compact('title','description','rashi','covid'),['bannerSlide' => $bannerSlide,'products' =>$products, 'videos' => $videos,'cartCollection' =>$cartCollection, 'subTotal' =>$subTotal,'gellery' =>$gellery]);
+            return view('index',compact('title','description','rashi','covid'),['bannerSlide' => $bannerSlide,'products' =>$products, 'videos' => $videos,'cartCollection' =>$cartCollection, 'subTotal' =>$subTotal,'gellery' =>$gellery, 'astrologers' => $astrologers]);
         }else{
-          return view('index',compact('title','description'),['bannerSlide' => $bannerSlide, 'products' => $products, 'videos' => $videos,'gellery' =>$gellery]);  
+          return view('index',compact('title','description'),['bannerSlide' => $bannerSlide, 'products' => $products, 'videos' => $videos,'gellery' =>$gellery, 'astrologers' => $astrologers]);  
         }
         
     }

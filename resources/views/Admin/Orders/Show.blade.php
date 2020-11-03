@@ -97,7 +97,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                           </div>
                   <div class="modal-body">
-                      <form id="orderData" method="post" enctype="multipart/form-data">
+                      <form id="orderData" method="post">
                          {{ csrf_field() }}
                           <div class="form-group">
                               <label>Code</label>
@@ -133,7 +133,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                           </div>
                   <div class="modal-body">
-                      <form id="orderData" method="post" enctype="multipart/form-data">
+                      <form id="rejectOrderData" method="post" enctype="multipart/form-data">
                          {{ csrf_field() }}
                           <div class="form-group">
                               <label>Message</label>
@@ -209,6 +209,12 @@
                       processData: false
                   });
 
+              });
+
+              $("form#rejectOrderData").submit(function(e) {
+                  e.preventDefault();    
+                  var formData = new FormData(this); 
+
                   $(".rejectBtnModal").click(function () {
                     var passedID = $(this).data('id');//get the id of the selected button
                     $('#rejectOrderID').val(passedID);//set the id to the input on the modal
@@ -246,6 +252,6 @@
                       contentType: false,
                       processData: false
                   });
-              }); 
+                });
 </script>
 @endsection
