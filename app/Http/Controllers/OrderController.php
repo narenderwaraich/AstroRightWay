@@ -596,8 +596,8 @@ class OrderController extends Controller
         return redirect()->to('/orders/show');
     }
     public function orderDispatch(Request $request){
-        $allData = request(['dispatch_id','code']); 
-        $data  = request(['code']); 
+        $allData = request(['dispatch_id','track_code','track_url']); 
+        $data  = request(['track_code','track_url']); 
         $orderId = $allData['dispatch_id']; 
         $data['status'] = "Dispatch";
         Order::where('id',$orderId)->update($data);
@@ -672,10 +672,9 @@ class OrderController extends Controller
             $title = $banner->title;
             $description = $banner->description;
         }
-        $order = Order::find($id);
+        $order = Order::find($id); //dd($order);
         if($order->status =="Dispatch"){
-           $trackCode = $order->code;
-           return view('track-shiping',compact('title','description'),['banner' =>$banner, 'trackCode' =>$trackCode]);
+           return view('track-shiping',compact('title','description'),['banner' =>$banner, 'order' =>$order]);
         }else{
            Toastr::error('Order not Dispatch', 'Error', ["positionClass" => "toast-bottom-right"]);
            return redirect()->to('/user-order');

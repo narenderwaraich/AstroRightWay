@@ -27,9 +27,9 @@
 <div class="container m-t-70">
   <div class="table-title">Track Orders</div>
   <div class="track-order-box">
-    <p class="description">Track your shiping by link copy track code</p>
+    <p class="description">Track your shiping by link copy track code {{$order->track_url}}</p>
     <div class="track-code">
-        <p>{{$trackCode}}</p>
+        <p>{{$order->track_code}}</p>
     </div>
   </div>
 </div>

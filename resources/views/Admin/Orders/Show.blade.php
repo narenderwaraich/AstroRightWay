@@ -101,7 +101,8 @@
                          {{ csrf_field() }}
                           <div class="form-group">
                               <label>Code</label>
-                              <input type="text" class="form-control model-form-input" name="code" placeholder="Enter Code" required>
+                              <input type="text" class="form-control model-form-input" name="track_code" placeholder="Enter Code" required>
+                              <textarea name="track_url" rows="5" placeholder="Track URL" class="form-control"></textarea>
                               <input type="hidden" name="dispatch_id" id="orderID">
                           </div>
                       
