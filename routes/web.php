@@ -213,6 +213,9 @@ Route::post('/verify-Otp', 'Auth\RegisterController@verifyOtp');
 Route::get('/resend-Otp/{id}', 'Auth\RegisterController@resendOtp');
 
 Route::get('/user/verified-mail/{id}', 'AdminController@verifyMailReminder');
+
+// user whatsapp
+Route::get('/user/whatsapp/{id}','AdminController@userWhatsapp');
 //Product Controller
 Route::get('/product','ProductController@productView');
 Route::get('/product/category/{name}','ProductController@categoryView');

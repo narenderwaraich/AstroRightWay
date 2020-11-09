@@ -38,9 +38,15 @@ use App\ProfitPaymentTransaction;
 
 class AdminController extends Controller
 {
-    // public function __construct(){
-    //     $this->middleware('auth');
-    // }
+    private $base_url;
+    private $options = [];
+    public function __construct()
+    {
+        $this->base_url = 'https://wa.me';
+        $this->options['label'] = 'Click to Chat';
+        $this->options['class'] = '';
+        $this->middleware('auth');
+     }
     
     public function homePage(){
         if(Auth::check()){
@@ -120,9 +126,6 @@ class AdminController extends Controller
         return response()->json($data);
     }
 
-    public function __construct(){
-     $this->middleware('auth');
-   }
    /**
      * Display a listing of the resource.
      *
@@ -155,6 +158,17 @@ class AdminController extends Controller
               return redirect()->to('/login');
           }
       }
+
+    public function userWhatsapp($id){
+       $user = User::find($id);
+       $message = "Hey! I Can Help You";
+       $num = "+91".$user->phone_no;
+       $msg = $message;
+       $opt = ['label' => 'Click to Chat', 'class' => 'btn btn-success'];
+       $whatsappBtn = $this->make($num,$msg,$opt);
+
+        return redirect($whatsappBtn);
+    }
 
       public function SearchData(Request $request){
             $q = Input::get ( 'q' );
@@ -763,6 +777,32 @@ class AdminController extends Controller
           $payment->update($data);
           Toastr::success('Payment manual received successfully', 'Success', ["positionClass" => "toast-bottom-right"]);
             return back();
-        }                                   
+        }
+
+
+    
+    public function make($number, $message='', $options = array())
+    {
+        $options = array_replace($this->options,$options);
+        $link = $this->link($number, $message);
+
+        return  $link;
+
+        // return  '<a href="'.$link.'">'.
+        //             '<button type="button" class="'.$options['class'].'">'.
+        //                 $options['label'] .
+        //             '</button>'.
+        //         '</a>';
+    }
+    public function link($number, $message=''){
+        $final_url = $this->base_url . '/'.$this->filterNumber($number);
+        return $final_url . "?" . http_build_query(['text' => $message]);
+    }
+
+    private function filterNumber($number){
+        $number = str_replace(['(',')','-','/','+'],'',$number);
+        $number = (int)$number;
+        return $number;
+    }                                   
 
 }

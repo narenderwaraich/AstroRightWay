@@ -63,6 +63,7 @@
                                         <!-- <a href="/orders/dispatch/{{ $order->id }}"> --><button data-toggle="modal" data-target="#sendTrackCode" id="openModel" type="button" class="btn btn-info btnModal" data-id="{{ $order->id }}">Dispatch</button><!-- </a> -->
                                         @endif
                                         @if($order->status == 'Dispatch') 
+                                        <a href="/orders/track/{{ $order->id }}"><button class="btn btn-info">Track</button></a>
                                         <a href="/orders/complete/{{ $order->id }}"><button class="btn btn-success">Complete</button></a>
                                         @endif
                                         @if($order->status == 'Complete') 

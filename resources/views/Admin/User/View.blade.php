@@ -20,8 +20,11 @@
                                <button type="button" class="btn btn-default btn-sm" onClick="refreshPage()">
 <i class="fa fa-refresh"></i> Refresh</button>
 <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" id="sendButton">
-                                    <i class="fa fa fa-envelope"></i> Send Mail
+                                    <i class="fa fa-envelope"></i> Send Mail
                                 </a>
+                               <a href="/user/whatsapp/{{$user->id}}" class="btn btn-success btn-sm">
+                                    <i class="fa fa-whatsapp"></i> Whatsapp
+                                </a> 
                             </div>
                         </div>
 
