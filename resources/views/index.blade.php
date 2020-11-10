@@ -46,7 +46,7 @@
 <section class="chat-service-section section-top container">
   <h2 class="fs-50 text-center title-main-heading">Talk to Astrologer</h2>
         <hr class="under-line">
-  <p class="member-subheading" style="margin-top: 30px;">
+  <p class="member-subheading m-t-30">
           <ul class="service-list animation-css">
             <li>Get your love back</li>
             <li>Love marriage specialist</li>
@@ -60,7 +60,7 @@
             <li>Kundli Matching Services</li>
             <li>Husband Wife Disputes</li>
           </ul>
-    <a href="/talk-astro"><button type="button" class="btn btn-style on-mob-bottom-30" style="margin-top: 40px;">Chat with Astrologer</button></a>
+    <a href="/talk-astro"><button type="button" class="btn btn-style on-mob-bottom-30 m-t-40">Chat with Astrologer</button></a>
   </p>
 
 </section>
@@ -72,8 +72,8 @@
   <br><br>
   आप सभी का दिव्य दृष्टि ज्योतिष भवन में स्वागत है
 आप सभी को जानकर ख़ुशी होगी कि "दिव्य दृष्टि ज्योतिष भवन" लेकर आया है एक हेल्पिंग प्लान
-जिसमें "दिव्य दृष्टि ज्योतिष भवन" में जुड़ने वाले सभी भक्तों की ज्योतिषीय सहायता के साथ साथ कुछ आर्थिक सहायता भी होगी... <a href="/help-plan" style="color: #ce2350;font-size: 18px;font-weight: 700;">Read More</a> 
-    <a href="/join-member"><button type="button" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;">Join</button></a></p>
+जिसमें "दिव्य दृष्टि ज्योतिष भवन" में जुड़ने वाले सभी भक्तों की ज्योतिषीय सहायता के साथ साथ कुछ आर्थिक सहायता भी होगी... <a href="/help-plan" class="main-color fs-18 f-w-700">Read More</a> 
+    <a href="/join-member"><button type="button" class="btn btn-style on-mob-bottom-30 m-t-20">Join</button></a></p>
   <table id="members">
   <tr>
     <th>Level</th>
@@ -286,7 +286,7 @@ You achieve Diamond lavel get 1 lacks
 
 
       <div class="row m-t-50">
-        @foreach($products->take(6) as $product)
+        @foreach($products->take(9) as $product)
         <div class="col-md-4 mb-cols">
           <a href="/product-details/{{$product->id}}">
           <div class="product-view-window-div {{ ($product->product_types_id ==2) ? 'block2-labelnew' : '' }} {{ ($product->product_types_id ==1) ? 'block2-labelsale' : '' }}" style="background-image: url(/public/images/products/{{$product->image}});">
@@ -294,7 +294,7 @@ You achieve Diamond lavel get 1 lacks
             <div class="product-content">
                 <a href="/product-details/{{$product->id}}"><h2 class="m-top heading-color2">{{$product->name}}</h2></a>
                 <br>
-                <p class="offer-text">@if($product->cross_price)<span style="color: #ce2350;font-weight: 600;text-decoration: line-through;">₹{{$product->cross_price}}</span> - @endif ₹{{$product->price}}</p>
+                <p class="offer-text f-w-600">@if($product->cross_price)<span class="main-color f-w-600 cross-text">₹{{$product->cross_price}}</span> - @endif ₹{{$product->price}}</p>
                 <button type="button" class="btn secondary_btn mt40 add-on-cart" addId="{{ $product->id }}">Add to Cart</button>
             </div>
           </div>
@@ -302,7 +302,7 @@ You achieve Diamond lavel get 1 lacks
         </div>
         @endforeach
       </div>
-      <a href="/product" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;width:150px !important;">View More</a>
+      <a href="/product" class="btn btn-style on-mob-bottom-30 m-t-20" style="width:150px !important;">View More</a>
 <!--     <div class="row m-t-50">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="row">
@@ -417,7 +417,7 @@ You achieve Diamond lavel get 1 lacks
                 <img class="image-testimonial-small" src="/public/images/user/user.jpg" alt="">
                 @endif
                 <p class="astro-desc margin-bottom fs-20">{{$astrologer->address}}<br>{{$astrologer->city}}<br>{{$astrologer->state}}</p>
-                <p class="astro-postion fs-16" style="color: #ce2350;">{{$astrologer->name}}</p>
+                <p class="astro-postion fs-16 main-color">{{$astrologer->name}}</p>
               </div>
             </div>
             @endforeach
@@ -430,7 +430,7 @@ You achieve Diamond lavel get 1 lacks
           <hr class="under-line">
         <div class="row">
                 <div class="col-md-12 col-lg-12">
-                    @foreach($gellery->take(2) as $item)
+                    @foreach($gellery->take(4) as $item)
                     <div class="p-r-50 p-r-0-lg">
                         <!-- item blog -->
                         <div class="item-blog">
@@ -460,7 +460,7 @@ You achieve Diamond lavel get 1 lacks
                     
                 <!--</div>-->
             </div>
-            <a href="/gallery" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;width:150px !important;">View More</a>
+            <a href="/gallery" class="btn btn-style on-mob-bottom-30 m-t-20" style="width:150px !important;">View More</a>
     </section>
 
     
@@ -471,7 +471,7 @@ You achieve Diamond lavel get 1 lacks
           <h2 class="fs-50 text-center title-main-heading">Videos</h2>
           <hr class="under-line">
             <div class="row">
-              @foreach ($videos->take(3) as $videoData)
+              @foreach ($videos->take(6) as $videoData)
                 <div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
 
                         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{ $videoData->url}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
@@ -488,7 +488,7 @@ You achieve Diamond lavel get 1 lacks
                 </div>
              @endforeach
             </div>
-            <a href="/youtube-videos" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;width:150px !important;">View More</a>
+            <a href="/youtube-videos" class="btn btn-style on-mob-bottom-30 m-t-20" style="width:150px !important;">View More</a>
         </div>
     </section>
 

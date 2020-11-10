@@ -1,0 +1,282 @@
+/*Use Color */
+
+
+
+/**/
+
+
+
+
+.content-wrapper{
+  -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+  margin-left: 230px;
+  z-index: 820;
+}
+.content-wrapper{
+  margin-left: 0;
+}
+.content-wrapper{
+  min-height: 100%;
+  background-color: #ecf0f5;
+  z-index: 800;
+}
+.content-header {
+  position: relative;
+  padding: 15px 15px 0 15px;
+}
+.content-header > h1 {
+  margin: 0;
+  font-size: 24px;
+}
+.content-header > h1 > small {
+  font-size: 15px;
+  display: inline-block;
+  padding-left: 4px;
+  font-weight: 300;
+}
+.content {
+  min-height: 250px;
+  padding: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.box {
+  position: relative;
+  border-radius: 3px;
+  background: #ffffff;
+  border-top: 3px solid #d2d6de;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.box-header {
+    color: #444;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+.box-header.with-border {
+    border-bottom: 1px solid #f4f4f4;
+}
+.box-body {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px;
+}
+.box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #f4f4f4;
+    padding: 10px;
+    background-color: #fff;
+}
+.vue-btn[data-v-04997954] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    position: relative;
+    vertical-align: top;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-transition: .3s all ease;
+    transition: .3s all ease;
+}
+.btn-default {
+    background-color: #f4f4f4;
+    color: #444;
+    border-color: #ddd;
+}
+.piChartdiv{
+    width: 100%;
+    height: 450px;
+    margin-top: 50px;
+}
+.secondary_btn {
+  text-transform: uppercase;
+    background: #ce2350;
+    color: #ffffff;
+    border: 2px solid #ce2350;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    padding: .6180469716em 1.41575em;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block !important;
+    width: auto !important;
+}
+.secondary_btn:hover{
+    color: #ce2350;
+    background: transparent;
+    border: 2px solid #ce2350;
+}
+.productImg{
+  width: 120px;
+}
+.product-show-table .btn-div{
+    width: 200px;
+}
+.show-product-img{
+  width: 720px;
+    margin: auto;
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+.avaibility {
+    margin-bottom: 0;
+    font-size: 12px;
+    color: #6b6b6b;
+    line-height: 1;
+}
+.avaibility i {
+    color: #20d34a;
+    font-size: 12px;
+}
+.header-left .dropdown .dropdown-menu {
+    background: #303036;
+}
+  .bg-flat-color-4 {
+    background: #ce2350;
+}
+.header-left .dropdown .dropdown-menu p {
+    color: #fff;
+}
+.for-notification .dropdown-menu .dropdown-item i {
+    color: #ffffff;
+}
+.model-form-input:focus{
+  border-radius: 0px !important;
+  border: 1px #ce2350 solid !important;
+  outline: none !important;
+}
+.modal-header {
+    border-bottom: 1px solid #ce2350 !important;
+}
+.modal-title-text {
+    color: #ce2350;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.close {
+    color: #ce2350;
+}
+.close:focus, .close:hover {
+    color: #ce2350;
+}
+.modal-btn{
+  text-transform: uppercase;
+    background: #ce2350;
+    color: #ffffff;
+    border: 2px solid #ce2350;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block !important;
+    width: auto !important;
+}
+.modal-btn:hover{
+    color: #ce2350;
+    background: transparent;
+    border: 2px solid #ce2350;
+}
+.scroll-table-full{
+  margin: auto !important;
+  border-collapse: collapse !important;
+  overflow-x: auto !important;
+  display: block !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+}
+span.user-deactive {
+    color: #dc3545;
+}
+span.user-active {
+    color: #28a745;
+}
+.status-Pending {
+    font-weight: 700;
+    color: #CC0000;
+}
+.status-Success {
+    font-weight: 700;
+    color: #00C851;
+}
+.status-Field {
+    font-weight: 700;
+    color: #CC0000;
+}
+
+
+
+
+/*Mobile responsive*/
+@media (max-width: 767px){
+  .show-product-img{
+      width: auto;
+  }
+  aside.left-panel .navbar .navbar-brand {
+        margin-top: 4px !important;
+    }
+    .navbar .navbar-brand img {
+        width: 140px !important;
+    }
+    .table{
+      margin: auto !important;
+      border-collapse: collapse !important;
+      overflow-x: auto !important;
+      display: block !important;
+      width: fit-content !important;
+      max-width: 100% !important;
+    }
+    .on-mob-table-btn{
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .on-mob-scroll-table-full{
+      margin: auto !important;
+      border-collapse: collapse !important;
+      overflow-x: auto !important;
+      display: block !important;
+      width: fit-content !important;
+      max-width: 100% !important;
+  }
+  .on-mob-user-chat,
+  .on-mob-admin-chat{
+      width: 300px;
+  }
+}

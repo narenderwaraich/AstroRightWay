@@ -126,6 +126,14 @@ Route::get('/page-setup/edit/{id}', 'AdminController@pageEdit');
 Route::post('/page-setup/update/{id}', 'AdminController@pageUpdate');
 Route::get('/page-setup/delete/{id}', 'AdminController@pageDestroy');
 
+///Page Section
+Route::get('/section-image/show', 'SectionImageController@pageIndex');
+Route::get('/section-image/create', 'SectionImageController@pageCreate');
+Route::post('section-image/create', 'SectionImageController@pageStore');
+Route::get('/section-image/edit/{id}', 'SectionImageController@pageEdit');
+Route::post('/section-image/update/{id}', 'SectionImageController@pageUpdate');
+Route::get('/section-image/delete/{id}', 'SectionImageController@pageDestroy');
+
 // user plan
 //Route::get('/user/plan/edit/{id}','AdminController@userPlanEdit');
 Route::get('/user/plan-active/{id}','AdminController@userPlanActive');

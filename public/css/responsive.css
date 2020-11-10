@@ -1,0 +1,288 @@
+@media (max-width: 767px){
+    .banner,
+    .banner img{
+    height: auto;
+    }
+    .product-edit-view-img {
+        margin-left: 5px;
+        margin-top: 7px;
+    }
+    .section-heading-txt {
+        line-height: 1em;
+        font-size: 45px;
+    }
+    .spacial-offer-section .ab-t-l {
+        top: -100px;
+    }
+    .windows-firm-Box .windows-form {
+        padding: 15px 15px 30px 15px;
+    }
+    .windows-firm-Box {
+        width: 98%;
+        margin-top: 50px;
+    }
+    .login-section,
+    .singn-up{
+        padding: 0 10px 0 10px;
+    }
+    .form-check-label {
+        padding-left: 0;
+        margin-top: 15px;
+    }
+    .on-mob-hide{
+        display: none;
+    }
+    .cart-info-sec span{
+        width: 50% !important;
+    }
+    .cart-info-sec input{
+        width: 50% !important;
+        padding-left: 5px;
+    }
+    .on-mob-show{
+        display: block !important;
+    }
+    .carousel,
+    .carousel .carousel-item {
+        height: auto;
+    }
+    .carousel .carousel-item img {
+        width: 100%;
+        height: 350px;
+    }
+    .parallax-container{
+        height: auto !important;
+        min-height: auto !important;
+    }
+    .offer-section {
+        padding: 70px 0px;
+    }
+    .offer-section .content {
+        margin-top: 10px;
+    }
+    .form-box-sec {
+        padding: 10px 0px 70px 0px;
+    }
+    form.parallax-form {
+        width: 90%;
+        margin: auto;
+        display: block;
+        text-align: center;
+    }
+    .banner .caption {
+        top: 50%;
+    }
+    .banner .caption h1 {
+        font-size: 22px;
+    }
+    .banner .caption h1 span{
+        font-size: 13px;
+    }
+    .pad-in-section {
+        padding: 30px 20px 0;
+    }
+    .on-mob-top-30{
+        margin-top: 30px;
+    }
+    .on-mob-bottom-30{
+        margin-bottom: 30px;
+    }
+    #SearchData input{
+        border: 1px #303036 solid;
+    }
+    #SearchData button{
+        color: #303036;
+    }
+    #SearchData button:hover{
+        color: #ce2350;
+    }
+    .windows-form a.text-link {
+        font-size: 10px;
+    }
+    .dp-show {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+    .btn-style {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    .table th {
+        padding: 0.25rem;
+    }
+    .table-bordered thead th {
+        font-size: 13px;
+    }
+    .table-bordered td,
+    .table-bordered td a{
+        font-size: 12px;
+    }
+    .table-bordered td a img{
+        width: 40px;
+        height: 40px;
+     }
+     .windows-form .menu span {
+        margin-left: 15px;
+        font-size: 16px;
+    }
+    .card-warp {
+        padding: 50px 20px;
+    }
+    .shipping-chooes label {
+        padding-left: 8px;
+    }
+    .cart-total-details {
+        margin-top: 40px;
+    }
+    .cart-total-card li {
+        padding: 3px;
+    }
+    .cart-payment-method{
+      padding: 0px;
+    }
+    .site-btn {
+        padding: 12px 20px;
+    }
+    .cupon-input .site-btn {
+        min-width: 60px;
+    }
+    .table-shopping-cart .column-1 {
+        width: 130px;
+        padding-left: 20px;
+    }
+    .table-shopping-cart .column-2 {
+        width: auto;
+        padding-right: 0px;
+    }
+    .table-shopping-cart .column-3 {
+        width: auto;
+        padding-right: 0px;
+    }
+    .table-shopping-cart .column-4 {
+        width: auto;
+        padding-right: 0px;
+    }
+    .p-l-0-mob{
+        padding-left: 0px;
+    }
+    .column-5 span input{
+        width: 70px !important;
+    }
+    .user_menu {
+        top: 55px;
+    }
+    .carousel .carousel-item .caption h1 {
+        font-size: 35px;
+    }
+    .carousel .carousel-item .caption h1 span {
+        font-size: 22px;
+    }
+    .carousel .links {
+        margin-top: 15px;
+    }
+    .carousel .carousel-item .caption .slider-btn, .btns {
+        padding: 6px 18px;
+        font-size: 14px;
+    }
+    .carousel-control-prev span, .carousel-control-next span {
+        font-size: 45px;
+    }
+    .track-order-box, 
+    .payment-order-box {
+    max-width: 300px;
+    padding: 40px 16px 35px;
+    }
+    .track-order-box p.description,
+    .payment-order-box p.description {
+        max-width: 200px;
+        margin: 20px auto 20px;
+    }
+    .track-code {
+       padding: 15px 8px;
+        width: 180px;
+        height: 50px
+    }
+    .track-code p{
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .footer-logo {
+        width: 200px;
+    }
+    .on-mob-table-btn{
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .track-order-box p.description, .payment-order-box p.description {
+        max-width: 180px;
+        margin: 20px auto 20px;
+    }
+    .track-order-box, .payment-order-box {
+        max-width: 300px;
+        padding: 15px 10px 20px;
+    }
+    .track-order-box {
+        margin: auto;
+        background-size: contain;
+    }
+    .item-blog a{
+     min-height: auto;
+    }
+    .on-mob-top-35{
+        margin-top: 35px;
+    }
+    .user-pro-section .input-style{
+        width: 100%;
+    }
+    button.btn.btn-danger.on-mob-table-btn {
+        margin-top: 10px;
+        margin-left: auto;
+        text-align: center;
+        display: block;
+        margin-right: auto;
+    }
+    .form-chat-box{
+        width: 100%;
+    }
+    .full-w{
+        width: 100% !important;
+    }
+    .user-message-chat-box {
+        width: 100%;
+    }
+    .admin-message-chat-box {
+            width: 100%;
+    }
+    .message-chat-plan{
+            width: 100%;
+    }
+    .rashi-box {
+        width: 90px;
+        height: 90px;
+    }
+    .rashi-name {
+        font-size: 22px;
+        padding-top: 27px;
+    }
+    .on-mob-scroll-table{
+          margin: auto !important;
+          border-collapse: collapse !important;
+          overflow-x: auto !important;
+          display: block !important;
+          width: fit-content !important;
+          max-width: 100% !important;
+        }
+    .chat-form select{
+        width: 100% !important;
+    }
+    #members {
+        margin: auto !important;
+        border-collapse: collapse !important;
+        overflow-x: auto !important;
+        display: block !important;
+        width: fit-content !important;
+        max-width: 100% !important;
+    }
+}

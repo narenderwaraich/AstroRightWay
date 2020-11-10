@@ -141,6 +141,13 @@
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file"></i>Page Section</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa fa-plus"></i><a href="/section-image/create">Add</a></li>
+                            <li><i class="fa fa-table"></i><a href="/section-image/show">View</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon  fa fa-themeisle"></i>Tamplate</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="/settings">Settings</a></li>
