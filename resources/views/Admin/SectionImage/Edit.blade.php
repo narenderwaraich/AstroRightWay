@@ -75,9 +75,9 @@
                                       </p>
                                   </div>
 
-                                  @if($pageSetup->image)
+                                  @if($pageSetup->bg_img)
                                   <div class="img-show-box pip">
-                                    <img class="imageThumb" src="/public/images/banner/{{ $pageSetup->image }}"> 
+                                    <img class="imageThumb" src="/public/images/bg/{{ $pageSetup->bg_img }}"> 
                                     <div class="remove">Remove</div>
                                   </div>
                                   @endif

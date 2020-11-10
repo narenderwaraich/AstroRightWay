@@ -14,6 +14,7 @@ use App\BanerSlide;
 use App\Rashifal;
 use App\Covid19;
 use App\Astrologer;
+use App\SectionImage;
 
 class HomeController extends Controller
 {
@@ -54,13 +55,17 @@ class HomeController extends Controller
         $bannerSlide = BanerSlide::where('page_name','=','home')->get(); //dd($bannerSlide);
         $title = "Vedic Astrology & Buy Vastu Products Online";
         $description = "Astrorightway provides free Vedic astrology and kundli remedies. Join our divya Jyoti helping plan and buy vastu astrology products online.";
+        $homeParaSection = SectionImage::where('page_name','=','home')->where('section','=','parallax')->first();
+        $homeParaLeftSection = SectionImage::where('page_name','=','home')->where('section','=','parallax-left')->first();
+        $homeParaRightSection = SectionImage::where('page_name','=','home')->where('section','=','parallax-right')->first();
+        $homeAstroSection = SectionImage::where('page_name','=','home')->where('section','=','talk-astro')->first();
         if(Auth::check()){
             $userId = Auth::id();
             $cartCollection = CartStorage::where('user_id',$userId)->get();
             $subTotal = DB::table("cart_storages")->where('user_id',$userId)->sum('subtotal');       
-            return view('index',compact('title','description','rashi','covid'),['bannerSlide' => $bannerSlide,'products' =>$products, 'videos' => $videos,'cartCollection' =>$cartCollection, 'subTotal' =>$subTotal,'gellery' =>$gellery, 'astrologers' => $astrologers]);
+            return view('index',compact('title','description','rashi','covid'),['bannerSlide' => $bannerSlide,'products' =>$products, 'videos' => $videos,'cartCollection' =>$cartCollection, 'subTotal' =>$subTotal,'gellery' =>$gellery, 'astrologers' => $astrologers, 'homeParaSection' => $homeParaSection, 'homeParaLeftSection' => $homeParaLeftSection, 'homeParaRightSection' =>$homeParaRightSection, 'homeAstroSection' => $homeAstroSection ]);
         }else{
-          return view('index',compact('title','description'),['bannerSlide' => $bannerSlide, 'products' => $products, 'videos' => $videos,'gellery' =>$gellery, 'astrologers' => $astrologers]);  
+          return view('index',compact('title','description'),['bannerSlide' => $bannerSlide, 'products' => $products, 'videos' => $videos,'gellery' =>$gellery, 'astrologers' => $astrologers, 'homeParaSection' => $homeParaSection, 'homeParaLeftSection' => $homeParaLeftSection, 'homeParaRightSection' =>$homeParaRightSection, 'homeAstroSection' => $homeAstroSection ]);  
         }
         
     }

@@ -3374,3 +3374,24 @@ h2.m-top.heading-color2 {
 .owl-carousel .owl-dot.active span {
     opacity: 1;
 }
+
+/*product css*/
+.product-content h5{
+  color: #D19600;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+}
+.product-content p{
+  color: #000;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+}
+.product-content .add-on-cart{
+  margin-top: 20px;
+}
+img.astrologer-sec-img {
+    margin: auto;
+    text-align: center;
+    display: block;
+    width: 100%;
+}

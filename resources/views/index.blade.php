@@ -42,10 +42,14 @@
         </a>
     </div>
 </section>
-
+@if(isset($homeAstroSection))
 <section class="chat-service-section section-top container">
-  <h2 class="fs-50 text-center title-main-heading">Talk to Astrologer</h2>
+  @if($homeAstroSection->section == "talk-astro")
+  <h2 class="fs-50 text-center title-main-heading">{{$homeAstroSection->section_heading}}</h2>
         <hr class="under-line">
+  @if($homeAstroSection->bg_img)
+  <img src="/public/images/bg/{{$homeAstroSection->bg_img}}" class="astrologer-sec-img">
+  @endif
   <p class="member-subheading m-t-30">
           <ul class="service-list animation-css">
             <li>Get your love back</li>
@@ -60,11 +64,11 @@
             <li>Kundli Matching Services</li>
             <li>Husband Wife Disputes</li>
           </ul>
-    <a href="/talk-astro"><button type="button" class="btn btn-style on-mob-bottom-30 m-t-40">Chat with Astrologer</button></a>
+    <a href="/talk-astro"><button type="button" class="btn btn-style on-mob-bottom-30" style="margin-top: 40px;">Chat with Astrologer</button></a>
   </p>
-
+@endif
 </section>
-
+@endif
 <section class="member-section section-top container">
   <h2 class="fs-50 text-center title-main-heading">Join Helping Plan</h2>
         <hr class="under-line">
@@ -73,7 +77,7 @@
   आप सभी का दिव्य दृष्टि ज्योतिष भवन में स्वागत है
 आप सभी को जानकर ख़ुशी होगी कि "दिव्य दृष्टि ज्योतिष भवन" लेकर आया है एक हेल्पिंग प्लान
 जिसमें "दिव्य दृष्टि ज्योतिष भवन" में जुड़ने वाले सभी भक्तों की ज्योतिषीय सहायता के साथ साथ कुछ आर्थिक सहायता भी होगी... <a href="/help-plan" class="main-color fs-18 f-w-700">Read More</a> 
-    <a href="/join-member"><button type="button" class="btn btn-style on-mob-bottom-30 m-t-20">Join</button></a></p>
+    <a href="/join-member"><button type="button" class="btn btn-style on-mob-bottom-30" style="margin-top: 20px;">Join</button></a></p>
   <table id="members">
   <tr>
     <th>Level</th>
@@ -262,7 +266,7 @@ You achieve Diamond lavel get 1 lacks
 @endif-->
 
     <!-- Product Show Section Start -->
-
+    @if($products->count())
     <section class="section-top container">
         <h2 class="fs-50 text-center title-main-heading">Our Products</h2>
         <hr class="under-line">
@@ -290,19 +294,19 @@ You achieve Diamond lavel get 1 lacks
         <div class="col-md-4 mb-cols">
           <a href="/product-details/{{$product->id}}">
           <div class="product-view-window-div {{ ($product->product_types_id ==2) ? 'block2-labelnew' : '' }} {{ ($product->product_types_id ==1) ? 'block2-labelsale' : '' }}" style="background-image: url(/public/images/products/{{$product->image}});">
-              <div class="slide-imge-overlay"></div>
-            <div class="product-content">
-                <a href="/product-details/{{$product->id}}"><h2 class="m-top heading-color2">{{$product->name}}</h2></a>
-                <br>
-                <p class="offer-text f-w-600">@if($product->cross_price)<span class="main-color f-w-600 cross-text">₹{{$product->cross_price}}</span> - @endif ₹{{$product->price}}</p>
-                <button type="button" class="btn secondary_btn mt40 add-on-cart" addId="{{ $product->id }}">Add to Cart</button>
-            </div>
+              <!-- <div class="slide-imge-overlay"></div> -->
           </div>
           </a>
+          <div class="product-content">
+              <a href="/product-details/{{$product->id}}"><h5 class="m-top heading-color2">{{$product->name}}</h5></a>
+              <br>
+              <p>@if($product->cross_price)<span class="main-color cross-text">₹{{$product->cross_price}}</span> - @endif ₹{{$product->price}}</p>
+              <button type="button" class="btn secondary_btn add-on-cart" addId="{{ $product->id }}">Add to Cart</button>
+          </div>
         </div>
         @endforeach
       </div>
-      <a href="/product" class="btn btn-style on-mob-bottom-30 m-t-20" style="width:150px !important;">View More</a>
+      <a href="/product" class="btn btn-style on-mob-bottom-30" style="width:150px !important;margin-top: 20px;">View More</a>
 <!--     <div class="row m-t-50">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="row">
@@ -338,26 +342,32 @@ You achieve Diamond lavel get 1 lacks
     </div>
 
     </section>
-
+    @endif
+    @if(isset($homeParaSection))
     <section>
-        <div class="parallax-container" id="para_sec">
+      @if($homeParaSection->section == "parallax")
+        <div class="parallax-container" id="para_sec" style="background-image: url(/public/images/bg/{{$homeParaSection->bg_img}});">
            <div class="row">
+            @if(isset($homeParaLeftSection))
+            @if($homeParaLeftSection->section == "parallax-left")
                <div class="col-md-6">
                    <div class="offer-section">
                        <div class="top-tile">
-                            Offer
+                            {{$homeParaLeftSection->section_heading}}
                        </div>
                        <div class="content">
-                           <p>First user for special offer get 20% discount on first order.
-                            Register Now or apply <span>GET20</span> Coupan Voucher Code.
-                           </p>
+                           <p>{{$homeParaLeftSection->section_content}}</p>
                        </div>
                    </div>
                </div>
-               <div class="col-md-6">
+               @endif
+            @endif
+          @if(isset($homeParaRightSection))
+          @if($homeParaRightSection->section == "parallax-right")
+        <div class="col-md-6">
     <div class="form-box-sec">
         <div class="top-tile">
-            Register
+            {{$homeParaRightSection->section_heading}}
         </div>
         <form method="POST" action="{{ route('register') }}" class="parallax-form" autocomplete="off">
             @csrf
@@ -399,10 +409,14 @@ You achieve Diamond lavel get 1 lacks
         </form>
     </div>
                </div>
+               @endif
+               @endif
            </div>
         </div>
+        @endif
     </section>
-
+    @endif
+      @if($astrologers->count())
       <section class="m-t-70 astrologer-section container bgwhite text-center">
         <div class="">
           <h2 class="fs-50 text-center title-main-heading">Our Astrologers</h2>
@@ -424,7 +438,8 @@ You achieve Diamond lavel get 1 lacks
           </div>
         </div>
       </section>
-
+      @endif
+    @if($gellery->count())
     <section class="m-t-70 container">
       <h2 class="fs-50 text-center title-main-heading">Our Gallery</h2>
           <hr class="under-line">
@@ -460,11 +475,11 @@ You achieve Diamond lavel get 1 lacks
                     
                 <!--</div>-->
             </div>
-            <a href="/gallery" class="btn btn-style on-mob-bottom-30 m-t-20" style="width:150px !important;">View More</a>
+            <a href="/gallery" class="btn btn-style on-mob-bottom-30" style="width:150px !important;margin-top: 20px;">View More</a>
     </section>
-
+    @endif
     
-
+  @if($videos->count())
     <!-- Blog -->
     <section class="blog bgwhite m-t-70">
         <div class="container">
@@ -488,10 +503,10 @@ You achieve Diamond lavel get 1 lacks
                 </div>
              @endforeach
             </div>
-            <a href="/youtube-videos" class="btn btn-style on-mob-bottom-30 m-t-20" style="width:150px !important;">View More</a>
+            <a href="/youtube-videos" class="btn btn-style on-mob-bottom-30 m-t-20" style="width:150px !important;margin-top: 20px;">View More</a>
         </div>
     </section>
-
+    @endif
 <!--     <div id="startUpModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">

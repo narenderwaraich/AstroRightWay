@@ -27,32 +27,43 @@
 @endif
 
 <div class="container">
-
+@if(isset($aboutSection))
+@if($aboutSection->section == "about-main")
 <section class="about-sec1 section-top">
       <div class="row">
+        @if($aboutSection->bg_img)
         <div class="col-md-6 text-center">
-          <img src="/public/images/section/about-us-img.jpg" alt="Pandit" class="icon-img2">
+          <img src="/public/images/bg/{{$aboutSection->bg_img}}" alt="Pandit" class="icon-img2">
         </div>
+        @endif
+        @if($aboutSection->section_heading)
         <div class="col-md-6 pad-in-section">
-          <div class="heading-title heading-text heading-color">Know About AstroRightWay</div>
+          <div class="heading-title heading-text heading-color">{{$aboutSection->section_heading}}</div>
           <br>
-          <p><strong>|| हरि ॐ नमो वासुदेवाय ||</strong>
+          <p>@if($aboutSection->section_sub_heading)<strong>{{$aboutSection->section_sub_heading}}</strong>
+          @endif
+          @if($aboutSection->section_content)
             <br><br>
-            <b>We Offer Services</b>
-            <br>
-            We offer services to help our users to gain insight into their past, present and future and remedies to prevent and cure problems.
+            {{$aboutSection->section_content}}
+            @endif
           </p>
         </div>
+        @endif
       </div>  
     </section>
-
-
+    @endif
+    @endif
+    @if(isset($aboutServiceSection))
+    @if($aboutServiceSection->section == "about-services")
     <section class="about-sec2 section-top section-bottom">
       <div class="row">
+        @if($aboutServiceSection->section_heading)
         <div class="col-md-6 col-md-pull-6 pad-in-section">
-          <div class="heading-title heading-text heading-color">Services of AstroRightWay</div>
+          <div class="heading-title heading-text heading-color">{{$aboutServiceSection->section_heading}}</div>
+          @if($aboutServiceSection->section_sub_heading)
           <br>
-          <b>We Offer Services</b>
+          <b>{{$aboutServiceSection->section_sub_heading}}</b>
+          @endif
           <br>
           <ul class="service-list">
             <li>Get your love back</li>
@@ -68,10 +79,15 @@
             <li>Husband Wife Disputes</li>
           </ul>
         </div>
+        @endif
+        @if($aboutServiceSection->bg_img)
         <div class="col-md-6 col-md-push-6 text-center">
-         <img src="/public/images/section/section2.jpg" alt="services" class="icon-img2 on-mob-top-30">
+         <img src="/public/images/bg/{{$aboutServiceSection->bg_img}}" alt="services" class="icon-img2 on-mob-top-30">
         </div>
+        @endif
       </div>  
     </section>
+    @endif
+    @endif
 </div>
 @endsection

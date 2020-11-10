@@ -25,8 +25,9 @@
 @else
 <div class="m-t-150"></div>
 @endif
-
-<section class="chat-background-image-style">
+@if(isset($chatBgSection))
+@if($chatBgSection->section == "chat-bg-img")
+<section class="chat-background-image-style" style="background-image: url(/public/images/bg/{{$chatBgSection->bg_img}});">
   <div class="container-fluid chat-background-opacity-bg">
 	    <div class="container chat-box-h">
 
@@ -51,20 +52,22 @@
 	    @endif
 	    @if($message->message_status == "Pending")
 	    	<div class="message-chat-plan animation-css">
-	    	<p class="plan-text-msg">Wellcome to AstroRightWay
-तब तक आपका Message पेंडिंग रहेगा जब तक आप कोई वैल्यू प्लान नही चुन लेते,
-आपके द्वारा दी जाने वाली थोड़ी सी फ़ीस ज़रुरतमन्दो के कल्याण के लिए उपयोग की जाती है
-उसके बाद हमारे विद्वान ज्योतिषयों द्वारा देखकर आपके प्रश्नो का उत्तर दिया जाएगा
-	    	    If you want your Reply. Please choose first any chat plan click on Buy</p>
+	    	@if(isset($chatPendingMsg))
+			@if($chatPendingMsg->section == "pending-message")
+	    	<p class="plan-text-msg">{{$chatPendingMsg->section_content}}</p>
+	    	  @endif
+	    	  @endif
 	    		<a href="/buy/plan"><button type="button" class="btn btn-style btn-top" >Buy Now</button></a>
 	    	</div>
 	    @endif
 
 	    @if($message->message_status == "Sent")
 	    	<div class="message-chat-plan animation-css border-px">
-	    	<p class="plan-text-msg">हमारे ज्योतिष भवन से जुड़ने के लिए धन्यवाद,
-आपके प्रश्नो का उत्तर हमारे विद्वान ज्योतिषियों द्वारा जल्द ही देखकर बताया जाएगा
-कृप्या इंतज़ार करें</p>
+	    	@if(isset($chatSentMsg))
+			@if($chatSentMsg->section == "sent-message")
+	    	<p class="plan-text-msg">{{$chatSentMsg->section_content}}</p>
+			@endif
+	    	@endif
 	    	</div>
 	    @endif
 
@@ -115,8 +118,10 @@
 	    </div>
   </div>
 </section>
+@endif
+@endif
 
-<div id="startUpModal" class="modal fade">
+<!-- <div id="startUpModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -131,7 +136,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
@@ -168,12 +173,12 @@ select option[value="1"] {
 </style>
  <script type="text/javascript" src="/public/jquery/jquery-3.2.1.min.js"></script>
  <script> 
-     $(document).ready(function(){
-        setTimeout(function(){
-            $("#startUpModal").modal('show');
-        }, 5000);
+    //  $(document).ready(function(){
+    //     setTimeout(function(){
+    //         $("#startUpModal").modal('show');
+    //     }, 5000);
         
-    });
+    // });
 
      $(document).ready(function(){
            $('#astrologer').on('change', function() {

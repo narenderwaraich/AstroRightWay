@@ -314,7 +314,7 @@ public function productView(){
         }
       $categoryName = Category::where('name',$name)->first();
       $id = $categoryName->id;
-      $products = Product::where('category_id',$id)->latest()->paginate(9);
+      $products = Product::where('category_id',$id)->latest()->paginate(10);
       $category = Category::all();
       if(Auth::check()){   
         $userId = Auth::id();

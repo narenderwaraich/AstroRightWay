@@ -23,6 +23,7 @@ use App\Order;
 use App\Product;
 use App\BanerSlide;
 use App\Mail\ContactUs;
+use App\SectionImage;
 
 class ContactController extends Controller
 {
@@ -31,14 +32,19 @@ class ContactController extends Controller
         if (isset($banner)) {
             $title = $banner->title;
             $description = $banner->description;
+        }else{
+                $title = "";
+                $description = "";
         }
+        $aboutSection = SectionImage::where('page_name','=','about-us')->where('section','=','about-main')->first();
+        $aboutServiceSection = SectionImage::where('page_name','=','about-us')->where('section','=','about-services')->first();
         if(Auth::check()){
             $userId = Auth::id();
             $cartCollection = CartStorage::where('user_id',$userId)->get();
             $subTotal = DB::table("cart_storages")->where('user_id',$userId)->sum('subtotal');
-            return view('about',compact('title','description'),['banner' =>$banner, 'cartCollection' =>$cartCollection, 'subTotal' => $subTotal]);
+            return view('about',compact('title','description'),['banner' =>$banner, 'aboutSection' => $aboutSection, 'aboutServiceSection' => $aboutServiceSection, 'cartCollection' =>$cartCollection, 'subTotal' => $subTotal]);
         }else{
-            return view('about',compact('title','description'),['banner' =>$banner]);
+            return view('about',compact('title','description'),['banner' =>$banner, 'aboutSection' => $aboutSection, 'aboutServiceSection' => $aboutServiceSection]);
         }
     }
     

@@ -154,15 +154,15 @@
 		    <div class="col-md-6 mb-cols">
 		    <a href="/product-details/{{$product->id}}">
 		      <div class="product-view-window-div {{ ($product->product_types_id ==2) ? 'block2-labelnew' : '' }} {{ ($product->product_types_id ==1) ? 'block2-labelsale' : '' }}" style="background-image: url(/public/images/products/{{$product->image}});">
-		          <div class="slide-imge-overlay"></div>
-		        <div class="product-content">
-			        <a href="/product-details/{{$product->id}}"><h2 class="m-top heading-color2">{{$product->name}}</h2></a>
-			        <br>
-			        <p class="offer-text">@if($product->cross_price)<span style="color: #ce2350;font-weight: 600;text-decoration: line-through;">₹{{$product->cross_price}}</span> - @endif ₹{{$product->price}}</p>
-			        <button type="button" class="btn secondary_btn mt40 add-on-cart" addId="{{ $product->id }}">Add to Cart</button>
-		        </div>
+		          <!-- <div class="slide-imge-overlay"></div> -->
 		      </div>
 		      </a>
+		      <div class="product-content">
+	              <a href="/product-details/{{$product->id}}"><h5 class="m-top heading-color2">{{$product->name}}</h5></a>
+	              <br>
+	              <p>@if($product->cross_price)<span class="main-color cross-text">₹{{$product->cross_price}}</span> - @endif ₹{{$product->price}}</p>
+	              <button type="button" class="btn secondary_btn add-on-cart" addId="{{ $product->id }}">Add to Cart</button>
+          	  </div>
 		    </div>
 		    @endforeach
 		  </div>

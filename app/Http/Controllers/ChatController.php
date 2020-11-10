@@ -21,6 +21,7 @@ use App\MemberJoin;
 use Mail;
 use App\Mail\MessageNotification;
 use App\Mail\ChatReply;
+use App\SectionImage;
 
 class ChatController extends Controller
 {
@@ -45,7 +46,13 @@ class ChatController extends Controller
             if (isset($banner)) {
                 $title = $banner->title;
                 $description = $banner->description;
+            }else{
+                $title = "";
+                $description = "";
             }
+            $chatBgSection = SectionImage::where('page_name','=','chat')->where('section','=','chat-bg-img')->first();
+            $chatPendingMsg = SectionImage::where('page_name','=','chat')->where('section','=','pending-message')->first();
+            $chatSentMsg = SectionImage::where('page_name','=','chat')->where('section','=','sent-message')->first();
             $astrologers = Astrologer::where('verified','=',2)->get(); //dd($astrologers);
             $messages = Chat::where('user_id',Auth::id())->orderBy('created_at','desc')->get(); //dd($messages);
             $member = MemberJoin::where('user_id',Auth::id())->where('status','=',1)->first();
@@ -54,7 +61,7 @@ class ChatController extends Controller
                 Toastr::error('Your Member Fee Pending Please Pay Now', 'Error', ["positionClass" => "toast-top-right"]);
                 return redirect()->to('/join-member/pay/payment');
             }
-            return view('chat',compact('title','description','banner','messages','astrologers','member'));
+            return view('chat',compact('title','description','banner','messages','astrologers','member','chatBgSection','chatPendingMsg','chatSentMsg'));
     }
 
     /**
