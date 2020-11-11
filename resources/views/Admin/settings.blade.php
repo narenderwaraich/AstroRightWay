@@ -98,6 +98,10 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="form-group">
+                                    <label>Coupan Exp Days ({{ date('d-m-Y H:i:s', strtotime($data->coupan_exp_time)) }})</label>
+                                    <input type="datetime-local" class="form-control" name="coupan_exp_time" placeholder="Enter Coupan Exp Time" value="">
+                                </div>
                             </div>
 
                             <div class="box-footer">

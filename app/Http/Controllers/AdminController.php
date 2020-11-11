@@ -419,9 +419,14 @@ class AdminController extends Controller
     {
         $id =1;
         $setting = Setting::find($id);
-        $setting->update($request->all());
+        $data = $request->all();
+        $coupanExpTime = $request->coupan_exp_time;
+        if($coupanExpTime){
+          $data['coupan_exp_time'] = $coupanExpTime; 
+        }
+        $setting->update($data);
         Toastr::success('Updated', 'Success', ["positionClass" => "toast-bottom-right"]);
-        return redirect()->to('/admin');
+        return back();
     }
 
 

@@ -15,6 +15,7 @@ use App\Rashifal;
 use App\Covid19;
 use App\Astrologer;
 use App\SectionImage;
+use App\Setting;
 
 class HomeController extends Controller
 {
@@ -35,6 +36,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $id =1;
+        $setting = Setting::find($id);
+        $coupanExpTime = $setting->coupan_exp_time;
+
         $videos = Youtube::latest()->paginate(6);
         $products = Product::orderBy('created_at','desc')->paginate(9);
         $gellery = Gellery::orderBy('created_at','desc')->paginate(5);
@@ -63,9 +68,9 @@ class HomeController extends Controller
             $userId = Auth::id();
             $cartCollection = CartStorage::where('user_id',$userId)->get();
             $subTotal = DB::table("cart_storages")->where('user_id',$userId)->sum('subtotal');       
-            return view('index',compact('title','description','rashi','covid'),['bannerSlide' => $bannerSlide,'products' =>$products, 'videos' => $videos,'cartCollection' =>$cartCollection, 'subTotal' =>$subTotal,'gellery' =>$gellery, 'astrologers' => $astrologers, 'homeParaSection' => $homeParaSection, 'homeParaLeftSection' => $homeParaLeftSection, 'homeParaRightSection' =>$homeParaRightSection, 'homeAstroSection' => $homeAstroSection ]);
+            return view('index',compact('title','description','rashi','covid'),['bannerSlide' => $bannerSlide,'products' =>$products, 'videos' => $videos,'cartCollection' =>$cartCollection, 'subTotal' =>$subTotal,'gellery' =>$gellery, 'astrologers' => $astrologers, 'homeParaSection' => $homeParaSection, 'homeParaLeftSection' => $homeParaLeftSection, 'homeParaRightSection' =>$homeParaRightSection, 'homeAstroSection' => $homeAstroSection, 'coupanExpTime' => $coupanExpTime ]);
         }else{
-          return view('index',compact('title','description'),['bannerSlide' => $bannerSlide, 'products' => $products, 'videos' => $videos,'gellery' =>$gellery, 'astrologers' => $astrologers, 'homeParaSection' => $homeParaSection, 'homeParaLeftSection' => $homeParaLeftSection, 'homeParaRightSection' =>$homeParaRightSection, 'homeAstroSection' => $homeAstroSection ]);  
+          return view('index',compact('title','description'),['bannerSlide' => $bannerSlide, 'products' => $products, 'videos' => $videos,'gellery' =>$gellery, 'astrologers' => $astrologers, 'homeParaSection' => $homeParaSection, 'homeParaLeftSection' => $homeParaLeftSection, 'homeParaRightSection' =>$homeParaRightSection, 'homeAstroSection' => $homeAstroSection, 'coupanExpTime' => $coupanExpTime ]);  
         }
         
     }
