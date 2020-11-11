@@ -229,6 +229,18 @@ class CartStorageController extends Controller
         $id = Auth::id();
         $checkCoupan = DiscountCoupan::where('code',$request->coupon_code)->first(); //dd($checkCoupan);
         if($checkCoupan){
+            $couponExpTime = $checkCoupan->coupan_exp_time;
+            if($couponExpTime){
+                   // get the current time
+                    $currentDateTime = now()->format('Y-m-d H:i:s');
+                    $nowDateTime = strtotime(str_replace('/', '-', $currentDateTime));
+                    $coupanDateTime = strtotime(str_replace('/', '-', $couponExpTime));         
+                    $coupanExpires = $coupanDateTime - $nowDateTime; /// show total seconds 
+                    if($coupanExpires <= 0){
+                    Toastr::error('Coupan Code expire', 'Error', ["positionClass" => "toast-bottom-right"]);
+                    return back();
+                    }
+                }
             if($checkCoupan->code == "FREESHIP"){
                 $storeProduct = CartStorage::where('user_id',$id)->first(); //dd($storeProduct);
                 $discount = 50;

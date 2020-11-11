@@ -20,6 +20,15 @@
 
                         <div class="box-body">
                             <div class="form-group">
+                                <label for="title">Select Product (Optional)</label>
+                                <select class="form-control" name="product_id">
+                                    <option value="">Select Product</option>
+                                    @foreach ($products as $product)
+                                    <option value="{{ $product->id }}" {{ ($discount->product_id == $product->id ? "selected":"") }}>{{ $product->name}}</option>
+                                    @endforeach
+                               </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="title">Name</label>
                                 <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" placeholder="Enter Name" value="{{ $discount->name }}">
                                 @if ($errors->has('name'))
@@ -47,9 +56,13 @@
                                 </span>
                                 @endif
                                 </div>
+                                <div class="form-group">
+                                    <label>Coupan Exp Days ({{ date('d-m-Y H:i:s', strtotime($discount->coupan_exp_time)) }})</label>
+                                    <input type="datetime-local" class="form-control" name="coupan_exp_time" placeholder="Enter Coupan Exp Time" value="">
+                                </div>
                                   <div class="form-group">
                                     <label for="title">Description</label>
-                                    <textarea name="description" value="{{ $discount->description }}"  rows="5" placeholder="Description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" required>{{ $discount->description }}</textarea>
+                                    <textarea name="description" value="{{ $discount->description }}"  rows="5" placeholder="Description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">{{ $discount->description }}</textarea>
                                     @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -58,7 +71,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Term-Condtions</label>
-                                    <textarea name="term" value="{{ $discount->term }}"  rows="5" placeholder="Term-Condtions" class="form-control{{ $errors->has('term') ? ' is-invalid' : '' }}" required>{{ $discount->term }}</textarea>
+                                    <textarea name="term" value="{{ $discount->term }}"  rows="5" placeholder="Term-Condtions" class="form-control{{ $errors->has('term') ? ' is-invalid' : '' }}">{{ $discount->term }}</textarea>
                                     @if ($errors->has('term'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('term') }}</strong>

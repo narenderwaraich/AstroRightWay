@@ -32,6 +32,8 @@
                                     <th>Name</th>
                                     <th>Code</th>
                                     <th>Percentage</th>
+                                    <th>Product</th>
+                                    <th>Exp. Time</th>
                                     <th>Description</th>
                                     <th>Term-Condtions</th>
                                     <th>Actions</th>
@@ -44,6 +46,8 @@
                                         <td>{{ $discountData->name }}</td>
                                         <td>{{ $discountData->code }}</td>
                                         <td>{{ $discountData->percentage }}</td>
+                                        <td>{{ $discountData->product }}</td>
+                                        <td>@if($discountData->coupan_exp_time){{ date('d-m-Y H:i:s', strtotime($discountData->coupan_exp_time)) }}@endif</td>
                                         <td>{{ $discountData->description }}</td>
                                         <td>{{ $discountData->term }}</td>
                                         <td><a href="/discount/edit/{{ $discountData->id }}" class="btn btn-secondary">Edit</a>

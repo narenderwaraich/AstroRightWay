@@ -27,6 +27,10 @@ class DiscountCoupanController extends Controller
         $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
         $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
         $discount = DiscountCoupan::orderBy('created_at','desc')->paginate(10);
+        foreach ($discount as $discountData) {
+           $product = Product::find($discountData->product_id);
+           $discountData->product = $product ? $product->name : '';
+        }
         return view('Admin.Coupan.Show',compact('getOrders','contacts'),['discount' =>$discount]);
         }
     }else{
@@ -51,7 +55,8 @@ class DiscountCoupanController extends Controller
     if(Auth::user()->role == "admin"){
         $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
         $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
-        return view('Admin.Coupan.Add',compact('getOrders','contacts'));
+        $products = Product::all();
+        return view('Admin.Coupan.Add',compact('getOrders','contacts','products'));
         }
     }else{
         return redirect()->to('/login');
@@ -101,7 +106,8 @@ class DiscountCoupanController extends Controller
         $getOrders = Order::where('status','=',"Pending")->get(); //dd($getOrders);
         $contacts = Contact::where('status','=',"Pending")->get(); //dd($contacts);
         $discount = DiscountCoupan::find($id);
-        return view('Admin.Coupan.Edit',compact('getOrders','contacts'),['discount' =>$discount]);
+        $products = Product::all();
+        return view('Admin.Coupan.Edit',compact('getOrders','contacts','products'),['discount' =>$discount]);
         }
     }else{
         return redirect()->to('/login');
