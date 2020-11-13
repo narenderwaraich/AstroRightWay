@@ -295,6 +295,23 @@ public function productView(){
         }
       $category = Category::all();
       $products = Product::latest()->paginate(9);
+      foreach ($products as $product) {
+        $data = Review::where('product_id',$product->id)->get();
+        $reviews = json_decode($data,true); //dd($reviews);
+        $max = 0;
+        $count = count($data); //dd($count);
+        foreach ($reviews as $key => $review) {
+           $max = $max + $review['rating'];
+        }
+        if($max !=0){
+          $totalReview = $max/$count; //dd($totalReview);
+        }else{
+          $totalReview = 0;
+        }
+        $rating = number_format($totalReview, 1);  //dd($rating);
+        $product->rating = $rating;
+      }
+
         if(Auth::check()){  
             $userId = Auth::id();
             $cartCollection = CartStorage::where('user_id',$userId)->get();
@@ -315,6 +332,22 @@ public function productView(){
       $categoryName = Category::where('name',$name)->first();
       $id = $categoryName->id;
       $products = Product::where('category_id',$id)->latest()->paginate(10);
+      foreach ($products as $product) {
+        $data = Review::where('product_id',$product->id)->get();
+        $reviews = json_decode($data,true); //dd($reviews);
+        $max = 0;
+        $count = count($data); //dd($count);
+        foreach ($reviews as $key => $review) {
+           $max = $max + $review['rating'];
+        }
+        if($max !=0){
+          $totalReview = $max/$count; //dd($totalReview);
+        }else{
+          $totalReview = 0;
+        }
+        $rating = number_format($totalReview, 1);  //dd($rating);
+        $product->rating = $rating;
+      }
       $category = Category::all();
       if(Auth::check()){   
         $userId = Auth::id();

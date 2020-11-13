@@ -161,6 +161,26 @@
 	              <a href="/product-details/{{$product->id}}"><h5 class="m-top heading-color2">{{$product->name}}</h5></a>
 	              <br>
 	              <p>@if($product->cross_price)<span class="main-color cross-text">₹{{$product->cross_price}}</span> - @endif ₹{{$product->price}}</p>
+	              <p>
+                <div class="placeholder" style="color: gray; font-size: 22px;">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <span class="small" style="color: gray;">({{ $product->rating }})</span>
+                </div>
+                <div class="overlay" style="position: relative;top: -32px;font-size: 22px; color: orange;">
+                    @while($product->rating>0)
+                        @if($product->rating >0.5)
+                            <i class="fa fa-star"></i>
+                        @else
+                            <i class="fa fa-star-half"></i>
+                        @endif
+                        @php $product->rating--; @endphp
+                    @endwhile
+                </div> 
+              </p>
 	              <button type="button" class="btn secondary_btn add-on-cart" addId="{{ $product->id }}">Add to Cart</button>
           	  </div>
 		    </div>

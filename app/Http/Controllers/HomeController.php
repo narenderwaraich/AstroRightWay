@@ -16,6 +16,7 @@ use App\Covid19;
 use App\Astrologer;
 use App\SectionImage;
 use App\Setting;
+use App\Review;
 
 class HomeController extends Controller
 {
@@ -42,6 +43,24 @@ class HomeController extends Controller
 
         $videos = Youtube::latest()->paginate(6);
         $products = Product::orderBy('created_at','desc')->paginate(9);
+        foreach ($products as $product) {
+        $data = Review::where('product_id',$product->id)->get();
+        $reviews = json_decode($data,true); //dd($reviews);
+        $max = 0;
+        $count = count($data); //dd($count);
+        foreach ($reviews as $key => $review) {
+           $max = $max + $review['rating'];
+        }
+        if($max !=0){
+          $totalReview = $max/$count; //dd($totalReview);
+        }else{
+          $totalReview = 0;
+        }
+        $rating = number_format($totalReview, 1);  //dd($rating);
+        $product->rating = $rating;
+      }
+
+
         $gellery = Gellery::orderBy('created_at','desc')->paginate(5);
         $astrologers = Astrologer::where('verified','=',2)->get(); //dd($astrologers);
         // $current = Carbon::now();
